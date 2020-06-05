@@ -9,11 +9,11 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.ddky</groupId>
-	<artifactId>ddky-fms-refund2</artifactId>
+	<artifactId>ddky-fms-refund</artifactId>
 	<version>1.0.0</version>
-	<name>ddky-fms-refund2</name>
-	<description>fms-refund2</description>
-	<packaging>war</packaging>
+	<name>ddky-fms-refund</name>
+	<description>fms-refund</description>
+	<packaging>jar</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -110,27 +110,4 @@
 			<version>1.2.13</version>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>2.2.6.RELEASE</version>
-				<configuration>
-					<mainClass>com.ddky.fms.refund.DdkyFmsRefundApplication</mainClass>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 </project>
