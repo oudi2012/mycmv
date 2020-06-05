@@ -5,6 +5,8 @@ import com.ddky.fms.refund.model.entry.ArticleInfo;
 import com.ddky.fms.refund.model.entry.Category;
 import com.ddky.fms.refund.model.entry.Dynasty;
 import com.ddky.fms.refund.model.entry.Grade;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +48,20 @@ public class WywService {
 
     public void insertCategory(Category category) {
         wywMapper.insertCategory(category);
+    }
+
+    public PageInfo<ArticleInfo> listArticleInfo(int pageIndex, int pageSize) {
+        PageHelper.startPage(pageIndex, pageSize);
+        List<ArticleInfo> articleInfoList = wywMapper.listArticleInfo();
+        return new PageInfo<>(articleInfoList);
+    }
+
+    public int updateArticleInfo(ArticleInfo articleInfo) {
+        return wywMapper.updateArticleInfo(articleInfo);
+    }
+
+    public int updateArticleInfoList(List<ArticleInfo> articleInfoList) {
+        return wywMapper.updateArticleInfoList(articleInfoList);
     }
 
 }

@@ -16,7 +16,7 @@ public class HtmlUtils {
     /**
      * 格式化html
      */
-    public static List<ArticleInfo> formatHtmlCont(String url) {
+    public static List<ArticleInfo> formatHtmlList(String url) {
         List<ArticleInfo> articleInfoList = new ArrayList<>();
         try {
             Document document = Jsoup.connect(url).get();
@@ -40,9 +40,32 @@ public class HtmlUtils {
         return articleInfoList;
     }
 
+    /**
+     * 格式化html
+     */
+    public static ArticleInfo formatHtmlCont(ArticleInfo articleInfo) {
+        try {
+            Document document = Jsoup.connect(articleInfo.getHref()).get();
+            String href = articleInfo.getHref();
+            href = href.substring(href.lastIndexOf("_") + 1);
+            href = href.substring(0, href.indexOf("."));
+            String contsonId = "contson" + href;
+            Element typeCont = document.getElementById(contsonId);
+            if (typeCont != null && !StringUtils.isEmpty(typeCont.ownText())) {
+                articleInfo.setCont(typeCont.ownText());
+            }
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+        return articleInfo;
+    }
+
     //https://so.gushiwen.org/gushi/xishi.aspx
     //https://so.gushiwen.org/gushi/xiaoxue.aspx
     /*public static void main(String[] args)  {
-        formatHtmlCont("https://so.gushiwen.org/gushi/xishi.aspx");
+        ArticleInfo articleInfo = new ArticleInfo();
+        //https://so.gushiwen.org/shiwenv_f15d22e7cd52.aspx
+        articleInfo.setHref("https://so.gushiwen.org/shiwenv_f15d22e7cd52.aspx");
+        formatHtmlCont(articleInfo);
     }*/
 }

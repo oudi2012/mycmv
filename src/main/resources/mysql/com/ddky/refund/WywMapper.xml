@@ -29,6 +29,38 @@
         insert into wy_category  (name,orderNo,href) values (#{name},0,#{href})
     </insert>
 
+    <select id="listArticleInfo" resultType="com.ddky.fms.refund.model.entry.ArticleInfo">
+        select * from wy_articleInfo order by id desc
+    </select>
+
+    <insert id="updateArticleInfo" parameterType="com.ddky.fms.refund.model.entry.ArticleInfo">
+        update wy_articleInfo
+        <set>
+            <if test="grade != null"> grade = #{grade},</if>
+            <if test="cateId != null"> cateId = #{cateId},</if>
+            <if test="tags != null"> tags = #{tags},</if>
+            <if test="cont != null"> cont = #{cont},</if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </insert>
+
+    <insert id="updateArticleInfoList" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";">
+            update wy_articleInfo
+            <set>
+                <if test="item.grade != null"> grade = #{item.grade},</if>
+                <if test="item.cateId != null"> cateId = #{item.cateId},</if>
+                <if test="item.tags != null"> tags = #{item.tags},</if>
+                <if test="item.cont != null"> cont = #{item.cont},</if>
+            </set>
+            <where>
+                id = #{item.id}
+            </where>
+        </foreach>
+    </insert>
+
     <insert id="insertArticleInfo" useGeneratedKeys="true" keyProperty="id"
             parameterType="com.ddky.fms.refund.model.entry.ArticleInfo">
         insert into wy_articleInfo (author,grade,dynasty,cateId,tags,title,cont,createDate,href)

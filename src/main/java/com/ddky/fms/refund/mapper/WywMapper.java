@@ -22,6 +22,12 @@ public interface WywMapper {
 
     void insertCategory(Category category);
 
+    List<ArticleInfo> listArticleInfo();
+
+    int updateArticleInfo(ArticleInfo articleInfo);
+
+    int updateArticleInfoList(@Param("list")List<ArticleInfo> articleInfoList);
+
     void insertArticleInfo(ArticleInfo articleInfo);
 
     void insertArticleInfoList(@Param("list")List<ArticleInfo> articleInfoList);
