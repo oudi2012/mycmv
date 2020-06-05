@@ -3,9 +3,10 @@ package com.ddky.fms.refund.model.entry;
 import lombok.Data;
 
 @Data
-public class Category {
+public class Author {
     private Integer id;
     private String name;
-    private Integer orderNo;
-    private String href;
+    private Integer dynasty;
+    private String tags;
+    private String detail;
 }

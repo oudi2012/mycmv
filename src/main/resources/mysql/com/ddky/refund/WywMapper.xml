@@ -26,7 +26,7 @@
 
     <insert id="insertCategory" useGeneratedKeys="true" keyProperty="id"
             parameterType="com.ddky.fms.refund.model.entry.Category">
-        insert into wy_category  (name,orderNo) values (#{name},0)
+        insert into wy_category  (name,orderNo,href) values (#{name},0,#{href})
     </insert>
 
     <insert id="insertArticleInfo" useGeneratedKeys="true" keyProperty="id"

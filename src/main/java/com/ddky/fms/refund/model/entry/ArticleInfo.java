@@ -11,6 +11,7 @@ public class ArticleInfo {
     private int grade;
     private int dynasty;
     private int cateId;
+    private int styleId;
     private String tags;
     private String title;
     private String cont;
