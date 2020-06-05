@@ -149,5 +149,6 @@ CREATE TABLE `wy_articleInfo` (
   `title` varchar(100) DEFAULT NULL,
   `cont` text DEFAULT NULL,
   `createDate` datetime DEFAULT NULL,
+  `href` varchar(100) DEFAULT NULL COMMENT '地址',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='古文内容';

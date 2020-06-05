@@ -16,4 +16,5 @@ public class ArticleInfo {
     private String title;
     private String cont;
     private Date createDate;
+    private String href;
 }

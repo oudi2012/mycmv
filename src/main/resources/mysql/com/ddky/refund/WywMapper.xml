@@ -31,8 +31,15 @@
 
     <insert id="insertArticleInfo" useGeneratedKeys="true" keyProperty="id"
             parameterType="com.ddky.fms.refund.model.entry.ArticleInfo">
-        insert into wy_articleInfo (author,grade,dynasty,cateId,tags,title,cont,createDate)
-        values (#{author},#{grade},#{dynasty},#{cateId},#{tags},#{title},#{cont},now())
+        insert into wy_articleInfo (author,grade,dynasty,cateId,tags,title,cont,createDate,href)
+        values (#{author},#{grade},#{dynasty},#{cateId},#{tags},#{title},#{cont},now(),#{href})
+    </insert>
+
+    <insert id="insertArticleInfoList" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";">
+            insert into wy_articleInfo (author,grade,dynasty,cateId,tags,title,cont,createDate,href)
+            values (#{item.author},#{item.grade},#{item.dynasty},#{item.cateId},#{item.tags},#{item.title},#{item.cont},now(),#{item.href})
+        </foreach>
     </insert>
 
 </mapper>

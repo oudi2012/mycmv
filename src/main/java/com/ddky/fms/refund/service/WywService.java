@@ -32,6 +32,10 @@ public class WywService {
         wywMapper.insertArticleInfo(articleInfo);
     }
 
+    public void insertArticleInfoList(List<ArticleInfo> articleInfoList) {
+        wywMapper.insertArticleInfoList(articleInfoList);
+    }
+
     public void insertGrade(Grade grade) {
         wywMapper.insertGrade(grade);
     }

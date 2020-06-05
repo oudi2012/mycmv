@@ -4,6 +4,7 @@ import com.ddky.fms.refund.model.entry.ArticleInfo;
 import com.ddky.fms.refund.model.entry.Category;
 import com.ddky.fms.refund.model.entry.Dynasty;
 import com.ddky.fms.refund.model.entry.Grade;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,5 +23,7 @@ public interface WywMapper {
     void insertCategory(Category category);
 
     void insertArticleInfo(ArticleInfo articleInfo);
+
+    void insertArticleInfoList(@Param("list")List<ArticleInfo> articleInfoList);
 
 }
