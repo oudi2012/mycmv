@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ddky.fms.refund.mapper.WywMapper">
+
+    <select id="listGrade" resultType="com.ddky.fms.refund.model.entry.Grade">
+        select * from wy_grade
+    </select>
+
+    <insert id="insertGrade" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.ddky.fms.refund.model.entry.Grade">
+        insert into wy_grade (name,orderNo) values (#{name},0)
+    </insert>
+
+    <select id="listDynasty" resultType="com.ddky.fms.refund.model.entry.Dynasty">
+        select * from wy_dynasty
+    </select>
+
+    <insert id="insertDynasty" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.ddky.fms.refund.model.entry.Dynasty">
+        insert into wy_dynasty  (name,orderNo) values (#{name},0)
+    </insert>
+
+    <select id="listCategory" resultType="com.ddky.fms.refund.model.entry.Category">
+        select * from wy_category
+    </select>
+
+    <insert id="insertCategory" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.ddky.fms.refund.model.entry.Category">
+        insert into wy_category  (name,orderNo) values (#{name},0)
+    </insert>
+
+    <insert id="insertArticleInfo" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.ddky.fms.refund.model.entry.ArticleInfo">
+        insert into wy_articleInfo (author,grade,dynasty,cateId,tags,title,cont,createDate)
+        values (#{author},#{grade},#{dynasty},#{cateId},#{tags},#{title},#{cont},now())
+    </insert>
+
+</mapper>
