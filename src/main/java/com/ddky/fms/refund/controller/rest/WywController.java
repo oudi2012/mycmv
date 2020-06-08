@@ -1,8 +1,8 @@
 package com.ddky.fms.refund.controller.rest;
 
 
-import com.ddky.fms.refund.model.entry.ArticleInfo;
-import com.ddky.fms.refund.model.entry.Category;
+import com.ddky.fms.refund.model.wyw.entry.ArticleInfo;
+import com.ddky.fms.refund.model.wyw.entry.Category;
 import com.ddky.fms.refund.service.WywService;
 import com.ddky.fms.refund.utils.HtmlUtils;
 import com.github.pagehelper.PageInfo;

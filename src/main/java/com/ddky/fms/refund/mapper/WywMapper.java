@@ -1,9 +1,9 @@
 package com.ddky.fms.refund.mapper;
 
-import com.ddky.fms.refund.model.entry.ArticleInfo;
-import com.ddky.fms.refund.model.entry.Category;
-import com.ddky.fms.refund.model.entry.Dynasty;
-import com.ddky.fms.refund.model.entry.Grade;
+import com.ddky.fms.refund.model.wyw.entry.ArticleInfo;
+import com.ddky.fms.refund.model.wyw.entry.Category;
+import com.ddky.fms.refund.model.wyw.entry.Dynasty;
+import com.ddky.fms.refund.model.wyw.entry.Grade;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

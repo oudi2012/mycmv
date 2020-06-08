@@ -1,10 +1,10 @@
 package com.ddky.fms.refund.service;
 
 import com.ddky.fms.refund.mapper.WywMapper;
-import com.ddky.fms.refund.model.entry.ArticleInfo;
-import com.ddky.fms.refund.model.entry.Category;
-import com.ddky.fms.refund.model.entry.Dynasty;
-import com.ddky.fms.refund.model.entry.Grade;
+import com.ddky.fms.refund.model.wyw.entry.ArticleInfo;
+import com.ddky.fms.refund.model.wyw.entry.Category;
+import com.ddky.fms.refund.model.wyw.entry.Dynasty;
+import com.ddky.fms.refund.model.wyw.entry.Grade;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
