@@ -1,4 +1,4 @@
-package com.ddky.fms.refund.model.wyw.wyw.param;
+package com.ddky.fms.refund.model.books.wyw.param;
 
 /**
  * 系统参数

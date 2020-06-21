@@ -1,4 +1,4 @@
-package com.ddky.fms.refund.model.wyw.wyw.vo;
+package com.ddky.fms.refund.model.books.wyw.vo;
 
 import lombok.Data;
 

@@ -1,10 +1,11 @@
-package com.ddky.fms.refund.model.wyw.entry;
+package com.ddky.fms.refund.model.books.wyw.entry;
 
 import lombok.Data;
 
 @Data
-public class Style {
+public class Category {
     private Integer id;
     private String name;
     private Integer orderNo;
+    private String href;
 }

@@ -1,9 +1,9 @@
-package com.ddky.fms.refund.model.wyw.entry;
+package com.ddky.fms.refund.model.books.wyw.entry;
 
 import lombok.Data;
 
 @Data
-public class Grade {
+public class Dynasty {
     private Integer id;
     private String name;
     private Integer orderNo;

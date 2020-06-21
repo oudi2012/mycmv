@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ddky.fms.refund.model.wyw.wyw.enums;
+package com.ddky.fms.refund.model.books.wyw.enums;
 
 /**
  * 订单来源枚举

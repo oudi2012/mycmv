@@ -1,9 +1,13 @@
-package com.ddky.fms.refund.model.wyw.entry;
+package com.ddky.fms.refund.model.students.entry;
 
 import lombok.Data;
 
+
+/***
+ * @author oudi
+ */
 @Data
-public class Dynasty {
+public class Grade {
     private Integer id;
     private String name;
     private Integer orderNo;
