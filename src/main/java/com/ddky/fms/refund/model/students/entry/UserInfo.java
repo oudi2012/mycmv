@@ -29,5 +29,5 @@ public class UserInfo {
 	/** 所属学校 */
 	private Integer schoolId;
 	/** 角色 0:学生 1：老师 */
-	private Integer roler;
+	private Integer role;
 }
