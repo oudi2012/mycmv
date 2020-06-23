@@ -3,7 +3,7 @@ package com.ddky.fms.refund.mapper;
 import com.ddky.fms.refund.model.books.wyw.entry.ArticleInfo;
 import com.ddky.fms.refund.model.books.wyw.entry.Category;
 import com.ddky.fms.refund.model.books.wyw.entry.Dynasty;
-import com.ddky.fms.refund.model.students.entry.Grade;
+import com.ddky.fms.refund.model.students.entry.GradeInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -17,13 +17,13 @@ public interface WywMapper {
      * 获取年级列表
      * @return List
      */
-    List<Grade> listGrade();
+    List<GradeInfo> listGrade();
 
     /***
      * 添加年级
-     * @param grade
+     * @param gradeInfo
      */
-    void insertGrade(Grade grade);
+    void insertGrade(GradeInfo gradeInfo);
 
     /***
      * 朝代列表

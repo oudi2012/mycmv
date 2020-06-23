@@ -4,7 +4,7 @@ import com.ddky.fms.refund.mapper.WywMapper;
 import com.ddky.fms.refund.model.books.wyw.entry.ArticleInfo;
 import com.ddky.fms.refund.model.books.wyw.entry.Category;
 import com.ddky.fms.refund.model.books.wyw.entry.Dynasty;
-import com.ddky.fms.refund.model.students.entry.Grade;
+import com.ddky.fms.refund.model.students.entry.GradeInfo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class WywService {
     @Autowired
     private WywMapper wywMapper;
 
-    public List<Grade> listGrade() {
+    public List<GradeInfo> listGrade() {
         return wywMapper.listGrade();
     }
 
@@ -41,8 +41,8 @@ public class WywService {
         wywMapper.batchInsertArticleInfo(articleInfoList);
     }
 
-    public void insertGrade(Grade grade) {
-        wywMapper.insertGrade(grade);
+    public void insertGrade(GradeInfo gradeInfo) {
+        wywMapper.insertGrade(gradeInfo);
     }
 
     public void insertDynasty(Dynasty dynasty) {

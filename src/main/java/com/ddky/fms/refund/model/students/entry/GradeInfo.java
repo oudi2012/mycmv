@@ -7,7 +7,7 @@ import lombok.Data;
  * @author oudi
  */
 @Data
-public class Grade {
+public class GradeInfo {
     private Integer id;
     private String name;
     private Integer orderNo;
