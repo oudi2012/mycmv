@@ -1,8 +1,8 @@
 package com.ddky.fms.refund.controller.rest;
 
 
-import com.ddky.fms.refund.model.wyw.entry.ArticleInfo;
-import com.ddky.fms.refund.model.wyw.entry.Category;
+import com.ddky.fms.refund.model.books.wyw.entry.ArticleInfo;
+import com.ddky.fms.refund.model.books.wyw.entry.Category;
 import com.ddky.fms.refund.service.WywService;
 import com.ddky.fms.refund.utils.HtmlUtils;
 import com.github.pagehelper.PageInfo;
@@ -45,7 +45,7 @@ public class WywController {
             logger.info(preHref + category.getHref());
             List<ArticleInfo> articleInfoList = HtmlUtils.formatHtmlList(preHref + category.getHref());
             logger.info("articleInfoList size = {}", articleInfoList.size());
-            wywService.insertArticleInfoList(articleInfoList);
+            wywService.batchInsertArticleInfo(articleInfoList);
             logger.info("articleInfoList insert size = {}", articleInfoList.size());
         });
         return "success";

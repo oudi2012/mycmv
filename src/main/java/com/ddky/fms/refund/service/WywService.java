@@ -1,10 +1,10 @@
 package com.ddky.fms.refund.service;
 
 import com.ddky.fms.refund.mapper.WywMapper;
-import com.ddky.fms.refund.model.wyw.entry.ArticleInfo;
-import com.ddky.fms.refund.model.wyw.entry.Category;
-import com.ddky.fms.refund.model.wyw.entry.Dynasty;
-import com.ddky.fms.refund.model.wyw.entry.Grade;
+import com.ddky.fms.refund.model.books.wyw.entry.ArticleInfo;
+import com.ddky.fms.refund.model.books.wyw.entry.Category;
+import com.ddky.fms.refund.model.books.wyw.entry.Dynasty;
+import com.ddky.fms.refund.model.students.entry.Grade;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/***
+ * @author oudi
+ */
 @Service("wywService")
 public class WywService {
 
@@ -34,8 +37,8 @@ public class WywService {
         wywMapper.insertArticleInfo(articleInfo);
     }
 
-    public void insertArticleInfoList(List<ArticleInfo> articleInfoList) {
-        wywMapper.insertArticleInfoList(articleInfoList);
+    public void batchInsertArticleInfo(List<ArticleInfo> articleInfoList) {
+        wywMapper.batchInsertArticleInfo(articleInfoList);
     }
 
     public void insertGrade(Grade grade) {
@@ -60,8 +63,8 @@ public class WywService {
         return wywMapper.updateArticleInfo(articleInfo);
     }
 
-    public int updateArticleInfoList(List<ArticleInfo> articleInfoList) {
-        return wywMapper.updateArticleInfoList(articleInfoList);
+    public int batchUpdateArticleInfo(List<ArticleInfo> articleInfoList) {
+        return wywMapper.batchUpdateArticleInfo(articleInfoList);
     }
 
 }

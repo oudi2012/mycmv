@@ -46,7 +46,7 @@
         </where>
     </insert>
 
-    <insert id="updateArticleInfoList" parameterType="java.util.List">
+    <insert id="batchUpdateArticleInfo" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
             update wy_articleInfo
             <set>
@@ -67,7 +67,7 @@
         values (#{author},#{grade},#{dynasty},#{cateId},#{tags},#{title},#{cont},now(),#{href})
     </insert>
 
-    <insert id="insertArticleInfoList" parameterType="java.util.List">
+    <insert id="batchInsertArticleInfo" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
             insert into wy_articleInfo (author,grade,dynasty,cateId,tags,title,cont,createDate,href)
             values (#{item.author},#{item.grade},#{item.dynasty},#{item.cateId},#{item.tags},#{item.title},#{item.cont},now(),#{item.href})

@@ -1,6 +1,6 @@
 package com.ddky.fms.refund.utils;
 
-import com.ddky.fms.refund.model.wyw.entry.ArticleInfo;
+import com.ddky.fms.refund.model.books.wyw.entry.ArticleInfo;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,6 +11,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/***
+ * @author oudi
+ */
 public class HtmlUtils {
 
     /**
