@@ -8,9 +8,13 @@ import lombok.Data;
  */
 @Data
 public class SchoolInfo {
-
     private Long        id;
     private String      name;
     private String      shortName;
-
+    private String      address;
+    /** 国家 */
+    private Integer     country;
+    private Integer     province;
+    private Integer     city;
+    private Integer     town;
 }

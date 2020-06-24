@@ -12,9 +12,9 @@ import java.util.Date;
 @Data
 public class Collections {
 
-    private Long id;
-    private Long userId;
-    private String title;
-    private Date createDate;
+    private Long        id;
+    private Long        userId;
+    private String      title;
+    private Date        createDate;
 
 }
