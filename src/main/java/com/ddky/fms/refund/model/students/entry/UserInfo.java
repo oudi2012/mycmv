@@ -11,6 +11,7 @@ import lombok.Data;
 @Data
 public class UserInfo {
 	private Long    id;
+	private String  phone;
 	private String  userName;
 	private String  passWord;
 	/** 注册类型 */

@@ -3,6 +3,8 @@ package com.ddky.fms.refund.model.index.entry;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.util.Date;
 
@@ -12,8 +14,10 @@ import java.util.Date;
 @Data
 @ToString
 @NoArgsConstructor
+@Document(indexName = "wyw", type = "doc")
 public class ArticleInfo {
-    private Long id;
+    @Id
+    private String id;
     private String author;
     private int grade;
     private int dynasty;
