@@ -3,7 +3,7 @@
 <mapper namespace="com.ddky.fms.refund.mapper.ClassInfoMapper">
 
     <sql id="column">
-        id, name, type
+        classId, name, type
     </sql>
 
     <sql id="where">

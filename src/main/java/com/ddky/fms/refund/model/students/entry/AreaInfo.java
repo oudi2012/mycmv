@@ -11,8 +11,8 @@ import lombok.Data;
 @Data
 public class AreaInfo {
 	
-	private int areaCode;
-	private String areaName;
-	private int parentCode;
-	private int level;
+	private int		areaCode;
+	private String	areaName;
+	private int		parentCode;
+	private int		level;
 }

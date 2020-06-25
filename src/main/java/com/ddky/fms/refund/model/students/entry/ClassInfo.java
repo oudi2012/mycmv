@@ -11,7 +11,7 @@ import lombok.Data;
  */
 @Data
 public class ClassInfo {
-	private Integer id;
+	private Integer classId;
 	private String name;
 	private Integer type;
 }

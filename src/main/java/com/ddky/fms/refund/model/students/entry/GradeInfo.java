@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 public class GradeInfo {
-    private Integer id;
+    private Integer gradeId;
     private String name;
     private Integer orderNo;
 }

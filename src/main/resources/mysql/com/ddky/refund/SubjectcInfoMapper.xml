@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ddky.fms.refund.mapper.GradeInfoMapper">
+<mapper namespace="com.ddky.fms.refund.mapper.SubjectInfoMapper">
 
     <sql id="column">
-       gradeId, name, orderNo
+        subjectId, name, orderNo
     </sql>
 
     <sql id="where">
@@ -15,7 +15,7 @@
         </if>
     </sql>
 
-    <select id="list" resultType="com.ddky.fms.refund.model.students.entry.GradeInfo">
+    <select id="list" resultType="com.ddky.fms.refund.model.books.SubjectInfo">
         select
             <include refid="column" />
         from stu_grade_info
@@ -24,7 +24,7 @@
         </where>
     </select>
 
-    <select id="findById" resultType="com.ddky.fms.refund.model.students.entry.GradeInfo">
+    <select id="findById" resultType="com.ddky.fms.refund.model.books.SubjectInfo">
         select
             <include refid="column" />
         from stu_grade_info
@@ -33,7 +33,7 @@
         </where>
     </select>
 
-    <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.GradeInfo">
+    <insert id="insert" parameterType="com.ddky.fms.refund.model.books.SubjectInfo">
         insert into stu_grade_info (name, orderNo) values (#{name}, #{orderNo})
     </insert>
 

@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 public class SchoolInfo {
-    private Long        id;
+    private Long        schoolId;
     private String      name;
     private String      shortName;
     private String      address;
