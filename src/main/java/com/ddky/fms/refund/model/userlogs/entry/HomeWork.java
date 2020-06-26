@@ -21,5 +21,9 @@ public class HomeWork {
     private String      workContent;
     /** 作业图片-代表图 */
     private String      indexImage;
+    /** 有效-开始时间 */
+    private Long        beginDate;
+    /** 有效-结束时间 */
+    private Long        endDate;
 
 }
