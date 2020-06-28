@@ -17,7 +17,7 @@ public class BookInfo {
 	/** 出版社 */
 	 Long   publisher;
 	/** 年份 */
-	 int    year;
+	 int    theYear;
 	/** 封面 */
 	 String coverImage;
 	/** cip图片 */

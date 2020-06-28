@@ -3,7 +3,7 @@
 <mapper namespace="com.ddky.fms.refund.mapper.userlogs.HomeWorkMapper">
 
     <sql id="column">
-        homeWorkId, userId, schoolId, gradeId, classId, subjectId, workContent, indexImage, beginDate, endDate
+        homeWorkId, userId, schoolId, gradeId, classId, subjectId, workContent, indexImage, createDate, beginDate, endDate
     </sql>
 
     <sql id="where">
@@ -38,19 +38,19 @@
             <include refid="column" />
         from stu_homework_info
         <where>
-            homeWorkId = #{id}
+            homeWorkId = #{homeWorkId}
         </where>
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.userlogs.entry.HomeWork">
-        insert into stu_homework_info (userId, schoolId, gradeId, classId, subjectId, workContent, indexImage, beginDate, endDate)
-        values (#{userId}, #{schoolId}, #{gradeId}, #{classId}, #{subjectId}, #{workContent}, #{indexImage}, #{beginDate}, #{endDate})
+        insert into stu_homework_info (userId, schoolId, gradeId, classId, subjectId, workContent, indexImage, createDate, beginDate, endDate)
+        values (#{userId}, #{schoolId}, #{gradeId}, #{classId}, #{subjectId}, #{workContent}, #{indexImage}, now(), #{beginDate}, #{endDate})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into stu_homework_info (userId, schoolId, gradeId, classId, subjectId, workContent, indexImage, beginDate, endDate)
-            values (#{item.userId}, #{item.schoolId}, #{item.gradeId}, #{item.classId}, #{item.subjectId}, #{item.workContent}, #{item.indexImage}, #{item.beginDate}, #{item.endDate})
+            insert into stu_homework_info (userId, schoolId, gradeId, classId, subjectId, workContent, indexImage, createDate, beginDate, endDate)
+            values (#{item.userId}, #{item.schoolId}, #{item.gradeId}, #{item.classId}, #{item.subjectId}, #{item.workContent}, #{item.indexImage}, now(), #{item.beginDate}, #{item.endDate})
         </foreach>
     </insert>
 

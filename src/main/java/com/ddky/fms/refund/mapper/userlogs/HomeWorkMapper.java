@@ -19,10 +19,10 @@ public interface HomeWorkMapper {
 
     /***
      * 详细
-     * @param id id
+     * @param homeWorkId id
      * @return obj
      */
-    HomeWork findById(int id);
+    HomeWork findById(int homeWorkId);
 
     /***
      * 添加

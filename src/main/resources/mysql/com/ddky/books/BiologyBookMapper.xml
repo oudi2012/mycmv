@@ -3,7 +3,7 @@
 <mapper namespace="com.ddky.fms.refund.mapper.books.BiologyBookMapper">
 
     <sql id="column">
-        bookId, bookName, shortName, publisher, year, coverImage, cipImage, gradeId
+        bookId, bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId
     </sql>
 
     <sql id="where">
@@ -16,8 +16,8 @@
         <if test="publisher != null">
             publisher = #{publisher}
         </if>
-        <if test="year != null">
-            year = #{year}
+        <if test="theYear != null">
+            theYear = #{theYear}
         </if>
         <if test="gradeId != null">
             gradeId = #{gradeId}
@@ -43,14 +43,14 @@
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.books.biology.entry.BiologyBook">
-        insert into bok_biology_info (bookName, shortName, publisher, year, coverImage, cipImage, gradeId)
-        values (#{bookName}, #{shortName}, #{publisher}, #{year}, #{coverImage}, #{cipImage}, #{gradeId})
+        insert into bok_biology_info (bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId)
+        values (#{bookName}, #{shortName}, #{publisher}, #{theYear}, #{coverImage}, #{cipImage}, #{gradeId})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into bok_biology_info (bookName, shortName, publisher, year, coverImage, cipImage, gradeId)
-            values (#{item.bookName}, #{item.shortName}, #{item.publisher}, #{item.year}, #{item.coverImage}, #{item.cipImage}, #{item.gradeId})
+            insert into bok_biology_info (bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId)
+            values (#{item.bookName}, #{item.shortName}, #{item.publisher}, #{item.theYear}, #{item.coverImage}, #{item.cipImage}, #{item.gradeId})
         </foreach>
     </insert>
 

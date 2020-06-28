@@ -31,4 +31,5 @@ public class UserInfo {
 	private Integer schoolId;
 	/** 角色 0:学生 1：老师 */
 	private Integer role;
+	private Long    updateTime;
 }

@@ -1,6 +1,6 @@
-package com.ddky.fms.refund.mapper.userlogs;
+package com.ddky.fms.refund.mapper.images;
 
-import com.ddky.fms.refund.model.images.entry.ImageCate;
+import com.ddky.fms.refund.model.images.entry.ImageInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -9,30 +9,30 @@ import java.util.List;
  * ClassInfo
  * @author oudi
  */
-public interface ImageCateMapper {
+public interface ImageInfoMapper {
 
     /***
      * 列表
      * @return List
      */
-    List<ImageCate> list();
+    List<ImageInfo> list();
 
     /***
      * 详细
      * @param id id
      * @return obj
      */
-    ImageCate findById(int id);
+    ImageInfo findById(int id);
 
     /***
      * 添加
      * @param item item
      */
-    void insert(ImageCate item);
+    void insert(ImageInfo item);
 
     /***
      * 批量添加
      * @param list list
      */
-    void batchInsert(@Param("list") List<ImageCate> list);
+    void batchInsert(@Param("list") List<ImageInfo> list);
 }

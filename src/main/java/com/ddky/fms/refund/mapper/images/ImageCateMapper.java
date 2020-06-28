@@ -1,38 +1,38 @@
-package com.ddky.fms.refund.mapper.userlogs;
+package com.ddky.fms.refund.mapper.images;
 
-import com.ddky.fms.refund.model.students.entry.TeacherInfo;
+import com.ddky.fms.refund.model.images.entry.ImageCate;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /***
- * GradeInfo
+ * ClassInfo
  * @author oudi
  */
-public interface TeacherInfoMapper {
+public interface ImageCateMapper {
 
     /***
      * 列表
      * @return List
      */
-    List<TeacherInfo> list();
+    List<ImageCate> list();
 
     /***
      * 详细
      * @param id id
      * @return obj
      */
-    TeacherInfo findById(int id);
+    ImageCate findById(int id);
 
     /***
      * 添加
      * @param item item
      */
-    void insert(TeacherInfo item);
+    void insert(ImageCate item);
 
     /***
      * 批量添加
      * @param list list
      */
-    void batchInsert(@Param("list")List<TeacherInfo> list);
+    void batchInsert(@Param("list") List<ImageCate> list);
 }

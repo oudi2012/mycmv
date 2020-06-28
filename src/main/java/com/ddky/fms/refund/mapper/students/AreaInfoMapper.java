@@ -1,4 +1,4 @@
-package com.ddky.fms.refund.mapper.userlogs;
+package com.ddky.fms.refund.mapper.students;
 
 import com.ddky.fms.refund.model.students.entry.AreaInfo;
 import org.apache.ibatis.annotations.Param;

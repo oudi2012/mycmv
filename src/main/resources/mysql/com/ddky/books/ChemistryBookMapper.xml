@@ -3,7 +3,7 @@
 <mapper namespace="com.ddky.fms.refund.mapper.books.ChemistryBookMapper">
 
     <sql id="column">
-        bookId, bookName, shortName, publisher, year, coverImage, cipImage, gradeId
+        bookId, bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId
     </sql>
 
     <sql id="where">
@@ -16,8 +16,8 @@
         <if test="publisher != null">
             publisher = #{publisher}
         </if>
-        <if test="year != null">
-            year = #{year}
+        <if test="theYear != null">
+            theYear = #{theYear}
         </if>
         <if test="gradeId != null">
             gradeId = #{gradeId}

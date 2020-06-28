@@ -1,38 +1,38 @@
-package com.ddky.fms.refund.mapper.userlogs;
+package com.ddky.fms.refund.mapper.students;
 
-import com.ddky.fms.refund.model.books.ScoreCate;
+import com.ddky.fms.refund.model.students.entry.StudentInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /***
- * ClassInfo
+ * GradeInfo
  * @author oudi
  */
-public interface ScoreCateMapper {
+public interface StudentInfoMapper {
 
     /***
      * 列表
      * @return List
      */
-    List<ScoreCate> list();
+    List<StudentInfo> list();
 
     /***
      * 详细
      * @param id id
      * @return obj
      */
-    ScoreCate findById(int id);
+    StudentInfo findById(int id);
 
     /***
      * 添加
      * @param item item
      */
-    void insert(ScoreCate item);
+    void insert(StudentInfo item);
 
     /***
      * 批量添加
      * @param list list
      */
-    void batchInsert(@Param("list") List<ScoreCate> list);
+    void batchInsert(@Param("list")List<StudentInfo> list);
 }
