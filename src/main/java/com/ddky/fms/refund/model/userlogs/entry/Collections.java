@@ -12,9 +12,21 @@ import java.util.Date;
 @Data
 public class Collections {
 
-    private Long        id;
+    private Long        coletId;
     private Long        userId;
+    /** 收藏文件夹编号 */
+    private Long        folderId;
+    /** 收藏信息类型 */
+    private Integer     infoType;
+    /** 收藏信息编号 */
+    private Long        infoId;
     private String      title;
+    /** 标志图片 */
+    private String      imageIndex;
+    /** 内容图片 */
+    private String      images;
+    /** 标签 */
+    private String      tags;
     private Date        createDate;
 
 }

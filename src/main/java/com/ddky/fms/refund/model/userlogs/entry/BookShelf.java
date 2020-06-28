@@ -2,13 +2,15 @@ package com.ddky.fms.refund.model.userlogs.entry;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /***
  * 我的书架
  * @author a
  */
 @Data
 public class BookShelf {
-    private Long      id;
+    private Long      shelfId;
     private Long      userId;
     private Long      bookId;
     /** 书架类别 */
@@ -17,4 +19,5 @@ public class BookShelf {
     private String    bookCover;
     /** 阅读进度 */
     private Integer   readPercent;
+    private Date      createDate;
 }

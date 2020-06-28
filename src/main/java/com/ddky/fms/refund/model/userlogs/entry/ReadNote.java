@@ -14,9 +14,9 @@ public class ReadNote {
     /** 图书编号 */
     private Long        bookId;
     /** 页码 */
-    private Integer     pageNum;
+    private Integer     pageNo;
     /** 行号 */
-    private Integer     lineNum;
+    private Integer     lineNo;
     /** 操作人 */
     private Long        userId;
     /** 10:添加 20 修改 30：删除 */
