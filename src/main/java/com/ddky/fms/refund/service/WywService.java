@@ -1,6 +1,6 @@
 package com.ddky.fms.refund.service;
 
-import com.ddky.fms.refund.mapper.WywMapper;
+import com.ddky.fms.refund.mapper.userlogs.WywMapper;
 import com.ddky.fms.refund.model.books.wyw.entry.ArticleInfo;
 import com.ddky.fms.refund.model.books.wyw.entry.Category;
 import com.ddky.fms.refund.model.books.wyw.entry.Dynasty;

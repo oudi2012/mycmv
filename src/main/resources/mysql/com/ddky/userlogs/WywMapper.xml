@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ddky.fms.refund.mapper.userlogs.WywMapper">
+
+    <select id="listGrade" resultType="com.ddky.fms.refund.model.wyw.entry.Grade">
+        select * from wy_grade
+    </select>
+
+    <insert id="insertGrade" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.ddky.fms.refund.model.wyw.entry.Grade">
+        insert into wy_grade (name,orderNo) values (#{name},0)
+    </insert>
+
+    <select id="listDynasty" resultType="com.ddky.fms.refund.model.wyw.entry.Dynasty">
+        select * from wy_dynasty
+    </select>
+
+    <insert id="insertDynasty" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.ddky.fms.refund.model.wyw.entry.Dynasty">
+        insert into wy_dynasty  (name,orderNo) values (#{name},0)
+    </insert>
+
+    <select id="listCategory" resultType="com.ddky.fms.refund.model.wyw.entry.Category">
+        select * from wy_category
+    </select>
+
+    <insert id="insertCategory" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.ddky.fms.refund.model.wyw.entry.Category">
+        insert into wy_category  (name,orderNo,href) values (#{name},0,#{href})
+    </insert>
+
+    <select id="listArticleInfo" resultType="com.ddky.fms.refund.model.wyw.entry.ArticleInfo">
+        select * from wy_articleInfo  where cont is null order by id desc
+    </select>
+
+    <insert id="updateArticleInfo" parameterType="com.ddky.fms.refund.model.wyw.entry.ArticleInfo">
+        update wy_articleInfo
+        <set>
+            <if test="grade != null"> grade = #{grade},</if>
+            <if test="cateId != null"> cateId = #{cateId},</if>
+            <if test="tags != null"> tags = #{tags},</if>
+            <if test="cont != null"> cont = #{cont},</if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </insert>
+
+    <insert id="batchUpdateArticleInfo" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";">
+            update wy_articleInfo
+            <set>
+                <if test="item.grade != null"> grade = #{item.grade},</if>
+                <if test="item.cateId != null"> cateId = #{item.cateId},</if>
+                <if test="item.tags != null"> tags = #{item.tags},</if>
+                <if test="item.cont != null"> cont = #{item.cont},</if>
+            </set>
+            <where>
+                id = #{item.id}
+            </where>
+        </foreach>
+    </insert>
+
+    <insert id="insertArticleInfo" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.ddky.fms.refund.model.wyw.entry.ArticleInfo">
+        insert into wy_articleInfo (author,grade,dynasty,cateId,tags,title,cont,createDate,href)
+        values (#{author},#{grade},#{dynasty},#{cateId},#{tags},#{title},#{cont},now(),#{href})
+    </insert>
+
+    <insert id="batchInsertArticleInfo" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";">
+            insert into wy_articleInfo (author,grade,dynasty,cateId,tags,title,cont,createDate,href)
+            values (#{item.author},#{item.grade},#{item.dynasty},#{item.cateId},#{item.tags},#{item.title},#{item.cont},now(),#{item.href})
+        </foreach>
+    </insert>
+
+</mapper>
