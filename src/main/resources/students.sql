@@ -93,16 +93,17 @@ CREATE TABLE stu_subject_info (
   PRIMARY KEY (subjectId)
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '科目';
 
-
-drop table if exists studentTeam;
-CREATE TABLE studentTeam (
-  teamId int(11) NOT NULL AUTO_INCREMENT,
-  userId int(11) NOT NULL,
-  schoolInfoId int(11) NOT NULL,
+drop table if exists stu_term_info;
+CREATE TABLE stu_term_info (
+  teamId int(10) NOT NULL AUTO_INCREMENT,
+  schoolId int(10) NOT NULL,
+  gradeId int(10) NOT NULL,
+  theYear int(4) NOT NULL,
   name varchar(100) NOT NULL,
-  state int(2) DEFAULT 0 comment '0unuse,1use',
-  createTime int(10) DEFAULT UNIX_TIMESTAMP(),
-  updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
+  type int(2) NOT NULL comment '1 第一学期2...',
+  startTime datetime DEFAULT null,
+  endTime datetime DEFAULT null,
+  createTime datetime DEFAULT null,
   PRIMARY KEY (teamId)
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '学生学期';
 
