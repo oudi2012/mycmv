@@ -18,7 +18,7 @@
     <select id="list" resultType="com.ddky.fms.refund.model.books.SubjectInfo">
         select
             <include refid="column" />
-        from stu_grade_info
+        from stu_subject_info
         <where>
             <include refid="where" />
         </where>
@@ -27,19 +27,19 @@
     <select id="findById" resultType="com.ddky.fms.refund.model.books.SubjectInfo">
         select
             <include refid="column" />
-        from stu_grade_info
+        from stu_subject_info
         <where>
             id = #{id}
         </where>
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.books.SubjectInfo">
-        insert into stu_grade_info (name, orderNo) values (#{name}, #{orderNo})
+        insert into stu_subject_info (name, orderNo) values (#{name}, #{orderNo})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into stu_grade_info (name, orderNo)
+            insert into stu_subject_info (name, orderNo)
             values (#{item.name}, #{item.orderNo})
         </foreach>
     </insert>

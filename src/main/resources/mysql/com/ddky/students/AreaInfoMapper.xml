@@ -3,7 +3,7 @@
 <mapper namespace="com.ddky.fms.refund.mapper.students.AreaInfoMapper">
 
     <sql id="area_column">
-        areaCode, areaName, parentCode, level
+        areaCode, areaName, parentCode, orderBy
     </sql>
 
     <sql id="where">
@@ -37,13 +37,13 @@
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.AreaInfo">
-        insert into stu_area_info (areaCode, areaName, parentCode, level) values (#{areaCode}, #{areaName}, #{parentCode}, #{level})
+        insert into stu_area_info (areaCode, areaName, parentCode, orderBy) values (#{areaCode}, #{areaName}, #{parentCode}, #{orderBy})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into stu_area_info (areaCode, areaName, parentCode, level)
-            values (#{item.areaCode}, #{item.areaName}, #{item.parentCode}, #{item.level})
+            insert into stu_area_info (areaCode, areaName, parentCode, orderBy)
+            values (#{item.areaCode}, #{item.areaName}, #{item.parentCode}, #{item.orderBy})
         </foreach>
     </insert>
 

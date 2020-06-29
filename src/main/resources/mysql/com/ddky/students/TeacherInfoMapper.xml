@@ -3,7 +3,7 @@
 <mapper namespace="com.ddky.fms.refund.mapper.students.TeacherInfoMapper">
 
     <sql id="column">
-        id, phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName, schoolId, role
+        id, phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName, schoolId
     </sql>
 
     <sql id="where">
@@ -14,7 +14,6 @@
         <if test="sex != null"> sex = #{sex} </if>
         <if test="realName != null"> realName = #{realName} </if>
         <if test="schoolId != null"> schoolId = #{schoolId} </if>
-        <if test="role != null"> role = #{role} </if>
     </sql>
 
     <select id="list" resultType="com.ddky.fms.refund.model.students.entry.TeacherInfo">
@@ -36,15 +35,15 @@
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.TeacherInfo">
-        insert into stu_teacher_info (phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName, schoolId, role)
-        values (#{phone}, #{userName}, #{passWord}, #{regType}, now(), #{headImage}, #{areaId}, #{sex}, #{birthDay}, #{realName}, #{schoolId}, #{role})
+        insert into stu_teacher_info (phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName, schoolId)
+        values (#{phone}, #{userName}, #{passWord}, #{regType}, now(), #{headImage}, #{areaId}, #{sex}, #{birthDay}, #{realName}, #{schoolId})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
             insert into stu_teacher_info (phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName, schoolId, role)
             values (#{item.phone}, #{item.userName}, #{item.passWord}, #{item.regType}, now(), #{item.headImage}, #{item.areaId}, #{item.sex},
-            #{item.birthDay}, #{item.realName}, #{item.schoolId}, #{item.role})
+            #{item.birthDay}, #{item.realName}, #{item.schoolId})
         </foreach>
     </insert>
 

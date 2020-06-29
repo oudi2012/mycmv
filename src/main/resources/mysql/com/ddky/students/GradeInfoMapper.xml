@@ -3,7 +3,7 @@
 <mapper namespace="com.ddky.fms.refund.mapper.students.GradeInfoMapper">
 
     <sql id="column">
-       gradeId, name, orderNo
+       gradeId, name, state, orderNo, createTime
     </sql>
 
     <sql id="where">

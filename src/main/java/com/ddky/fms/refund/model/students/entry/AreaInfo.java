@@ -14,5 +14,5 @@ public class AreaInfo {
 	private int		areaCode;
 	private String	areaName;
 	private int		parentCode;
-	private int		level;
+	private int		orderBy;
 }

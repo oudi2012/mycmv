@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ddky.fms.refund.mapper.students.SchoolInfoMapper">
+
+    <sql id="column">
+        schoolId, name, shortName, pinyin, address, country, province, city, town, createDate
+    </sql>
+
+    <sql id="where">
+        <if test="name != null">
+            name = #{name}
+        </if>
+        <if test="shortName != null">
+            shortName = #{shortName}
+        </if>
+        <if test="country != null">
+            country = #{country}
+        </if>
+        <if test="province != null">
+            province = #{province}
+        </if>
+        <if test="city != null">
+            city = #{city}
+        </if>
+        <if test="town != null">
+            town = #{town}
+        </if>
+    </sql>
+
+    <select id="list" resultType="com.ddky.fms.refund.model.students.entry.SchoolInfo">
+        select
+            <include refid="column" />
+        from stu_school_info
+        <where>
+            <include refid="where" />
+        </where>
+    </select>
+
+    <select id="findById" resultType="com.ddky.fms.refund.model.students.entry.SchoolInfo">
+        select
+            <include refid="column" />
+        from stu_school_info
+        <where>
+            schoolId = #{id}
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.SchoolInfo">
+        insert into stu_school_info (name, shortName, pinyin, address, country, province, city, town, createDate)
+        values (#{name}, #{shortName}, #{pinyin}, #{address}, #{country}, #{province}, #{city}, #{town}, now())
+    </insert>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";">
+            insert into stu_school_info (name, shortName, pinyin, address, country, province, city, town, createDate)
+            values (#{item.name}, #{item.shortName}, #{item.pinyin}, #{item.address}, #{item.country}, #{item.province}, #{item.city}, #{item.town}, now())
+        </foreach>
+    </insert>
+
+</mapper>
