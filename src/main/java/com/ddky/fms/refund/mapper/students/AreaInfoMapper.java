@@ -12,10 +12,11 @@ import java.util.List;
 public interface AreaInfoMapper {
 
     /***
-     * 列表
-     * @return List
+     * 列表获取
+     * @param areaInfo areaInfo
+     * @return list
      */
-    List<AreaInfo> list();
+    List<AreaInfo> list(AreaInfo areaInfo);
 
     /***
      * 详细

@@ -1,6 +1,7 @@
 package com.ddky.fms.refund.model.students.entry;
 
 
+import com.ddky.fms.refund.model.base.PageVo;
 import lombok.Data;
 
 /**
@@ -9,7 +10,7 @@ import lombok.Data;
  *
  */
 @Data
-public class AreaInfo {
+public class AreaInfo extends PageVo {
 	
 	private int		areaCode;
 	private String	areaName;
