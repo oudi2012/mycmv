@@ -8,22 +8,22 @@
 
     <sql id="where">
         <if test="name != null">
-            name = #{name}
+            and name = #{name}
         </if>
         <if test="shortName != null">
-            shortName = #{shortName}
+            and shortName = #{shortName}
         </if>
         <if test="country != null">
-            country = #{country}
+            and country = #{country}
         </if>
         <if test="province != null">
-            province = #{province}
+            and province = #{province}
         </if>
         <if test="city != null">
-            city = #{city}
+            and city = #{city}
         </if>
         <if test="town != null">
-            town = #{town}
+            and town = #{town}
         </if>
     </sql>
 

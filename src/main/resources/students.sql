@@ -42,17 +42,17 @@ CREATE TABLE stu_teacher_info (
 
 DROP TABLE IF EXISTS stu_area_info;
 CREATE TABLE stu_area_info  (
-  areaCode bigint(20) NOT NULL,
+  areaCode int(10) NOT NULL,
   areaName varchar(50)  DEFAULT NULL,
   parentCode int(11) NULL DEFAULT NULL,
   orderBy int(11) NULL DEFAULT NULL,
-  PRIMARY KEY (areaId) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8;
+  PRIMARY KEY (areaCode) USING BTREE
+) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '学校';
 
 
 drop table if exists stu_school_info;
 CREATE TABLE stu_school_info (
-  schoolId int(11) NOT NULL AUTO_INCREMENT,
+  schoolId int(10) NOT NULL AUTO_INCREMENT,
   name varchar(100) NOT NULL comment '全称',
   shortName varchar(100) NOT NULL comment '简称',
   pinyin varchar(100) NOT NULL comment '拼音',

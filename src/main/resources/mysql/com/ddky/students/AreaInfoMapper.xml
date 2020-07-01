@@ -8,13 +8,13 @@
 
     <sql id="where">
         <if test="areaCode != null">
-            areaCode = #{areaCode}
+            and areaCode = #{areaCode}
         </if>
         <if test="parentCode != null">
-            parentCode = #{parentCode}
+            and parentCode = #{parentCode}
         </if>
         <if test="areaName != null">
-            areaName = #{areaName}
+            and areaName = #{areaName}
         </if>
     </sql>
 

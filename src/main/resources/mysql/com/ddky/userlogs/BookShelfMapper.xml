@@ -8,13 +8,13 @@
 
     <sql id="where">
         <if test="userId != null">
-            userId = #{userId}
+            and userId = #{userId}
         </if>
         <if test="bookId != null">
-            bookId = #{bookId}
+            and bookId = #{bookId}
         </if>
         <if test="cateId != null">
-            cateId = #{cateId}
+            and cateId = #{cateId}
         </if>
     </sql>
 

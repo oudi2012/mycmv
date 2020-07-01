@@ -8,19 +8,19 @@
 
     <sql id="where">
         <if test="userId != null">
-            userId = #{userId}
+            and userId = #{userId}
         </if>
         <if test="schoolId != null">
-            schoolId = #{schoolId}
+            and schoolId = #{schoolId}
         </if>
         <if test="gradeId != null">
-            gradeId = #{gradeId}
+            and gradeId = #{gradeId}
         </if>
         <if test="classId != null">
-            classId = #{classId}
+            and classId = #{classId}
         </if>
         <if test="subjectId != null">
-            subjectId = #{subjectId}
+            and subjectId = #{subjectId}
         </if>
     </sql>
 

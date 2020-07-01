@@ -8,10 +8,10 @@
 
     <sql id="where">
         <if test="name != null">
-            name = #{name}
+            and name = #{name}
         </if>
         <if test="type != null">
-            type = #{type}
+            and  type = #{type}
         </if>
     </sql>
 

@@ -8,19 +8,19 @@
 
     <sql id="where">
         <if test="bookName != null">
-            bookName = #{bookName}
+            and bookName = #{bookName}
         </if>
         <if test="shortName != null">
-            shortName = #{shortName}
+            and shortName = #{shortName}
         </if>
         <if test="publisher != null">
-            publisher = #{publisher}
+            and publisher = #{publisher}
         </if>
         <if test="theYear != null">
-            theYear = #{theYear}
+            and theYear = #{theYear}
         </if>
         <if test="gradeId != null">
-            gradeId = #{gradeId}
+            and gradeId = #{gradeId}
         </if>
     </sql>
 

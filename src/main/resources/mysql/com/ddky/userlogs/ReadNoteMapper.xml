@@ -8,22 +8,22 @@
 
     <sql id="where">
         <if test="bookId != null">
-            bookId = #{bookId}
+            and bookId = #{bookId}
         </if>
         <if test="pageNo != null">
-            pageNo = #{pageNo}
+            and pageNo = #{pageNo}
         </if>
         <if test="lineNo != null">
-            lineNo = #{lineNo}
+            and lineNo = #{lineNo}
         </if>
         <if test="userId != null">
-            userId = #{userId}
+            and userId = #{userId}
         </if>
         <if test="userId != null">
-            userId = #{userId}
+            and userId = #{userId}
         </if>
         <if test="type != null">
-            type = #{type}
+            and type = #{type}
         </if>
     </sql>
 

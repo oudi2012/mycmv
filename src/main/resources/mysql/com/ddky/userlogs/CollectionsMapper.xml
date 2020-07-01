@@ -8,22 +8,22 @@
 
     <sql id="where">
         <if test="userId != null">
-            userId = #{userId}
+            and userId = #{userId}
         </if>
         <if test="folderId != null">
-            folderId = #{folderId}
+            and folderId = #{folderId}
         </if>
         <if test="infoType != null">
-            infoType = #{infoType}
+            and infoType = #{infoType}
         </if>
         <if test="infoId != null">
-            infoId = #{infoId}
+            and infoId = #{infoId}
         </if>
         <if test="title != null">
-            title = #{title}
+            and title = #{title}
         </if>
         <if test="tags != null">
-            tags = #{tags}
+            and tags = #{tags}
         </if>
     </sql>
 

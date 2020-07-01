@@ -8,15 +8,15 @@
     </sql>
 
     <sql id="where">
-        <if test="userId != null">userId = #{userId}</if>
-        <if test="schoolId != null">schoolId = #{schoolId}</if>
-        <if test="gradeId != null">gradeId = #{gradeId}</if>
-        <if test="classId != null">classId = #{classId}</if>
-        <if test="subjectId != null">subjectId = #{subjectId}</if>
-        <if test="teacherId != null">teacherId = #{teacherId}</if>
-        <if test="state != null">state = #{state}</if>
-        <if test="scoreCateId != null">scoreCateId = #{scoreCateId}</if>
-        <if test="score != null">score = #{score}</if>
+        <if test="userId != null">and userId = #{userId}</if>
+        <if test="schoolId != null">and schoolId = #{schoolId}</if>
+        <if test="gradeId != null">and gradeId = #{gradeId}</if>
+        <if test="classId != null">and classId = #{classId}</if>
+        <if test="subjectId != null">and subjectId = #{subjectId}</if>
+        <if test="teacherId != null">and teacherId = #{teacherId}</if>
+        <if test="state != null">and state = #{state}</if>
+        <if test="scoreCateId != null">and scoreCateId = #{scoreCateId}</if>
+        <if test="score != null">and score = #{score}</if>
     </sql>
 
     <select id="list" resultType="com.ddky.fms.refund.model.userlogs.entry.StudentWork">
