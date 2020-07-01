@@ -1,6 +1,6 @@
 drop table if exists stu_bookshelf_info;
 #shelfId, userId, bookId, cateId, bookCover, readPercent, createDate
-CREATE TABLE `stu_bookshelf_info` (
+CREATE TABLE `op_bookshelf_info` (
   `shelfId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `userId` bigint(20) DEFAULT NULL COMMENT '用户编号',
   `bookId` bigint(20) DEFAULT NULL COMMENT '图书编号',
@@ -13,7 +13,7 @@ CREATE TABLE `stu_bookshelf_info` (
 
 drop table if exists stu_collect_info;
 #coletId, userId, folderId, infoType, infoId, title, imageIndex, images, tags, createDate
-CREATE TABLE `stu_collect_info` (
+CREATE TABLE `op_collect_info` (
   `coletId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `userId` bigint(20) DEFAULT NULL COMMENT '用户编号',
   `folderId` bigint(20) DEFAULT NULL COMMENT '收藏文件夹',
@@ -29,7 +29,7 @@ CREATE TABLE `stu_collect_info` (
 
 drop table if exists stu_homework_info;
 #homeWorkId, userId, schoolId, gradeId, classId, subjectId, workContent, indexImage, createDate, beginDate, endDate
-CREATE TABLE `stu_homework_info` (
+CREATE TABLE `op_homework_info` (
   `homeWorkId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `userId` bigint(20) DEFAULT NULL COMMENT '用户编号',
   `schoolId` bigint(20) DEFAULT NULL COMMENT '学校编号',
@@ -46,7 +46,7 @@ CREATE TABLE `stu_homework_info` (
 
 drop table if exists stu_read_note;
 #id, bookId, pageNo, lineNo, userId, type, content, createDate
-CREATE TABLE `stu_read_note` (
+CREATE TABLE `op_read_note` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `bookId` bigint(20) DEFAULT NULL COMMENT '图书编号',
   `pageNo` int(8) DEFAULT NULL COMMENT '图书页码',
@@ -61,7 +61,7 @@ CREATE TABLE `stu_read_note` (
 drop table if exists stu_student_work;
 #workId, userId, schoolId, gradeId, classId, subjectId, teacherId, version, state, scoreCateId, score
 #, scoreDesc, imageIndex, createDate
-CREATE TABLE `stu_student_work` (
+CREATE TABLE `op_student_work` (
   `workId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `userId` bigint(20) DEFAULT NULL COMMENT '用户编号',
   `schoolId` bigint(20) DEFAULT NULL COMMENT '学校编号',
