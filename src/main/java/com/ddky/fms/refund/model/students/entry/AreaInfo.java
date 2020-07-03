@@ -14,8 +14,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class AreaInfo extends PageVo {
 	
-	private int		areaCode;
+	private Integer		areaCode;
 	private String	areaName;
-	private int		parentCode;
-	private int		orderBy;
+	private Integer		parentCode;
+	private Integer		orderBy;
 }

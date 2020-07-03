@@ -1,13 +1,11 @@
 package com.ddky.fms.refund.controller.rest.students;
 
 import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.students.entry.AreaInfo;
 import com.ddky.fms.refund.service.AreaInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,11 +21,26 @@ public class AreaInfoController {
     private AreaInfoService areaInfoService;
 
     @ResponseBody
-    @RequestMapping("list")
-    public ResponseObject list(@RequestBody AreaInfo areaInfo) {
+    @GetMapping("provinces")
+    public ResponseObject provinces() {
         ResponseObject resObj = new ResponseObject();
-        PageInfo<AreaInfo> pageInfo = areaInfoService.list(areaInfo);
-        CommonUtils.executeSuccess(resObj, pageInfo);
+        CommonUtils.executeSuccess(resObj, areaInfoService.listProvince());
+        return resObj;
+    }
+
+    @ResponseBody
+    @GetMapping("cities")
+    public ResponseObject cities(int provinceId) {
+        ResponseObject resObj = new ResponseObject();
+        CommonUtils.executeSuccess(resObj, areaInfoService.listCities(provinceId));
+        return resObj;
+    }
+
+    @ResponseBody
+    @GetMapping("towns")
+    public ResponseObject towns(int cityId) {
+        ResponseObject resObj = new ResponseObject();
+        CommonUtils.executeSuccess(resObj, areaInfoService.listTown(cityId));
         return resObj;
     }
 }

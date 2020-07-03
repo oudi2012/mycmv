@@ -11,6 +11,9 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
+/**
+ * @author a
+ */
 @Service
 public class AreaInfoServiceImpl implements AreaInfoService {
 
@@ -18,8 +21,29 @@ public class AreaInfoServiceImpl implements AreaInfoService {
     private AreaInfoMapper areaInfoMapper;
 
     @Override
+    public List<AreaInfo> listProvince() {
+        AreaInfo areaInfo = new AreaInfo();
+        areaInfo.setParentCode(0);
+        return areaInfoMapper.list(areaInfo);
+    }
+
+    @Override
+    public List<AreaInfo> listCities(Integer provinceId) {
+        AreaInfo areaInfo = new AreaInfo();
+        areaInfo.setParentCode(provinceId);
+        return areaInfoMapper.list(areaInfo);
+    }
+
+    @Override
+    public List<AreaInfo> listTown(Integer cityId) {
+        AreaInfo areaInfo = new AreaInfo();
+        areaInfo.setParentCode(cityId);
+        return areaInfoMapper.list(areaInfo);
+    }
+
+    @Override
     public PageInfo<AreaInfo> list(AreaInfo areaInfo) {
-        PageHelper.startPage(areaInfo.getPageIndex(), areaInfo.getPageSize()).setOrderBy(" orderBy desc");
+        PageHelper.startPage(areaInfo.getPageIndex(), areaInfo.getPageSize()).setOrderBy(" areaCode asc");
         List<AreaInfo> areaInfoList = areaInfoMapper.list(areaInfo);
         if (CollectionUtils.isEmpty(areaInfoList)) {
             return new PageInfo<>();

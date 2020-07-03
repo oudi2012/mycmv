@@ -12,6 +12,26 @@ import java.util.List;
 public interface AreaInfoService {
 
     /***
+     * 省级列表
+     * @return List
+     */
+    List<AreaInfo> listProvince();
+
+    /***
+     * 地级列表
+     * @param provinceId provinceId
+     * @return
+     */
+    List<AreaInfo> listCities(Integer provinceId);
+
+    /***
+     * 县级级列表
+     * @param cityId cityId
+     * @return
+     */
+    List<AreaInfo> listTown(Integer cityId);
+
+    /***
      * 列表获取
      * @param areaInfo areaInfo
      * @return list
