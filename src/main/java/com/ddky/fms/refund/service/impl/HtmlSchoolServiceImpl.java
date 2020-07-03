@@ -7,6 +7,7 @@ import com.ddky.fms.refund.model.students.entry.SchoolInfo;
 import com.ddky.fms.refund.service.AreaInfoService;
 import com.ddky.fms.refund.service.HtmlDataService;
 import com.ddky.fms.refund.service.HtmlSchoolService;
+import com.ddky.fms.refund.service.SchoolInfoService;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -18,6 +19,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -41,6 +43,8 @@ public class HtmlSchoolServiceImpl implements HtmlSchoolService, HtmlDataService
 
     @Autowired
     private AreaInfoService areaInfoService;
+    @Autowired
+    private SchoolInfoService schoolInfoService;
 
     @Override
     public List<SchoolInfo> listSchoolInfo(int pageIndex) {
@@ -48,11 +52,17 @@ public class HtmlSchoolServiceImpl implements HtmlSchoolService, HtmlDataService
         Document document = getContent(url);
         Elements typeContents = document.getElementsByClass("school_main");
         Element typeCont = typeContents.first();
+        List<SchoolInfo> schoolInfoList = new ArrayList<>();
         for (int idx = 1; idx <= PAGE_SIZE; idx++) {
             Element span = typeCont.getElementById("list" + idx);
-            fromElement(span);
+            SchoolInfo schoolInfo = fromElement(span);
+            if (ObjectUtils.isEmpty(schoolInfo)) {
+                break;
+            }
+            schoolInfoList.add(schoolInfo);
         }
-        return null;
+        schoolInfoService.batchInsert(schoolInfoList);
+        return schoolInfoList;
     }
 
 
