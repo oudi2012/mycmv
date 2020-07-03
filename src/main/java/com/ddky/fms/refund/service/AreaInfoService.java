@@ -18,6 +18,15 @@ public interface AreaInfoService {
     List<AreaInfo> listProvince();
 
     /***
+     * 根据名称获取各级信息
+     * @param provinceName provinceName
+     * @param cityName cityName
+     * @param townName townName
+     * @return
+     */
+    List<AreaInfo> listByNames(String provinceName, String cityName, String townName);
+
+    /***
      * 地级列表
      * @param provinceId provinceId
      * @return

@@ -65,4 +65,9 @@ public class AreaInfoServiceImpl implements AreaInfoService {
     public void batchInsert(List<AreaInfo> list) {
         areaInfoMapper.batchInsert(list);
     }
+
+    @Override
+    public List<AreaInfo> listByNames(String provinceName, String cityName, String townName) {
+        return areaInfoMapper.listByNames(provinceName, cityName, townName);
+    }
 }

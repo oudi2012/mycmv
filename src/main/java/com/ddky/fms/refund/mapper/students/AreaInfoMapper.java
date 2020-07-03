@@ -19,6 +19,15 @@ public interface AreaInfoMapper {
     List<AreaInfo> list(AreaInfo areaInfo);
 
     /***
+     * 根据名称获取各级信息
+     * @param provinceName provinceName
+     * @param cityName cityName
+     * @param townName townName
+     * @return
+     */
+    List<AreaInfo> listByNames(@Param("provinceName") String provinceName, @Param("cityName")String cityName, @Param("townName")String townName);
+
+    /***
      * 详细
      * @param areaCode areaCode
      * @return AreaInfo

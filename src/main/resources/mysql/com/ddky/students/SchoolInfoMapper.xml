@@ -46,14 +46,14 @@
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.SchoolInfo">
-        insert into stu_school_info (name, shortName, pinyin, address, country, province, city, town, createDate)
-        values (#{name}, #{shortName}, #{pinyin}, #{address}, #{country}, #{province}, #{city}, #{town}, now())
+        insert into stu_school_info (name, shortName, pinyin, address, country, province, city, town, createDate, weight, href)
+        values (#{name}, #{shortName}, #{pinyin}, #{address}, #{country}, #{province}, #{city}, #{town}, now(), #{weight}, #{href})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into stu_school_info (name, shortName, pinyin, address, country, province, city, town, createDate)
-            values (#{item.name}, #{item.shortName}, #{item.pinyin}, #{item.address}, #{item.country}, #{item.province}, #{item.city}, #{item.town}, now())
+            insert into stu_school_info (name, shortName, pinyin, address, country, province, city, town, createDate, weight, href)
+            values (#{item.name}, #{item.shortName}, #{item.pinyin}, #{item.address}, #{item.country}, #{item.province}, #{item.city}, #{item.town}, now(), #{weight}, #{item.href})
         </foreach>
     </insert>
 

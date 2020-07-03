@@ -27,6 +27,23 @@
         </where>
     </select>
 
+    <select id="listByNames" resultType="com.ddky.fms.refund.model.students.entry.AreaInfo">
+        select
+        <include refid="area_column" />
+        from stu_area_info
+        <where>
+            <if test="provinceName != null">
+                or areaName = #{provinceName}
+            </if>
+            <if test="cityName != null">
+                or areaName = #{cityName}
+            </if>
+            <if test="townName != null">
+                or areaName = #{townName}
+            </if>
+        </where>
+    </select>
+
     <select id="findByCode" resultType="com.ddky.fms.refund.model.students.entry.AreaInfo">
         select
             <include refid="area_column" />

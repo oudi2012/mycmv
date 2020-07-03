@@ -15,10 +15,14 @@ public class SchoolInfo {
     private String      shortName;
     private String      pinyin;
     private String      address;
+    /** 是否是重点 */
+    private String      weight;
     /** 国家 */
     private Integer     country;
     private Integer     province;
     private Integer     city;
     private Integer     town;
     private Date        createDate;
+    /** 临时字段 */
+    private String      href;
 }
