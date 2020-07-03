@@ -34,6 +34,7 @@ public class HtmlSchoolServiceImpl implements HtmlSchoolService, HtmlDataService
     private static final String school_list_href = "http://xuexiao.51sxue.com/slist/?t=2";
 
     private static final int PAGE_SIZE = 10;
+    private static final int AREA_LENGTH_2 = 2;
     private static final int AREA_LENGTH_3 = 3;
     private static final int AREA_LENGTH_5 = 5;
     private static final int AREA_LENGTH_7 = 7;
@@ -77,6 +78,9 @@ public class HtmlSchoolServiceImpl implements HtmlSchoolService, HtmlDataService
         if (!StringUtils.isEmpty(areaEle.ownText())) {
             String[] areaArr = areaEle.ownText().split(" ");
             String provinceName = areaArr[0];
+            if (provinceName.length() > AREA_LENGTH_2) {
+                provinceName = provinceName.substring(0, 2);
+            }
             String cityName = areaArr[1];
             String townName = null;
             if (areaArr.length == AREA_LENGTH_3) {
