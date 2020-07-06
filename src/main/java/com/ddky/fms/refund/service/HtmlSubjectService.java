@@ -1,6 +1,6 @@
 package com.ddky.fms.refund.service;
 
-import com.ddky.fms.refund.model.books.SubjectInfo;
+import com.ddky.fms.refund.model.books.BookInfo;
 
 import java.util.List;
 
@@ -11,9 +11,10 @@ import java.util.List;
 public interface HtmlSubjectService {
 
     /***
-     * 根据xpath 获取科目信息
-     * @param pageIndex
+     * 获取课本信息
+     * @param verType
+     * @param subType
      * @return
      */
-    List<SubjectInfo> listSubjectInfo(int pageIndex);
+    List<? extends BookInfo> listSubjectInfo(String verType, String subType);
 }

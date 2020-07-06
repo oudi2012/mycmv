@@ -1,38 +1,38 @@
 package com.ddky.fms.refund.service;
 
-import com.ddky.fms.refund.model.students.entry.GradeInfo;
+import com.ddky.fms.refund.model.books.VersionType;
 
 import java.util.List;
 
 /***
- * 年级接口
+ * 版本类型
  * @author oudi
  */
-public interface GradeService {
+public interface VersionTypeService {
 
     /***
      * 列表获取
      * @return list
      */
-    List<GradeInfo> list();
+    List<VersionType> list();
 
     /***
      * 详细
      * @param id id
      * @return GradeInfo
      */
-    GradeInfo findById(int id);
+    VersionType findById(int id);
 
     /***
      * 添加
-     * @param areaInfo areaInfo
+     * @param item item
      */
-    void insert(GradeInfo areaInfo);
+    void insert(VersionType item);
 
     /***
      * 批量添加
      * @param list list
      */
-    void batchInsert(List<GradeInfo> list);
+    void batchInsert(List<VersionType> list);
 
 }
