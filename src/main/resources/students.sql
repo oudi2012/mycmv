@@ -62,6 +62,8 @@ CREATE TABLE stu_school_info (
   city int(8) DEFAULT 0,
   town int(8) DEFAULT 0,
   createDate int(10) DEFAULT UNIX_TIMESTAMP(),
+  weight varchar(10) NOT NULL comment '是否是重点',
+  href varchar(200) DEFAULT NULL comment '地址',
   PRIMARY KEY (schoolId)
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '学校';
 
@@ -74,6 +76,19 @@ CREATE TABLE stu_grade_info (
   createTime int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (gradeId)
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '年级';
+
+insert into stu_grade_info(name) values ("一年级");
+insert into stu_grade_info(name) values ("二年级");
+insert into stu_grade_info(name) values ("三年级");
+insert into stu_grade_info(name) values ("四年级");
+insert into stu_grade_info(name) values ("五年级");
+insert into stu_grade_info(name) values ("六年级");
+insert into stu_grade_info(name) values ("初一");
+insert into stu_grade_info(name) values ("初二");
+insert into stu_grade_info(name) values ("初三");
+insert into stu_grade_info(name) values ("高一");
+insert into stu_grade_info(name) values ("高二");
+insert into stu_grade_info(name) values ("高三");
 
 drop table if exists stu_class_info;
 CREATE TABLE stu_class_info (

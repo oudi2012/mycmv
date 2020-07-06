@@ -1,3 +1,35 @@
+drop table if exists stu_subject_info;
+CREATE TABLE `stu_subject_info` (
+  `subjectId` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(100) DEFAULT NULL COMMENT '名称',
+  `orderNo` int(2) DEFAULT 1 COMMENT '排序',
+  PRIMARY KEY (`subjectId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='科目';
+
+insert into stu_subject_info(name) values ("语文");
+insert into stu_subject_info(name) values ("数学");
+insert into stu_subject_info(name) values ("英语");
+insert into stu_subject_info(name) values ("物理");
+insert into stu_subject_info(name) values ("化学");
+insert into stu_subject_info(name) values ("生物");
+insert into stu_subject_info(name) values ("历史");
+insert into stu_subject_info(name) values ("政治");
+insert into stu_subject_info(name) values ("地理");
+insert into stu_subject_info(name) values ("其他");
+
+drop table if exists bok_chinese_info;
+CREATE TABLE `bok_chinese_info` (
+  `bookId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `bookName` varchar(100) DEFAULT NULL COMMENT '名称',
+  `shortName` varchar(100) DEFAULT NULL COMMENT '简称',
+  `publisher` varchar(100) DEFAULT NULL COMMENT '出版社',
+  `theYear` int(4) DEFAULT NULL COMMENT '年份',
+  `coverImage` varchar(100) NOT NULL DEFAULT 0 COMMENT '封面',
+  `cipImage` varchar(100) DEFAULT NULL COMMENT 'cip图片',
+  `gradeId` int(2) DEFAULT NULL COMMENT '年级',
+  PRIMARY KEY (`bookId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='化学';
+
 drop table if exists bok_biology_info;
 CREATE TABLE `bok_biology_info` (
   `bookId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
