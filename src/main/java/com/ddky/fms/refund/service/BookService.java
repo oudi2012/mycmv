@@ -1,6 +1,7 @@
 package com.ddky.fms.refund.service;
 
 import com.ddky.fms.refund.model.books.BookInfo;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -9,6 +10,15 @@ import java.util.List;
  * @author oudi
  */
 public interface BookService<T extends BookInfo> {
+
+    /***
+     * 分页显示
+     * @param t t
+     * @param pageIndex pageIndex
+     * @param pageSize pageSize
+     * @return PageInfo
+     */
+    PageInfo<T> pageList(T t, int pageIndex, int pageSize);
 
     /***
      * 列表

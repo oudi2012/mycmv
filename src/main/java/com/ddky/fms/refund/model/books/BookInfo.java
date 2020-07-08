@@ -22,4 +22,8 @@ public class BookInfo {
 	 String coverImage;
 	/** cip图片 */
 	 String cipImage;
+	/** 卷册 1 上册 2 下册 */
+	private Integer  volume;
+	/** 选修0和必修1 */
+	private Integer  elective;
 }

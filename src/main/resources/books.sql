@@ -74,6 +74,9 @@ CREATE TABLE `bok_chinese_info` (
   `coverImage` varchar(100) NOT NULL DEFAULT 0 COMMENT '封面',
   `cipImage` varchar(100) DEFAULT NULL COMMENT 'cip图片',
   `gradeId` int(2) DEFAULT NULL COMMENT '年级',
+  `volume` int(2) DEFAULT NULL COMMENT '卷册',
+  `elective` int(2) DEFAULT 1 COMMENT '选修0和必修1',
+  `createTime` int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (`bookId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='语文';
 
@@ -87,6 +90,9 @@ CREATE TABLE `bok_biology_info` (
   `coverImage` varchar(100) NOT NULL DEFAULT 0 COMMENT '封面',
   `cipImage` varchar(100) DEFAULT NULL COMMENT 'cip图片',
   `gradeId` int(2) DEFAULT NULL COMMENT '年级',
+  `volume` int(2) DEFAULT NULL COMMENT '卷册',
+  `elective` int(2) DEFAULT 1 COMMENT '选修0和必修1',
+  `createTime` int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (`bookId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='生物';
 
@@ -100,6 +106,9 @@ CREATE TABLE `bok_chemistry_info` (
   `coverImage` varchar(100) NOT NULL DEFAULT 0 COMMENT '封面',
   `cipImage` varchar(100) DEFAULT NULL COMMENT 'cip图片',
   `gradeId` int(2) DEFAULT NULL COMMENT '年级',
+  `volume` int(2) DEFAULT NULL COMMENT '卷册',
+  `elective` int(2) DEFAULT 1 COMMENT '选修0和必修1',
+  `createTime` int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (`bookId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='化学';
 
@@ -113,6 +122,9 @@ CREATE TABLE `bok_foreign_info` (
   `coverImage` varchar(100) NOT NULL DEFAULT 0 COMMENT '封面',
   `cipImage` varchar(100) DEFAULT NULL COMMENT 'cip图片',
   `gradeId` int(2) DEFAULT NULL COMMENT '年级',
+  `volume` int(2) DEFAULT NULL COMMENT '卷册',
+  `elective` int(2) DEFAULT 1 COMMENT '选修0和必修1',
+  `createTime` int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (`bookId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='外语';
 
@@ -126,6 +138,9 @@ CREATE TABLE `bok_geographical_info` (
   `coverImage` varchar(100) NOT NULL DEFAULT 0 COMMENT '封面',
   `cipImage` varchar(100) DEFAULT NULL COMMENT 'cip图片',
   `gradeId` int(2) DEFAULT NULL COMMENT '年级',
+  `volume` int(2) DEFAULT NULL COMMENT '卷册',
+  `elective` int(2) DEFAULT 1 COMMENT '选修0和必修1',
+  `createTime` int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (`bookId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='地理';
 
@@ -139,6 +154,9 @@ CREATE TABLE `bok_history_info` (
   `coverImage` varchar(100) NOT NULL DEFAULT 0 COMMENT '封面',
   `cipImage` varchar(100) DEFAULT NULL COMMENT 'cip图片',
   `gradeId` int(2) DEFAULT NULL COMMENT '年级',
+  `volume` int(2) DEFAULT NULL COMMENT '卷册',
+  `elective` int(2) DEFAULT 1 COMMENT '选修0和必修1',
+  `createTime` int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (`bookId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='历史';
 
@@ -152,6 +170,9 @@ CREATE TABLE `bok_math_info` (
   `coverImage` varchar(100) NOT NULL DEFAULT 0 COMMENT '封面',
   `cipImage` varchar(100) DEFAULT NULL COMMENT 'cip图片',
   `gradeId` int(2) DEFAULT NULL COMMENT '年级',
+  `volume` int(2) DEFAULT NULL COMMENT '卷册',
+  `elective` int(2) DEFAULT 1 COMMENT '选修0和必修1',
+  `createTime` int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (`bookId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='数学';
 
@@ -165,6 +186,9 @@ CREATE TABLE `bok_physic_info` (
   `coverImage` varchar(100) NOT NULL DEFAULT 0 COMMENT '封面',
   `cipImage` varchar(100) DEFAULT NULL COMMENT 'cip图片',
   `gradeId` int(2) DEFAULT NULL COMMENT '年级',
+  `volume` int(2) DEFAULT NULL COMMENT '卷册',
+  `elective` int(2) DEFAULT 1 COMMENT '选修0和必修1',
+  `createTime` int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (`bookId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='物理';
 
@@ -178,5 +202,8 @@ CREATE TABLE `bok_political_info` (
   `coverImage` varchar(100) NOT NULL DEFAULT 0 COMMENT '封面',
   `cipImage` varchar(100) DEFAULT NULL COMMENT 'cip图片',
   `gradeId` int(2) DEFAULT NULL COMMENT '年级',
+  `volume` int(2) DEFAULT NULL COMMENT '卷册',
+  `elective` int(2) DEFAULT 1 COMMENT '选修0和必修1',
+  `createTime` int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (`bookId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='政治';

@@ -1,14 +1,13 @@
 package com.ddky.fms.refund.service.impl;
 
-import com.ddky.fms.refund.model.books.BookInfo;
-import com.ddky.fms.refund.model.books.SubjectInfo;
-import com.ddky.fms.refund.model.books.VersionType;
-import com.ddky.fms.refund.model.books.VolumeEnum;
+import com.alibaba.fastjson.JSON;
+import com.ddky.fms.refund.model.books.*;
 import com.ddky.fms.refund.model.books.chinese.entry.ChineseBook;
 import com.ddky.fms.refund.model.students.entry.GradeInfo;
 import com.ddky.fms.refund.service.*;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,19 +46,29 @@ public class HtmlSubjectServiceImpl implements HtmlSubjectService, HtmlDataServi
     private GradeService gradeService;
     @Autowired
     private VersionTypeService versionTypeService;
+    @Autowired
+    private BookService<ChineseBook> bookBookService;
 
     private static final String ROOT_PATH = "E:/images";
 
     @Override
     public List<? extends BookInfo> listSubjectInfo(String verType, String subType) {
+        String url = school_list_href + "/books/" + verType + "/" + subType;
+        Document document = getContent(url);
+        Elements typeContent = document.getElementById("main").getElementsByClass("list mb_list");
+        for (Element typeCont : typeContent) {
+            List<ChineseBook> chineseBookList = fromElement(typeCont);
+            bookBookService.batchInsert(chineseBookList);
+        }
+        return null;
+    }
+
+    private List<ChineseBook> fromElement(Element element) {
         List<GradeInfo> gradeInfos = gradeService.list();
         List<VersionType> versionTypes =  versionTypeService.list();
         Map<String, GradeInfo> gradeInfoMap = gradeInfos.stream().collect(Collectors.toMap(GradeInfo::getName, Function.identity()));
         Map<String, VersionType> versionTypeMap = versionTypes.stream().collect(Collectors.toMap(VersionType::getName, Function.identity()));
-        String url = school_list_href + "/books/" + verType + "/" + subType;
-        Document document = getContent(url);
-        Element typeContent = document.getElementById("main").getElementsByClass("list mb_list").first();
-        List<Element> elLis = typeContent.children().first().children();
+        List<Element> elLis = element.children().first().children();
         List<ChineseBook> chineseBookList = new ArrayList<>();
         for (Element typeCont : elLis) {
             Element elImg = typeCont.getElementsByTag("img").first();
@@ -69,32 +78,43 @@ public class HtmlSubjectServiceImpl implements HtmlSubjectService, HtmlDataServi
             downLoadImageService.download(imageUrl, imageSavePath);
             logger.info(typeCont.toString());
             ChineseBook chineseBook = new ChineseBook();
+            chineseBook.setBookName(name);
             //设置年级
             gradeInfoMap.forEach((key, value) -> {
                 if (name.contains(key)) {
-                    chineseBook.setBookName(name.replace(key, ""));
                     chineseBook.setGradeId(value.getGradeId());
                 }
             });
             //设置版本
             versionTypeMap.forEach((key, value) -> {
                 if (chineseBook.getBookName().contains(key)) {
-                    chineseBook.setBookName(chineseBook.getBookName().replace(key, ""));
                     chineseBook.setPublisher(value.getVerId());
                 }
             });
             //设置卷册
             for (VolumeEnum item : VolumeEnum.values()) {
                 if (chineseBook.getBookName().contains(item.getTitle())) {
-                    chineseBook.setBookName(chineseBook.getBookName().replace(item.getTitle(), ""));
                     chineseBook.setVolume(item.getCode());
                 }
+            }
+            //选修和必修
+            for (ElectiveEnum item : ElectiveEnum.values()) {
+                if (chineseBook.getBookName().contains(item.getTitle())) {
+                    chineseBook.setElective(item.getCode());
+                }
+            }
+            if (chineseBook.getVolume() == null) {
+                chineseBook.setVolume(0);
+            }
+            if (chineseBook.getElective() == null) {
+                chineseBook.setElective(1);
             }
             chineseBook.setShortName(chineseBook.getBookName());
             chineseBook.setTheYear(2020);
             chineseBook.setCoverImage(elImg.attr("data-original"));
+            logger.info(JSON.toJSONString(chineseBook));
             chineseBookList.add(chineseBook);
         }
-        return null;
+        return chineseBookList;
     }
 }

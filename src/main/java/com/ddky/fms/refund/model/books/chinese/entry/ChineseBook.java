@@ -15,6 +15,4 @@ public class ChineseBook extends BookInfo {
 
 	/** 年级 */
 	private Integer  gradeId;
-	/** 卷册 1 上册 2 下册 */
-	private Integer  volume;
 }

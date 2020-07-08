@@ -1,26 +1,13 @@
 package com.ddky.fms.refund.model.books;
 
-
-/**
- * 卷册
+/***
+ * 选修和必修
  * @author a
  */
-public enum VolumeEnum {
-
-    /** 上册 */
-    NONE(0, "无册"),
-    UP(1, "上册"),
-    DOWN(2, "下册"),
-    ALL(3, "全一册"),
-    FIRST(11, "第一册"),
-    SECOND(12, "第二册"),
-    THIRD(13, "第三册"),
-    FORTH(14, "第四册"),
-    FIFTH(15, "第五册"),
-    SIXTH(16, "第六册"),
-    SEVENTH(17, "第七册"),
-    EIGHTH(18, "第八册"),
-    NINTH(19, "第九册");
+public enum ElectiveEnum {
+    /** compulsory 必修 */
+    ELECTIVE(0, "选修"),
+    COMPULSORY(1, "必修");
 
     /**状态编码**/
     private int code;
@@ -33,13 +20,13 @@ public enum VolumeEnum {
      * @param code 状态编码
      * @param title 状态标题
      */
-    VolumeEnum(int code, String title) {
+    ElectiveEnum(int code, String title) {
         this.code = code;
         this.title = title;
     }
 
     public static int getCodeByTitle(String title) {
-        for (VolumeEnum item : VolumeEnum.values()) {
+        for (ElectiveEnum item : ElectiveEnum.values()) {
             if (item.title.equals(title)) {
                 return item.code;
             }

@@ -3,7 +3,7 @@
 <mapper namespace="com.ddky.fms.refund.mapper.books.ChineseBookMapper">
 
     <sql id="column">
-        bookId, bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId, volume
+        bookId, bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId, volume, elective
     </sql>
 
     <sql id="where">
@@ -46,14 +46,14 @@
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.books.chinese.entry.ChineseBook">
-        insert into bok_chinese_info (bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId, volume)
-        values (#{bookName}, #{shortName}, #{publisher}, #{theYear}, #{coverImage}, #{cipImage}, #{gradeId}, #{volume})
+        insert into bok_chinese_info (bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId, volume, elective)
+        values (#{bookName}, #{shortName}, #{publisher}, #{theYear}, #{coverImage}, #{cipImage}, #{gradeId}, #{volume}, #{elective})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into bok_chinese_info (bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId)
-            values (#{item.bookName}, #{item.shortName}, #{item.publisher}, #{item.theYear}, #{item.coverImage}, #{item.cipImage}, #{item.gradeId}, #{item.volume})
+            insert into bok_chinese_info (bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId, volume, elective)
+            values (#{item.bookName}, #{item.shortName}, #{item.publisher}, #{item.theYear}, #{item.coverImage}, #{item.cipImage}, #{item.gradeId}, #{item.volume}, #{item.elective})
         </foreach>
     </insert>
 

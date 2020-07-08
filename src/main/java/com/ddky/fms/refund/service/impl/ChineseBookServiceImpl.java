@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
  * 汉语
  * @author a
  */
-@Service
-public class ChineseBookImpl extends AbstractBookService<ChineseBook> {
+@Service("chineseBookService")
+public class ChineseBookServiceImpl extends AbstractBookService<ChineseBook> {
 
     @Autowired
     private ChineseBookMapper chineseBookMapper;

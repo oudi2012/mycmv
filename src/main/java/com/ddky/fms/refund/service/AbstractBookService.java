@@ -2,6 +2,9 @@ package com.ddky.fms.refund.service;
 
 import com.ddky.fms.refund.mapper.BookInfoMapper;
 import com.ddky.fms.refund.model.books.BookInfo;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -36,5 +39,15 @@ public abstract class AbstractBookService<T extends BookInfo> implements BookSer
     @Override
     public void batchInsert(List<T> list) {
         getBookInfoMapper().batchInsert(list);
+    }
+
+    @Override
+    public PageInfo<T> pageList(T t, int pageIndex, int pageSize) {
+        PageHelper.startPage(pageIndex, pageSize);
+        List<T> list = getBookInfoMapper().list();
+        if (CollectionUtils.isEmpty(list)) {
+            return new PageInfo<>();
+        }
+        return new PageInfo<>(list);
     }
 }
