@@ -26,6 +26,9 @@ spring:
       pool-prepared-statements: false
       max-pool-prepared-statement-per-connection-size: 20
 
+download:
+  savePath: 'e:/images'
+
 # Elasticsearch
 elastic:
   host: 192.168.41.125

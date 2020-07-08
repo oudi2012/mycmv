@@ -33,7 +33,7 @@ public class HtmlSchoolServiceImpl implements HtmlSchoolService, HtmlDataService
 
     private static final Logger logger = LoggerFactory.getLogger(HtmlSchoolServiceImpl.class);
 
-    private static final String school_list_href = "http://xuexiao.51sxue.com/slist/?t=2";
+    private static final String school_list_href = "http://xuexiao.51sxue.com/slist/?t=6";
 
     private static final int PAGE_SIZE = 10;
     private static final int AREA_LENGTH_2 = 2;
@@ -91,7 +91,10 @@ public class HtmlSchoolServiceImpl implements HtmlSchoolService, HtmlDataService
             if (provinceName.length() > AREA_LENGTH_2) {
                 provinceName = provinceName.substring(0, 2);
             }
-            String cityName = areaArr[1];
+            String cityName = null;
+            if (areaArr.length == AREA_LENGTH_2) {
+                cityName = areaArr[1];
+            }
             String townName = null;
             if (areaArr.length == AREA_LENGTH_3) {
                 townName = areaArr[2];
@@ -122,6 +125,7 @@ public class HtmlSchoolServiceImpl implements HtmlSchoolService, HtmlDataService
         if (!StringUtils.isEmpty(addressEle.ownText())) {
             schoolInfo.setAddress(addressEle.ownText());
         }
+        schoolInfo.setPinyin("1");
         logger.info("schoolInfo:{}", JSON.toJSONString(schoolInfo));
         return schoolInfo;
     }

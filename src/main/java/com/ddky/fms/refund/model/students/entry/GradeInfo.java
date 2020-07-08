@@ -14,5 +14,5 @@ public class GradeInfo {
     private String name;
     private Integer state;
     private Integer orderNo;
-    private Date createTime;
+    private Long createTime;
 }

@@ -75,7 +75,7 @@ CREATE TABLE `bok_chinese_info` (
   `cipImage` varchar(100) DEFAULT NULL COMMENT 'cip图片',
   `gradeId` int(2) DEFAULT NULL COMMENT '年级',
   PRIMARY KEY (`bookId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='化学';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='语文';
 
 drop table if exists bok_biology_info;
 CREATE TABLE `bok_biology_info` (

@@ -53,7 +53,7 @@
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
             insert into stu_school_info (name, shortName, pinyin, address, country, province, city, town, createDate, weight, href)
-            values (#{item.name}, #{item.shortName}, #{item.pinyin}, #{item.address}, #{item.country}, #{item.province}, #{item.city}, #{item.town}, now(), #{weight}, #{item.href})
+            values (#{item.name}, #{item.shortName}, #{item.pinyin}, #{item.address}, #{item.country}, #{item.province}, #{item.city}, #{item.town}, now(), #{item.weight}, #{item.href})
         </foreach>
     </insert>
 

@@ -39,6 +39,7 @@ public class SchoolController {
                 logger.info("抓取学校信息完成,第{}页 0条", pageIndex);
                 break;
             }
+            pageIndex++;
             logger.info("抓取学校信息完成,第{}页 {}条", pageIndex, schoolInfoList.size());
         }
         CommonUtils.executeSuccess(resObj);

@@ -61,7 +61,7 @@ CREATE TABLE stu_school_info (
   province int(8) DEFAULT 0,
   city int(8) DEFAULT 0,
   town int(8) DEFAULT 0,
-  createDate int(10) DEFAULT UNIX_TIMESTAMP(),
+  createDate datetime DEFAULT null,
   weight varchar(10) NOT NULL comment '是否是重点',
   href varchar(200) DEFAULT NULL comment '地址',
   PRIMARY KEY (schoolId)

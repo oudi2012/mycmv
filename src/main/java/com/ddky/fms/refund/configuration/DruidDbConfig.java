@@ -7,8 +7,12 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
+/***
+ * 数据库配置
+ * @author a
+ */
 @Configuration
-public class DruidDBConfig {
+public class DruidDbConfig {
 
     @Bean
     @ConfigurationProperties("spring.datasource.druid")
