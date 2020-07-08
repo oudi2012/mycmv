@@ -15,7 +15,7 @@ public class BookInfo {
 	/** 简称 */
 	 String shortName;
 	/** 出版社 */
-	 Long   publisher;
+	 Integer  publisher;
 	/** 年份 */
 	 int    theYear;
 	/** 封面 */

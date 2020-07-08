@@ -3,6 +3,7 @@ package com.ddky.fms.refund.service.impl;
 import com.ddky.fms.refund.model.books.BookInfo;
 import com.ddky.fms.refund.model.books.SubjectInfo;
 import com.ddky.fms.refund.model.books.VersionType;
+import com.ddky.fms.refund.model.books.VolumeEnum;
 import com.ddky.fms.refund.model.books.chinese.entry.ChineseBook;
 import com.ddky.fms.refund.model.students.entry.GradeInfo;
 import com.ddky.fms.refund.service.*;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -53,6 +55,7 @@ public class HtmlSubjectServiceImpl implements HtmlSubjectService, HtmlDataServi
         List<GradeInfo> gradeInfos = gradeService.list();
         List<VersionType> versionTypes =  versionTypeService.list();
         Map<String, GradeInfo> gradeInfoMap = gradeInfos.stream().collect(Collectors.toMap(GradeInfo::getName, Function.identity()));
+        Map<String, VersionType> versionTypeMap = versionTypes.stream().collect(Collectors.toMap(VersionType::getName, Function.identity()));
         String url = school_list_href + "/books/" + verType + "/" + subType;
         Document document = getContent(url);
         Element typeContent = document.getElementById("main").getElementsByClass("list mb_list").first();
@@ -62,10 +65,35 @@ public class HtmlSubjectServiceImpl implements HtmlSubjectService, HtmlDataServi
             Element elImg = typeCont.getElementsByTag("img").first();
             String imageUrl = school_list_href + elImg.attr("data-original");
             String imageSavePath = ROOT_PATH + elImg.attr("data-original");
+            String name = elImg.attr("alt");
             downLoadImageService.download(imageUrl, imageSavePath);
             logger.info(typeCont.toString());
             ChineseBook chineseBook = new ChineseBook();
-            //chineseBook.setBookName();
+            //设置年级
+            gradeInfoMap.forEach((key, value) -> {
+                if (name.contains(key)) {
+                    chineseBook.setBookName(name.replace(key, ""));
+                    chineseBook.setGradeId(value.getGradeId());
+                }
+            });
+            //设置版本
+            versionTypeMap.forEach((key, value) -> {
+                if (chineseBook.getBookName().contains(key)) {
+                    chineseBook.setBookName(chineseBook.getBookName().replace(key, ""));
+                    chineseBook.setPublisher(value.getVerId());
+                }
+            });
+            //设置卷册
+            for (VolumeEnum item : VolumeEnum.values()) {
+                if (chineseBook.getBookName().contains(item.getTitle())) {
+                    chineseBook.setBookName(chineseBook.getBookName().replace(item.getTitle(), ""));
+                    chineseBook.setVolume(item.getCode());
+                }
+            }
+            chineseBook.setShortName(chineseBook.getBookName());
+            chineseBook.setTheYear(2020);
+            chineseBook.setCoverImage(elImg.attr("data-original"));
+            chineseBookList.add(chineseBook);
         }
         return null;
     }

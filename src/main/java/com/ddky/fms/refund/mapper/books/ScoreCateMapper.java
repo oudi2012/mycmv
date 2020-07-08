@@ -9,7 +9,7 @@ import java.util.List;
  * ClassInfo
  * @author oudi
  */
-public interface ScoreCateMapper {
+public interface ScoreCateMapper  {
 
     /***
      * 列表

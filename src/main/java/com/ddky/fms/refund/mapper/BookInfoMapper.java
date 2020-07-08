@@ -1,14 +1,12 @@
-package com.ddky.fms.refund.service;
+package com.ddky.fms.refund.mapper;
+
 
 import com.ddky.fms.refund.model.books.BookInfo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/***
- * 课本接口
- * @author oudi
- */
-public interface BookService<T extends BookInfo> {
+public interface BookInfoMapper<T extends BookInfo> {
 
     /***
      * 列表
@@ -33,6 +31,5 @@ public interface BookService<T extends BookInfo> {
      * 批量添加
      * @param list list
      */
-    void batchInsert(List<T> list);
-
+    void batchInsert(@Param("list")List<T> list);
 }
