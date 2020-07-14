@@ -5,6 +5,7 @@ import com.ddky.fms.refund.model.books.*;
 import com.ddky.fms.refund.model.books.chinese.entry.ChineseBook;
 import com.ddky.fms.refund.model.students.entry.GradeInfo;
 import com.ddky.fms.refund.service.*;
+import com.ddky.fms.refund.utils.HttpUtil2;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -14,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -50,6 +50,18 @@ public class HtmlSubjectServiceImpl implements HtmlSubjectService, HtmlDataServi
     private BookService<ChineseBook> bookBookService;
 
     private static final String ROOT_PATH = "E:/images";
+
+    @Override
+    public String synAccountIncome(int d) {
+        logger.info("执行第 {} ", d);
+        String url = "http://fms.ddky.com/synAccount/outcome.htm?d=" + d;
+        return HttpUtil2.doGetObj(url, null, true);
+    }
+
+    @Override
+    public void synAccountOutcome(int d) {
+
+    }
 
     @Override
     public List<? extends BookInfo> listSubjectInfo(String verType, String subType) {

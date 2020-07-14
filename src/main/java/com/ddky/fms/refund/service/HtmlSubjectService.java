@@ -11,6 +11,19 @@ import java.util.List;
 public interface HtmlSubjectService {
 
     /***
+     * income
+     * @param d
+     * @return String
+     */
+    String synAccountIncome(int d);
+
+    /***
+     * outcome
+     * @param d d
+     */
+    void synAccountOutcome(int d);
+
+    /***
      * 获取课本信息
      * @param verType
      * @param subType

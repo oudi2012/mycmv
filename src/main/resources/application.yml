@@ -15,5 +15,5 @@ mybatis:
   mapperLocations: classpath:mysql/com/ddky/books/*.xml, classpath:mysql/com/ddky/images/*.xml, classpath:mysql/com/ddky/students/*.xml, classpath:mysql/com/ddky/userlogs/*.xml
 logging:
   config: classpath:log4j2.xml
-  level:
-    com.ddky.fms.refund.mapper: trace
+  #level:
+  #  com.ddky.fms.refund.mapper: trace

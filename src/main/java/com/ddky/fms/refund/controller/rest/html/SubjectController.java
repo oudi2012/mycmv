@@ -29,8 +29,8 @@ public class SubjectController {
     private HtmlSubjectService htmlSubjectService;
 
     @ResponseBody
-    @GetMapping("subjects")
-    public ResponseObject subjects(String verType, String subType) {
+    @GetMapping("yuWen")
+    public ResponseObject yuWen(String verType, String subType) {
         ResponseObject resObj = new ResponseObject();
         while (true) {
             logger.info("开始执行抓取科目信息,{},{}", verType, subType);
