@@ -21,7 +21,7 @@ drop table if exists stu_student_info;
 CREATE TABLE stu_student_info (
   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   phone varchar(11) NOT NULL,
-  guardianId bigint(20) unsigned NOT NULL COMMENT '监护人编号',
+  guardianId bigint(20) unsigned DEFAULT 0 COMMENT '监护人编号',
   userName varchar(100) NOT NULL,
   passWord varchar(100) NOT NULL,
   regType TINYINT(1) DEFAULT 1 COMMENT '1:注册2:手机,3:微信,4:weibo 5：qq',

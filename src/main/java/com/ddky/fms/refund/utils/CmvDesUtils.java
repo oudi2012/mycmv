@@ -32,9 +32,13 @@ public class CmvDesUtils {
      * @return String
      * @throws Exception Exception
      */
-    public static String encrypt(String data) throws Exception {
-        byte[] bt = encrypt(data.getBytes(), DES_KEY.getBytes());
-        return new Base64().encodeAsString(bt);
+    public static String encrypt(String data)  {
+        try {
+            byte[] bt = encrypt(data.getBytes(), DES_KEY.getBytes());
+            return new Base64().encodeAsString(bt);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**
@@ -43,14 +47,19 @@ public class CmvDesUtils {
      * @return String
      * @throws Exception Exception
      */
-    public static String decrypt(String data) throws Exception {
-        if (data == null) {
+    public static String decrypt(String data) {
+        try {
+            if (data == null) {
+                return null;
+            }
+            Base64 decoder = new Base64();
+            byte[] buf = decoder.decode(data);
+            byte[] bt = decrypt(buf,DES_KEY.getBytes());
+            return new String(bt);
+        } catch (Exception e) {
             return null;
         }
-        Base64 decoder = new Base64();
-        byte[] buf = decoder.decode(data);
-        byte[] bt = decrypt(buf,DES_KEY.getBytes());
-        return new String(bt);
+
     }
 
     /**

@@ -4,21 +4,35 @@
     <Appenders>
         <!-- 控制台输出 -->
         <Console name="STDOUT" target="SYSTEM_OUT">
-            <!--控制台只输出level及其以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
-            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout charset="UTF-8" pattern="%d [%t] %-5level - %msg [%C.%M():%L]%n"/>
         </Console>
 
         <!--studentInfo-->
-        <RollingRandomAccessFile name="stuLogRollingFile" fileName="../stu_log.log"
-                                 filePattern="../stu_log-%d{yyyy-MM-dd}-%i.log.gz">
+        <RollingRandomAccessFile name="stuLogRollingFile" fileName="E:/logs/stu_log.log"
+                                 filePattern="E:/logs/stu_log-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout charset="UTF-8" pattern="%d [%t] %-5level - %msg [%C.%M():%L]%n"/>
+            <Filters>
+                <ThresholdFilter level="info"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
         </RollingRandomAccessFile>
 
         <!--studentInfo-->
-        <RollingRandomAccessFile name="teachLogRollingFile" fileName="../teach_log.log"
-                                 filePattern="../teach_log-%d{yyyy-MM-dd}-%i.log.gz">
+        <RollingRandomAccessFile name="teachLogRollingFile" fileName="E:/logs/teach_log.log"
+                                 filePattern="E:/logs/teach_log-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout charset="UTF-8" pattern="%d [%t] %-5level - %msg [%C.%M():%L]%n"/>
+            <Filters>
+                <ThresholdFilter level="info"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
         </RollingRandomAccessFile>
 
 
@@ -28,8 +42,6 @@
         <!-- 开发环境使用 -->
         <Root level="info" includeLocation="true" additivity="true">
             <AppenderRef ref="STDOUT"/>
-            <AppenderRef ref="stuLogRollingFile"/>
-            <AppenderRef ref="teachLogRollingFile"/>
         </Root>
 
         <logger name="stuLogRollingFile" level="info" additivity="true">

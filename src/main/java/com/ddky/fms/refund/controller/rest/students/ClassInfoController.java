@@ -5,7 +5,7 @@ import com.ddky.fms.refund.model.students.entry.GradeInfo;
 import com.ddky.fms.refund.service.GradeService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.*;
 
 
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * 班级
  * @author a
  */
-@Controller
+@RestController
 @RequestMapping("class")
 public class ClassInfoController {
 

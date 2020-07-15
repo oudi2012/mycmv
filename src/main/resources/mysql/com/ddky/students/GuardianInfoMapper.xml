@@ -39,7 +39,7 @@
         <include refid="column" />
         from stu_guardian_info
         <where>
-            phone in
+            phone in (
             <foreach collection="list" index="index" item="item" separator=",">
                 #{item}
             </foreach>)
@@ -51,7 +51,7 @@
         <include refid="column" />
         from stu_guardian_info
         <where>
-            userName in
+            userName in (
             <foreach collection="list" index="index" item="item" separator=",">
                 #{item}
             </foreach>)
@@ -68,14 +68,14 @@
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.GuardianInfo">
-        insert into stu_guardian_info (phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName)
-        values (#{phone}, #{userName}, #{passWord}, #{regType}, now(), #{headImage}, #{areaId}, #{sex}, #{birthDay}, #{realName})
+        insert into stu_guardian_info (phone, userName, passWord, regType, headImage, areaId, sex, birthDay, realName)
+        values (#{phone}, #{userName}, #{passWord}, #{regType}, #{headImage}, #{areaId}, #{sex}, #{birthDay}, #{realName})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into stu_guardian_info (phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName)
-            values (#{item.phone}, #{item.userName}, #{item.passWord}, #{item.regType}, now(), #{item.headImage}, #{item.areaId}, #{item.sex},
+            insert into stu_guardian_info (phone, userName, passWord, regType, headImage, areaId, sex, birthDay, realName)
+            values (#{item.phone}, #{item.userName}, #{item.passWord}, #{item.regType}, #{item.headImage}, #{item.areaId}, #{item.sex},
             #{item.birthDay}, #{item.realName})
         </foreach>
     </insert>

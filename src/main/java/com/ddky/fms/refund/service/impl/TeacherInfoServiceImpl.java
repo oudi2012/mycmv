@@ -6,6 +6,7 @@ import com.ddky.fms.refund.exception.BusinessException;
 import com.ddky.fms.refund.mapper.students.TeacherInfoMapper;
 import com.ddky.fms.refund.model.students.entry.TeacherInfo;
 import com.ddky.fms.refund.service.TeacherInfoService;
+import com.ddky.fms.refund.utils.CmvDesUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -32,18 +34,18 @@ public class TeacherInfoServiceImpl implements TeacherInfoService {
     @Autowired
     private TeacherInfoMapper teacherInfoMapper;
 
-    private static final String LOG_LIST_PARAM = "TeacherInfoServiceImpl -> list param {},{},{}";
-    private static final String LOG_LIST_RESULT = "TeacherInfoServiceImpl -> list result {}";
-    private static final String LOG_FIND_ID = "TeacherInfoServiceImpl -> findById param {}";
-    private static final String LOG_FIND_ID_RESULT = "TeacherInfoServiceImpl -> findById result {}";
-    private static final String LOG_FIND_PHONE = "TeacherInfoServiceImpl -> findByPhone param {}";
-    private static final String LOG_FIND_PHONE_RESULT = "TeacherInfoServiceImpl -> findByPhone result {}";
-    private static final String LOG_FIND_USERNAME = "TeacherInfoServiceImpl -> userName param {}";
-    private static final String LOG_FIND_USERNAME_RESULT = "TeacherInfoServiceImpl -> userName result {}";
-    private static final String LOG_INSERT = "TeacherInfoServiceImpl -> insert param {}";
-    private static final String LOG_INSERT_LIST = "TeacherInfoServiceImpl -> batchInsert param {}";
-    private static final String LOG_EDIT = "TeacherInfoServiceImpl -> edit param {}";
-    private static final String LOG_REMOVE = "TeacherInfoServiceImpl -> delete param {}";
+    private static final String LOG_LIST_PARAM = "list param {},{},{}";
+    private static final String LOG_LIST_RESULT = "list result {}";
+    private static final String LOG_FIND_ID = "findById param {}";
+    private static final String LOG_FIND_ID_RESULT = "findById result {}";
+    private static final String LOG_FIND_PHONE = "findByPhone param {}";
+    private static final String LOG_FIND_PHONE_RESULT = "findByPhone result {}";
+    private static final String LOG_FIND_USERNAME = "userName param {}";
+    private static final String LOG_FIND_USERNAME_RESULT = "userName result {}";
+    private static final String LOG_INSERT = "insert param {}";
+    private static final String LOG_INSERT_LIST = "batchInsert param {}";
+    private static final String LOG_EDIT = "edit param {}";
+    private static final String LOG_REMOVE = "delete param {}";
 
     @Override
     public PageInfo<TeacherInfo> list(TeacherInfo teacherInfo, int pageIndex, int pageSize) {
@@ -86,6 +88,22 @@ public class TeacherInfoServiceImpl implements TeacherInfoService {
     }
 
     @Override
+    public List<TeacherInfo> listByPhoneList(List<String> list) {
+        logger.info("listByPhoneList param {}", JSON.toJSONString(list));
+        List<TeacherInfo> result = teacherInfoMapper.listByPhoneList(list);
+        logger.info("listByPhoneList result {}", JSON.toJSONString(result));
+        return result;
+    }
+
+    @Override
+    public List<TeacherInfo> listByUserNameList(List<String> list) {
+        logger.info("listByUserNameList param {}", JSON.toJSONString(list));
+        List<TeacherInfo> result = teacherInfoMapper.listByUserNameList(list);
+        logger.info("listByUserNameList result {}", JSON.toJSONString(result));
+        return result;
+    }
+
+    @Override
     @Transactional(rollbackFor = BusinessException.class)
     public void insert(TeacherInfo item) {
         logger.info(LOG_INSERT, JSON.toJSONString(item));
@@ -101,6 +119,7 @@ public class TeacherInfoServiceImpl implements TeacherInfoService {
                 throw new BusinessException(501, "用户名" + item.getUserName() + "已经注册");
             }
         }
+        item.setPassWord(CmvDesUtils.encrypt(item.getPassWord()));
         teacherInfoMapper.insert(item);
     }
 
@@ -108,6 +127,37 @@ public class TeacherInfoServiceImpl implements TeacherInfoService {
     @Transactional(rollbackFor = BusinessException.class)
     public void batchInsert(List<TeacherInfo> list) {
         logger.info(LOG_INSERT_LIST, JSON.toJSONString(list));
+        List<String> phoneList = list.stream().filter(a -> a.getPhone() != null).map(TeacherInfo::getPhone).collect(Collectors.toList());
+        if (!CollectionUtils.isEmpty(phoneList)) {
+            List<TeacherInfo> studentInfos = this.listByPhoneList(phoneList);
+            if (!CollectionUtils.isEmpty(studentInfos)) {
+                StringBuilder sbInfo = new StringBuilder();
+                sbInfo.append("手机号：");
+                studentInfos.forEach(item -> {
+                    sbInfo.append(item.getPhone()).append(",");
+                });
+                sbInfo.deleteCharAt(sbInfo.length() - 1);
+                sbInfo.append("已经注册");
+                throw new BusinessException(501, sbInfo.toString());
+            }
+        }
+        List<String> userNameList = list.stream().filter(a -> a.getUserName() != null).map(TeacherInfo::getUserName).collect(Collectors.toList());
+        if (!CollectionUtils.isEmpty(userNameList)) {
+            List<TeacherInfo> studentInfos = this.listByUserNameList(userNameList);
+            if (!CollectionUtils.isEmpty(studentInfos)) {
+                StringBuilder sbInfo = new StringBuilder();
+                sbInfo.append("用户名：");
+                studentInfos.forEach(item -> {
+                    sbInfo.append(item.getUserName()).append(",");
+                });
+                sbInfo.deleteCharAt(sbInfo.length() - 1);
+                sbInfo.append("已经注册");
+                throw new BusinessException(501, sbInfo.toString());
+            }
+        }
+        list.forEach(item -> {
+            item.setPassWord(CmvDesUtils.encrypt(item.getPassWord()));
+        });
         teacherInfoMapper.batchInsert(list);
     }
 

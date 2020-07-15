@@ -6,6 +6,7 @@ import com.ddky.fms.refund.exception.BusinessException;
 import com.ddky.fms.refund.mapper.students.StudentInfoMapper;
 import com.ddky.fms.refund.model.students.entry.StudentInfo;
 import com.ddky.fms.refund.service.StudentInfoService;
+import com.ddky.fms.refund.utils.CmvDesUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /***
  * StudentInfoService
@@ -27,18 +29,18 @@ import java.util.List;
 public class StudentInfoServiceImpl implements StudentInfoService {
 
     private static final Logger logger = LoggerFactory.getLogger(LogConstants.STU_LOG);
-    private static final String LOG_LIST_PARAM = "StudentInfoServiceImpl -> list param {},{},{}";
-    private static final String LOG_LIST_RESULT = "StudentInfoServiceImpl -> list result {}";
-    private static final String LOG_FIND_ID = "StudentInfoServiceImpl -> findById param {}";
-    private static final String LOG_FIND_ID_RESULT = "StudentInfoServiceImpl -> findById result {}";
-    private static final String LOG_FIND_PHONE = "StudentInfoServiceImpl -> findByPhone param {}";
-    private static final String LOG_FIND_PHONE_RESULT = "StudentInfoServiceImpl -> findByPhone result {}";
-    private static final String LOG_FIND_USERNAME = "StudentInfoServiceImpl -> userName param {}";
-    private static final String LOG_FIND_USERNAME_RESULT = "StudentInfoServiceImpl -> userName result {}";
-    private static final String LOG_INSERT = "StudentInfoServiceImpl -> insert param {}";
-    private static final String LOG_INSERT_LIST = "StudentInfoServiceImpl -> batchInsert param {}";
-    private static final String LOG_EDIT = "StudentInfoServiceImpl -> edit param {}";
-    private static final String LOG_REMOVE = "StudentInfoServiceImpl -> delete param {}";
+    private static final String LOG_LIST_PARAM = "list param {},{},{}";
+    private static final String LOG_LIST_RESULT = "list result {}";
+    private static final String LOG_FIND_ID = "findById param {}";
+    private static final String LOG_FIND_ID_RESULT = "findById result {}";
+    private static final String LOG_FIND_PHONE = "findByPhone param {}";
+    private static final String LOG_FIND_PHONE_RESULT = "findByPhone result {}";
+    private static final String LOG_FIND_USERNAME = "userName param {}";
+    private static final String LOG_FIND_USERNAME_RESULT = "userName result {}";
+    private static final String LOG_INSERT = "insert param {}";
+    private static final String LOG_INSERT_LIST = "batchInsert param {}";
+    private static final String LOG_EDIT = "edit param {}";
+    private static final String LOG_REMOVE = "delete param {}";
 
 
     @Autowired
@@ -85,6 +87,22 @@ public class StudentInfoServiceImpl implements StudentInfoService {
     }
 
     @Override
+    public List<StudentInfo> listByPhoneList(List<String> list) {
+        logger.info("listByPhoneList param {}", JSON.toJSONString(list));
+        List<StudentInfo> result = studentInfoMapper.listByPhoneList(list);
+        logger.info("listByPhoneList result {}", JSON.toJSONString(result));
+        return result;
+    }
+
+    @Override
+    public List<StudentInfo> listByUserNameList(List<String> list) {
+        logger.info("listByUserNameList param {}", JSON.toJSONString(list));
+        List<StudentInfo> result = studentInfoMapper.listByUserNameList(list);
+        logger.info("listByUserNameList result {}", JSON.toJSONString(result));
+        return result;
+    }
+
+    @Override
     @Transactional(rollbackFor = BusinessException.class)
     public void insert(StudentInfo item) {
         logger.info(LOG_INSERT, JSON.toJSONString(item));
@@ -100,6 +118,7 @@ public class StudentInfoServiceImpl implements StudentInfoService {
                 throw new BusinessException(501, "用户名" + item.getUserName() + "已经注册");
             }
         }
+        item.setPassWord(CmvDesUtils.encrypt(item.getPassWord()));
         studentInfoMapper.insert(item);
     }
 
@@ -107,6 +126,37 @@ public class StudentInfoServiceImpl implements StudentInfoService {
     @Transactional(rollbackFor = BusinessException.class)
     public void batchInsert(List<StudentInfo> list) {
         logger.info(LOG_INSERT_LIST, JSON.toJSONString(list));
+        List<String> phoneList = list.stream().filter(a -> a.getPhone() != null).map(StudentInfo::getPhone).collect(Collectors.toList());
+        if (!CollectionUtils.isEmpty(phoneList)) {
+            List<StudentInfo> studentInfos = this.listByPhoneList(phoneList);
+            if (!CollectionUtils.isEmpty(studentInfos)) {
+                StringBuilder sbInfo = new StringBuilder();
+                sbInfo.append("手机号：");
+                studentInfos.forEach(item -> {
+                    sbInfo.append(item.getPhone()).append(",");
+                });
+                sbInfo.deleteCharAt(sbInfo.length() - 1);
+                sbInfo.append("已经注册");
+                throw new BusinessException(501, sbInfo.toString());
+            }
+        }
+        List<String> userNameList = list.stream().filter(a -> a.getUserName() != null).map(StudentInfo::getUserName).collect(Collectors.toList());
+        if (!CollectionUtils.isEmpty(userNameList)) {
+            List<StudentInfo> studentInfos = this.listByUserNameList(userNameList);
+            if (!CollectionUtils.isEmpty(studentInfos)) {
+                StringBuilder sbInfo = new StringBuilder();
+                sbInfo.append("用户名：");
+                studentInfos.forEach(item -> {
+                    sbInfo.append(item.getUserName()).append(",");
+                });
+                sbInfo.deleteCharAt(sbInfo.length() - 1);
+                sbInfo.append("已经注册");
+                throw new BusinessException(501, sbInfo.toString());
+            }
+        }
+        list.forEach(item -> {
+            item.setPassWord(CmvDesUtils.encrypt(item.getPassWord()));
+        });
         studentInfoMapper.batchInsert(list);
     }
 

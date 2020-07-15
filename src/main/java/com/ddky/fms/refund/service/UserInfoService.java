@@ -43,6 +43,20 @@ public interface UserInfoService<T extends UserInfo> {
     T findById(Long id);
 
     /***
+     * 列表
+     * @param list list
+     * @return list
+     */
+    List<T> listByPhoneList(List<String> list);
+
+    /***
+     * 列表
+     * @param list list
+     * @return List
+     */
+    List<T> listByUserNameList(List<String> list);
+
+    /***
      * 编辑
      * @param item item
      * @return int

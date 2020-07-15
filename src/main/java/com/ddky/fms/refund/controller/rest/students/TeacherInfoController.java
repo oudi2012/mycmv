@@ -6,7 +6,7 @@ import com.ddky.fms.refund.model.students.entry.TeacherInfo;
 import com.ddky.fms.refund.service.TeacherInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  * TeacherInfo
  * @author a
  */
-@Controller
+@RestController
 @RequestMapping("teacher")
 public class TeacherInfoController {
 

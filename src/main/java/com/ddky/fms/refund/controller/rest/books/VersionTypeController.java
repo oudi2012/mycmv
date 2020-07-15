@@ -4,16 +4,17 @@ import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.service.VersionTypeService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /***
  * 版本类型
  * @author a
  */
-@Controller
+@RestController
 @RequestMapping("version")
 public class VersionTypeController {
 

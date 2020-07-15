@@ -49,7 +49,7 @@
         <include refid="column" />
         from stu_teacher_info
         <where>
-            phone in
+            phone in (
             <foreach collection="list" index="index" item="item" separator=",">
                 #{item}
             </foreach>)
@@ -61,7 +61,7 @@
         <include refid="column" />
         from stu_teacher_info
         <where>
-            userName in
+            userName in (
             <foreach collection="list" index="index" item="item" separator=",">
                 #{item}
             </foreach>)
@@ -69,14 +69,14 @@
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.TeacherInfo">
-        insert into stu_teacher_info (phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName, schoolId)
-        values (#{phone}, #{userName}, #{passWord}, #{regType}, now(), #{headImage}, #{areaId}, #{sex}, #{birthDay}, #{realName}, #{schoolId})
+        insert into stu_teacher_info (phone, userName, passWord, regType, headImage, areaId, sex, birthDay, realName, schoolId)
+        values (#{phone}, #{userName}, #{passWord}, #{regType}, #{headImage}, #{areaId}, #{sex}, #{birthDay}, #{realName}, #{schoolId})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into stu_teacher_info (phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName, schoolId, role)
-            values (#{item.phone}, #{item.userName}, #{item.passWord}, #{item.regType}, now(), #{item.headImage}, #{item.areaId}, #{item.sex},
+            insert into stu_teacher_info (phone, userName, passWord, regType, headImage, areaId, sex, birthDay, realName, schoolId)
+            values (#{item.phone}, #{item.userName}, #{item.passWord}, #{item.regType}, #{item.headImage}, #{item.areaId}, #{item.sex},
             #{item.birthDay}, #{item.realName}, #{item.schoolId})
         </foreach>
     </insert>

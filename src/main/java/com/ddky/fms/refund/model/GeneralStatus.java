@@ -1,6 +1,7 @@
 package com.ddky.fms.refund.model;
 
 /**
+ * @author a
  * 系统中的所有处理状态
  */
 public enum GeneralStatus {
@@ -12,9 +13,9 @@ public enum GeneralStatus {
     insert_success(0, "添加成功", "Insert the success"),
     failure(1, "处理失败", "fail");
 
-    private int status;
-    private String detail;
-    private String enDetail;
+    private final int status;
+    private final String detail;
+    private final String enDetail;
 
     GeneralStatus(int status, String detail, String enDetail) {
         this.status = status;
