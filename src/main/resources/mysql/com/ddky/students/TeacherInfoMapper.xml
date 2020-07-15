@@ -34,6 +34,16 @@
         </where>
     </select>
 
+    <select id="findOne" resultType="com.ddky.fms.refund.model.students.entry.TeacherInfo">
+        select
+        <include refid="column" />
+        from stu_teacher_info
+        <where>
+            <include refid="where" />
+        </where>
+        limit 1
+    </select>
+
     <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.TeacherInfo">
         insert into stu_teacher_info (phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName, schoolId)
         values (#{phone}, #{userName}, #{passWord}, #{regType}, now(), #{headImage}, #{areaId}, #{sex}, #{birthDay}, #{realName}, #{schoolId})
@@ -46,5 +56,28 @@
             #{item.birthDay}, #{item.realName}, #{item.schoolId})
         </foreach>
     </insert>
+
+    <update id="edit" parameterType="com.ddky.fms.refund.model.students.entry.TeacherInfo">
+        update stu_teacher_info
+        <set>
+            <if test="phone != null"> phone = #{phone}, </if>
+            <if test="userName != null"> userName = #{userName}, </if>
+            <if test="regType != null"> regType = #{regType}, </if>
+            <if test="areaId != null"> areaId = #{areaId}, </if>
+            <if test="sex != null"> sex = #{sex}, </if>
+            <if test="realName != null"> realName = #{realName}, </if>
+            <if test="schoolId != null"> schoolId = #{schoolId}, </if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="java.util.List">
+        delete from stu_teacher_info where id in (
+        <foreach collection="idList" index="index" item="item" separator=",">
+            #{item}
+        </foreach>)
+    </delete>
 
 </mapper>

@@ -1,6 +1,6 @@
 package com.ddky.fms.refund.mapper.students;
 
-import com.ddky.fms.refund.model.students.entry.TeacherInfo;
+import com.ddky.fms.refund.model.students.entry.GuardianInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -9,47 +9,47 @@ import java.util.List;
  * GradeInfo
  * @author oudi
  */
-public interface TeacherInfoMapper {
+public interface GuardianInfoMapper {
 
     /***
      * 列表
      * @param item item
      * @return List
      */
-    List<TeacherInfo> list(TeacherInfo item);
+    List<GuardianInfo> list(GuardianInfo item);
 
     /***
      * 详细
      * @param id id
      * @return obj
      */
-    TeacherInfo findById(Long id);
+    GuardianInfo findById(Long id);
 
     /***
      * 详细
      * @param item
      * @return
      */
-    TeacherInfo findOne(TeacherInfo item);
-
-    /***
-     * 添加
-     * @param item item
-     */
-    void insert(TeacherInfo item);
-
-    /***
-     * 批量添加
-     * @param list list
-     */
-    void batchInsert(@Param("list")List<TeacherInfo> list);
+    GuardianInfo findOne(GuardianInfo item);
 
     /***
      * 编辑
      * @param item item
      * @return int
      */
-    int edit(TeacherInfo item);
+    int edit(GuardianInfo item);
+
+    /***
+     * 添加
+     * @param item item
+     */
+    void insert(GuardianInfo item);
+
+    /***
+     * 批量添加
+     * @param list list
+     */
+    void batchInsert(@Param("list")List<GuardianInfo> list);
 
     /***
      * 删除

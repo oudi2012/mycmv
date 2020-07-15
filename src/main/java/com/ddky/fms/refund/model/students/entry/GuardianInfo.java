@@ -4,12 +4,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /***
- * TeacherInfo
+ * 监护人
  * @author a
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class TeacherInfo extends UserInfo{
-    /** 所属学校 */
-    private Integer schoolId;
+public class GuardianInfo extends UserInfo {
+
 }

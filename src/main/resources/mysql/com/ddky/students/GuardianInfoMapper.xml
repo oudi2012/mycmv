@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ddky.fms.refund.mapper.students.StudentInfoMapper">
+<mapper namespace="com.ddky.fms.refund.mapper.students.GuardianInfoMapper">
 
     <sql id="column">
-        id, phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName, schoolId, guardianId
+        id, phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName
     </sql>
 
     <sql id="where">
@@ -13,53 +13,51 @@
         <if test="areaId != null">and  areaId = #{areaId} </if>
         <if test="sex != null">and  sex = #{sex} </if>
         <if test="realName != null">and  realName = #{realName} </if>
-        <if test="schoolId != null">and  schoolId = #{schoolId} </if>
-        <if test="guardianId != null">and  guardianId = #{guardianId} </if>
     </sql>
 
-    <select id="list" resultType="com.ddky.fms.refund.model.students.entry.StudentInfo">
+    <select id="list" resultType="com.ddky.fms.refund.model.students.entry.GuardianInfo">
         select
             <include refid="column" />
-        from stu_student_info
+        from stu_guardian_info
         <where>
             <include refid="where" />
         </where>
     </select>
 
-    <select id="findOne" resultType="com.ddky.fms.refund.model.students.entry.StudentInfo">
+    <select id="findOne" resultType="com.ddky.fms.refund.model.students.entry.GuardianInfo">
         select
         <include refid="column" />
-        from stu_student_info
+        from stu_guardian_info
         <where>
             <include refid="where" />
         </where>
         limit 1
     </select>
 
-    <select id="findById" resultType="com.ddky.fms.refund.model.students.entry.StudentInfo">
+    <select id="findById" resultType="com.ddky.fms.refund.model.students.entry.GuardianInfo">
         select
             <include refid="column" />
-        from stu_student_info
+        from stu_guardian_info
         <where>
             id = #{id}
         </where>
     </select>
 
-    <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.StudentInfo">
-        insert into stu_student_info (phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName, schoolId, guardianId)
-        values (#{phone}, #{userName}, #{passWord}, #{regType}, now(), #{headImage}, #{areaId}, #{sex}, #{birthDay}, #{realName}, #{schoolId}, #{guardianId})
+    <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.GuardianInfo">
+        insert into stu_guardian_info (phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName)
+        values (#{phone}, #{userName}, #{passWord}, #{regType}, now(), #{headImage}, #{areaId}, #{sex}, #{birthDay}, #{realName})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into stu_student_info (phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName, schoolId, guardianId)
+            insert into stu_guardian_info (phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName)
             values (#{item.phone}, #{item.userName}, #{item.passWord}, #{item.regType}, now(), #{item.headImage}, #{item.areaId}, #{item.sex},
-            #{item.birthDay}, #{item.realName}, #{item.schoolId}, #{item.guardianId})
+            #{item.birthDay}, #{item.realName})
         </foreach>
     </insert>
 
-    <update id="edit" parameterType="com.ddky.fms.refund.model.students.entry.StudentInfo">
-        update stu_student_info
+    <update id="edit" parameterType="com.ddky.fms.refund.model.students.entry.GuardianInfo">
+        update stu_guardian_info
         <set>
             <if test="phone != null">  phone = #{phone}, </if>
             <if test="userName != null">  userName = #{userName}, </if>
@@ -67,8 +65,6 @@
             <if test="areaId != null">  areaId = #{areaId}, </if>
             <if test="sex != null">  sex = #{sex}, </if>
             <if test="realName != null">  realName = #{realName}, </if>
-            <if test="schoolId != null">  schoolId = #{schoolId}, </if>
-            <if test="guardianId != null">  guardianId = #{guardianId}, </if>
         </set>
         <where>
             id = #{id}
@@ -76,7 +72,7 @@
     </update>
     
     <delete id="delete" parameterType="java.util.List">
-        delete from stu_student_info where id in (
+        delete from stu_guardian_info where id in (
         <foreach collection="idList" index="index" item="item" separator=",">
             #{item}
         </foreach>)

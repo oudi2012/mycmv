@@ -1,7 +1,27 @@
+drop table if exists stu_guardian_info;
+CREATE TABLE stu_guardian_info (
+  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  phone varchar(11) NOT NULL,
+  userName varchar(100) NOT NULL,
+  passWord varchar(100) NOT NULL,
+  regType TINYINT(1) DEFAULT 1 COMMENT '1:注册2:手机,3:微信,4:weibo 5：qq',
+  sex TINYINT(1) DEFAULT 0 COMMENT '0f,1m',
+  birthDay int(10) DEFAULT NULL COMMENT '生日',
+  areaId int(10) DEFAULT NULL comment '所属地区',
+  headImage varchar(100) DEFAULT NULL comment '头像',
+  realName varchar(100) DEFAULT NULL comment '真实姓名',
+  role tinyint(1) DEFAULT 3 comment '角色',
+  state int(2) DEFAULT 0 comment '0nobody,1auth,2question,3freeze',
+  regDate int(10) DEFAULT UNIX_TIMESTAMP(),
+  updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
+  PRIMARY KEY (id)
+) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '用户数据表';
+
 drop table if exists stu_student_info;
 CREATE TABLE stu_student_info (
-  id int(11) NOT NULL AUTO_INCREMENT,
+  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   phone varchar(11) NOT NULL,
+  guardianId bigint(20) unsigned NOT NULL COMMENT '监护人编号',
   userName varchar(100) NOT NULL,
   passWord varchar(100) NOT NULL,
   regType TINYINT(1) DEFAULT 1 COMMENT '1:注册2:手机,3:微信,4:weibo 5：qq',
@@ -21,7 +41,7 @@ CREATE TABLE stu_student_info (
 
 drop table if exists stu_teacher_info;
 CREATE TABLE stu_teacher_info (
-  id int(11) NOT NULL AUTO_INCREMENT,
+  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   phone varchar(11) NOT NULL,
   userName varchar(100) NOT NULL,
   passWord varchar(100) NOT NULL,

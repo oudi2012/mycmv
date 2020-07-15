@@ -10,6 +10,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class StudentInfo extends UserInfo{
+    /** 监护人编号 */
+    private Long guardianId;
+    /** 所属学校 */
+    private Integer schoolId;
     private Integer gradeId;
     private Integer classId;
     /** 所在排 */

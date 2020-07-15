@@ -27,7 +27,5 @@ public class UserInfo {
 	private String  birthDay;
 	/** 真实姓名 */
 	private String  realName;
-	/** 所属学校 */
-	private Integer schoolId;
 	private Long    updateTime;
 }

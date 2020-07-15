@@ -13,16 +13,31 @@ public interface StudentInfoMapper {
 
     /***
      * 列表
+     * @param item item
      * @return List
      */
-    List<StudentInfo> list();
+    List<StudentInfo> list(StudentInfo item);
 
     /***
      * 详细
      * @param id id
      * @return obj
      */
-    StudentInfo findById(int id);
+    StudentInfo findById(Long id);
+
+    /***
+     * 详细
+     * @param item
+     * @return
+     */
+    StudentInfo findOne(StudentInfo item);
+
+    /***
+     * 编辑
+     * @param item item
+     * @return int
+     */
+    int edit(StudentInfo item);
 
     /***
      * 添加
@@ -35,4 +50,11 @@ public interface StudentInfoMapper {
      * @param list list
      */
     void batchInsert(@Param("list")List<StudentInfo> list);
+
+    /***
+     * 删除
+     * @param idList idList
+     * @return int
+     */
+    int delete(@Param("idList") List<Long> idList);
 }
