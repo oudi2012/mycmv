@@ -33,6 +33,20 @@ public interface GuardianInfoMapper {
     GuardianInfo findOne(GuardianInfo item);
 
     /***
+     * 列表
+     * @param list list
+     * @return list
+     */
+    List<GuardianInfo> listByPhoneList(@Param("list") List<String> list);
+
+    /***
+     * 列表
+     * @param list list
+     * @return List
+     */
+    List<GuardianInfo> listByUserNameList(@Param("list") List<String> list);
+
+    /***
      * 编辑
      * @param item item
      * @return int

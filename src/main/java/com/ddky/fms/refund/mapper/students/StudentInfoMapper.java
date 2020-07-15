@@ -1,5 +1,6 @@
 package com.ddky.fms.refund.mapper.students;
 
+import com.ddky.fms.refund.model.students.entry.GuardianInfo;
 import com.ddky.fms.refund.model.students.entry.StudentInfo;
 import org.apache.ibatis.annotations.Param;
 
@@ -31,6 +32,20 @@ public interface StudentInfoMapper {
      * @return
      */
     StudentInfo findOne(StudentInfo item);
+
+    /***
+     * 列表
+     * @param list list
+     * @return list
+     */
+    List<StudentInfo> listByPhoneList(@Param("list") List<String> list);
+
+    /***
+     * 列表
+     * @param list list
+     * @return List
+     */
+    List<StudentInfo> listByUserNameList(@Param("list") List<String> list);
 
     /***
      * 编辑

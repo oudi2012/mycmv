@@ -5,13 +5,13 @@ package com.ddky.fms.refund.exception;
  */
 public class BusinessException extends RuntimeException {
 
-    private String code;
+    private int code;
 
-    public String getCode() {
+    public int getCode() {
         return this.code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -19,7 +19,7 @@ public class BusinessException extends RuntimeException {
         super(message);
     }
 
-    public BusinessException(String code, String message) {
+    public BusinessException(int code, String message) {
         super(message);
         this.code = code;
     }

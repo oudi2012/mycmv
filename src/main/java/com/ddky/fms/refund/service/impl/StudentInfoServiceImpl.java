@@ -2,6 +2,7 @@ package com.ddky.fms.refund.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.ddky.fms.refund.constants.LogConstants;
+import com.ddky.fms.refund.exception.BusinessException;
 import com.ddky.fms.refund.mapper.students.StudentInfoMapper;
 import com.ddky.fms.refund.model.students.entry.StudentInfo;
 import com.ddky.fms.refund.service.StudentInfoService;
@@ -11,7 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -81,24 +85,40 @@ public class StudentInfoServiceImpl implements StudentInfoService {
     }
 
     @Override
+    @Transactional(rollbackFor = BusinessException.class)
     public void insert(StudentInfo item) {
         logger.info(LOG_INSERT, JSON.toJSONString(item));
+        if (!StringUtils.isEmpty(item.getPhone())) {
+            StudentInfo tmpItem = findByPhone(item.getPhone());
+            if (!ObjectUtils.isEmpty(tmpItem)) {
+                throw new BusinessException(501, "手机号" + item.getPhone() + "已经注册");
+            }
+        }
+        if (!StringUtils.isEmpty(item.getUserName())) {
+            StudentInfo tmpItem = findByUserName(item.getUserName());
+            if (!ObjectUtils.isEmpty(tmpItem)) {
+                throw new BusinessException(501, "用户名" + item.getUserName() + "已经注册");
+            }
+        }
         studentInfoMapper.insert(item);
     }
 
     @Override
+    @Transactional(rollbackFor = BusinessException.class)
     public void batchInsert(List<StudentInfo> list) {
         logger.info(LOG_INSERT_LIST, JSON.toJSONString(list));
         studentInfoMapper.batchInsert(list);
     }
 
     @Override
+    @Transactional(rollbackFor = BusinessException.class)
     public int edit(StudentInfo item) {
         logger.info(LOG_EDIT, JSON.toJSONString(item));
         return studentInfoMapper.edit(item);
     }
 
     @Override
+    @Transactional(rollbackFor = BusinessException.class)
     public int delete(List<Long> idList) {
         logger.info(LOG_REMOVE, JSON.toJSONString(idList));
         return studentInfoMapper.delete(idList);

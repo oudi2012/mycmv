@@ -44,6 +44,30 @@
         limit 1
     </select>
 
+    <select id="listByPhoneList" parameterType="java.util.List" resultType="com.ddky.fms.refund.model.students.entry.TeacherInfo">
+        select
+        <include refid="column" />
+        from stu_teacher_info
+        <where>
+            phone in
+            <foreach collection="list" index="index" item="item" separator=",">
+                #{item}
+            </foreach>)
+        </where>
+    </select>
+
+    <select id="listByUserNameList" parameterType="java.util.List" resultType="com.ddky.fms.refund.model.students.entry.TeacherInfo">
+        select
+        <include refid="column" />
+        from stu_teacher_info
+        <where>
+            userName in
+            <foreach collection="list" index="index" item="item" separator=",">
+                #{item}
+            </foreach>)
+        </where>
+    </select>
+
     <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.TeacherInfo">
         insert into stu_teacher_info (phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName, schoolId)
         values (#{phone}, #{userName}, #{passWord}, #{regType}, now(), #{headImage}, #{areaId}, #{sex}, #{birthDay}, #{realName}, #{schoolId})

@@ -34,6 +34,30 @@
         limit 1
     </select>
 
+    <select id="listByPhoneList" parameterType="java.util.List" resultType="com.ddky.fms.refund.model.students.entry.GuardianInfo">
+        select
+        <include refid="column" />
+        from stu_guardian_info
+        <where>
+            phone in
+            <foreach collection="list" index="index" item="item" separator=",">
+                #{item}
+            </foreach>)
+        </where>
+    </select>
+
+    <select id="listByUserNameList" parameterType="java.util.List" resultType="com.ddky.fms.refund.model.students.entry.GuardianInfo">
+        select
+        <include refid="column" />
+        from stu_guardian_info
+        <where>
+            userName in
+            <foreach collection="list" index="index" item="item" separator=",">
+                #{item}
+            </foreach>)
+        </where>
+    </select>
+
     <select id="findById" resultType="com.ddky.fms.refund.model.students.entry.GuardianInfo">
         select
             <include refid="column" />

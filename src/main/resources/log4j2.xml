@@ -9,9 +9,15 @@
             <PatternLayout charset="UTF-8" pattern="%d [%t] %-5level - %msg [%C.%M():%L]%n"/>
         </Console>
 
-        <!--druid的日志记录追加器-->
-        <RollingRandomAccessFile name="druidSqlRollingFile" fileName="../druid-sql.log"
-                                 filePattern="../druid-sql-%d{yyyy-MM-dd}-%i.log.gz">
+        <!--studentInfo-->
+        <RollingRandomAccessFile name="stuLogRollingFile" fileName="../stu_log.log"
+                                 filePattern="../stu_log-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout charset="UTF-8" pattern="%d [%t] %-5level - %msg [%C.%M():%L]%n"/>
+        </RollingRandomAccessFile>
+
+        <!--studentInfo-->
+        <RollingRandomAccessFile name="teachLogRollingFile" fileName="../teach_log.log"
+                                 filePattern="../teach_log-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout charset="UTF-8" pattern="%d [%t] %-5level - %msg [%C.%M():%L]%n"/>
         </RollingRandomAccessFile>
 
@@ -22,11 +28,16 @@
         <!-- 开发环境使用 -->
         <Root level="info" includeLocation="true" additivity="true">
             <AppenderRef ref="STDOUT"/>
-            <AppenderRef ref="druidSqlRollingFile"/>
+            <AppenderRef ref="stuLogRollingFile"/>
+            <AppenderRef ref="teachLogRollingFile"/>
         </Root>
 
-        <logger name="druidSqlRollingFile" level="info" additivity="true">
-            <AppenderRef ref="druidSqlRollingFile"/>
+        <logger name="stuLogRollingFile" level="info" additivity="true">
+            <AppenderRef ref="stuLogRollingFile"/>
+        </logger>
+
+        <logger name="teachLogRollingFile" level="info" additivity="true">
+            <AppenderRef ref="teachLogRollingFile"/>
         </logger>
     </Loggers>
 
