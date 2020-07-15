@@ -5,7 +5,10 @@ import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.exception.BusinessException;
 import com.ddky.fms.refund.mapper.students.GuardianInfoMapper;
 import com.ddky.fms.refund.model.students.entry.GuardianInfo;
+import com.ddky.fms.refund.model.students.entry.StudentInfo;
+import com.ddky.fms.refund.model.students.vo.GuardianStudentVo;
 import com.ddky.fms.refund.service.GuardianInfoService;
+import com.ddky.fms.refund.service.StudentInfoService;
 import com.ddky.fms.refund.utils.CmvDesUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -45,6 +48,8 @@ public class GuardianInfoServiceImpl implements GuardianInfoService {
 
     @Autowired
     private GuardianInfoMapper guardianInfoMapper;
+    @Autowired
+    private StudentInfoService studentInfoService;
 
     @Override
     public PageInfo<GuardianInfo> list(GuardianInfo guardianInfo, int pageIndex, int pageSize) {
@@ -158,6 +163,17 @@ public class GuardianInfoServiceImpl implements GuardianInfoService {
             item.setPassWord(CmvDesUtils.encrypt(item.getPassWord()));
         });
         guardianInfoMapper.batchInsert(list);
+    }
+
+    @Override
+    public int bindGuardianInfo(GuardianStudentVo guardianStudentVo) {
+        GuardianInfo guardianInfo = guardianStudentVo.getGuardianInfo();
+        StudentInfo studentInfo = guardianStudentVo.getStudentInfo();
+        studentInfo.setGuardianId(guardianInfo.getId());
+        if (studentInfo.getId() == null) {
+            throw new BusinessException(501, "请选择要绑定的学生");
+        }
+        return studentInfoService.edit(studentInfo);
     }
 
     @Override

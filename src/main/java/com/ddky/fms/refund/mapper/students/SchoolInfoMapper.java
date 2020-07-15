@@ -13,9 +13,10 @@ public interface SchoolInfoMapper {
 
     /***
      * 列表
+     * @param schoolInfo schoolInfo
      * @return List
      */
-    List<SchoolInfo> list();
+    List<SchoolInfo> list(SchoolInfo schoolInfo);
 
     /***
      * 详细

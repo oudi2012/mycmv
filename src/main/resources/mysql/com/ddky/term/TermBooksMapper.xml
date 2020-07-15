@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ddky.fms.refund.mapper.students.TermInfoMapper">
+
+    <sql id="column">
+        id, schoolId, teamId, gradeId, name, bookId, bookCate, createTime
+    </sql>
+
+    <sql id="where">
+        <if test="schoolId != null">
+            and schoolId = #{schoolId}
+        </if>
+        <if test="teamId != null">
+            and teamId = #{teamId}
+        </if>
+        <if test="gradeId != null">
+            and gradeId = #{gradeId}
+        </if>
+    </sql>
+
+    <select id="list" resultType="com.ddky.fms.refund.model.students.entry.TermInfo">
+        select
+            <include refid="column" />
+        from stu_term_info
+        <where>
+            <include refid="where" />
+        </where>
+    </select>
+
+    <select id="findById" resultType="com.ddky.fms.refund.model.students.entry.TermInfo">
+        select
+            <include refid="column" />
+        from stu_term_info
+        <where>
+            teamId = #{teamId}
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.TermInfo">
+        insert into stu_term_info (schoolId, teamId, gradeId, name, bookId, bookCate) values
+        (#{schoolId}, #{teamId}, #{gradeId}, #{name}, #{bookId}, #{bookCate})
+    </insert>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";">
+            insert into stu_term_info (schoolId, teamId, gradeId, name, bookId, bookCate)
+            values (#{item.schoolId}, #{item.teamId}, #{item.gradeId}, #{item.name}, #{item.bookId}, #{item.bookCate})
+        </foreach>
+    </insert>
+
+</mapper>

@@ -12,7 +12,7 @@ pagehelper:
 
 mybatis:
   #mysql 环境
-  mapperLocations: classpath:mysql/com/ddky/books/*.xml, classpath:mysql/com/ddky/images/*.xml, classpath:mysql/com/ddky/students/*.xml, classpath:mysql/com/ddky/userlogs/*.xml
+  mapperLocations: classpath:mysql/com/ddky/books/*.xml, classpath:mysql/com/ddky/images/*.xml, classpath:mysql/com/ddky/students/*.xml, classpath:mysql/com/ddky/userlogs/*.xml, classpath:mysql/com/ddky/term/*.xml
 logging:
   config: classpath:log4j2.xml
   #level:

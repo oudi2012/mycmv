@@ -4,6 +4,7 @@ package com.ddky.fms.refund.controller.rest.students;
 import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.students.entry.GuardianInfo;
+import com.ddky.fms.refund.model.students.vo.GuardianStudentVo;
 import com.ddky.fms.refund.service.GuardianInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import org.slf4j.Logger;
@@ -65,6 +66,20 @@ public class GuardianInfoController {
     public ResponseObject remove(@RequestBody List<Long> ids) {
         ResponseObject resObj = new ResponseObject();
         CommonUtils.executeSuccess(resObj, guardianInfoService.delete(ids));
+        return resObj;
+    }
+
+
+    /***
+     * 绑定监护人
+     * @param guardianStudentVo guardianStudentVo
+     * @return ResponseObject
+     */
+    @ResponseBody
+    @PostMapping("bind")
+    public ResponseObject bind(@RequestBody GuardianStudentVo guardianStudentVo) {
+        ResponseObject resObj = new ResponseObject();
+        CommonUtils.executeSuccess(resObj, guardianInfoService.bindGuardianInfo(guardianStudentVo));
         return resObj;
     }
 

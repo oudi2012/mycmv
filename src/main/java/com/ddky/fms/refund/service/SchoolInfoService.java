@@ -1,6 +1,7 @@
 package com.ddky.fms.refund.service;
 
 import com.ddky.fms.refund.model.students.entry.SchoolInfo;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -12,9 +13,12 @@ public interface SchoolInfoService {
 
     /***
      * 列表
-     * @return List
+     * @param schoolInfo schoolInfo
+     * @param pageIndex pageIndex
+     * @param pageSize pageSize
+     * @return PageInfo
      */
-    List<SchoolInfo> list();
+    PageInfo<SchoolInfo> list(SchoolInfo schoolInfo, int pageIndex, int pageSize);
 
     /***
      * 详细
