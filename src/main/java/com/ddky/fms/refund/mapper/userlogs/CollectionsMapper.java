@@ -13,9 +13,10 @@ public interface CollectionsMapper {
 
     /***
      * 列表
-     * @return List
+     * @param info info
+     * @return
      */
-    List<Collections> list();
+    List<Collections> list(Collections info);
 
     /***
      * 详细

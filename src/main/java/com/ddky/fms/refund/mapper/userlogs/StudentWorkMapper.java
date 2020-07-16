@@ -13,9 +13,10 @@ public interface StudentWorkMapper {
 
     /***
      * 列表
-     * @return List
+     * @param info info
+     * @return
      */
-    List<StudentWork> list();
+    List<StudentWork> list(StudentWork info);
 
     /***
      * 详细

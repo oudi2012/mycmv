@@ -1,4 +1,4 @@
-drop table if exists stu_bookshelf_info;
+drop table if exists op_bookshelf_info;
 #shelfId, userId, bookId, cateId, bookCover, readPercent, createDate
 CREATE TABLE `op_bookshelf_info` (
   `shelfId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -11,7 +11,7 @@ CREATE TABLE `op_bookshelf_info` (
   PRIMARY KEY (`shelfId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='我的书架';
 
-drop table if exists stu_collect_info;
+drop table if exists op_collect_info;
 #coletId, userId, folderId, infoType, infoId, title, imageIndex, images, tags, createDate
 CREATE TABLE `op_collect_info` (
   `coletId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -21,13 +21,13 @@ CREATE TABLE `op_collect_info` (
   `infoId` bigint(20) DEFAULT NULL COMMENT '信息编号',
   `title` varchar(100) DEFAULT NULL COMMENT '标题',
   `imageIndex` varchar(100) DEFAULT NULL COMMENT '封面',
-  `imageIndex` varchar(300) DEFAULT NULL COMMENT '多图',
+  `images` varchar(300) DEFAULT NULL COMMENT '多图',
   `tags` varchar(100) DEFAULT NULL COMMENT '标签',
   `createDate` date DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`coletId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='我的收藏';
 
-drop table if exists stu_homework_info;
+drop table if exists op_homework_info;
 #homeWorkId, userId, schoolId, gradeId, classId, subjectId, workContent, indexImage, createDate, beginDate, endDate
 CREATE TABLE `op_homework_info` (
   `homeWorkId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -44,7 +44,7 @@ CREATE TABLE `op_homework_info` (
   PRIMARY KEY (`homeWorkId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='家庭作业';
 
-drop table if exists stu_read_note;
+drop table if exists op_read_note;
 #id, bookId, pageNo, lineNo, userId, type, content, createDate
 CREATE TABLE `op_read_note` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -58,7 +58,7 @@ CREATE TABLE `op_read_note` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='读书笔记';
 
-drop table if exists stu_student_work;
+drop table if exists op_student_work;
 #workId, userId, schoolId, gradeId, classId, subjectId, teacherId, version, state, scoreCateId, score
 #, scoreDesc, imageIndex, createDate
 CREATE TABLE `op_student_work` (
@@ -76,16 +76,5 @@ CREATE TABLE `op_student_work` (
   `scoreDesc` varchar(100) DEFAULT NULL COMMENT '成绩描述',
   `indexImage` varchar(100) DEFAULT NULL COMMENT '首图',
   `createDate` date DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`workId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='作业完成信息';
-
-
-
-
-
-
-
-
-
-
-

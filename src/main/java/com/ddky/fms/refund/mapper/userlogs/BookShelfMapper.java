@@ -13,9 +13,10 @@ public interface BookShelfMapper {
 
     /***
      * 列表
-     * @return List
+     * @param logInfo
+     * @return
      */
-    List<BookShelf> list();
+    List<BookShelf> list(BookShelf logInfo);
 
     /***
      * 详细

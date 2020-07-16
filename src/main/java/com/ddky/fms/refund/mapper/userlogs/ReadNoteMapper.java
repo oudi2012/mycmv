@@ -13,9 +13,10 @@ public interface ReadNoteMapper {
 
     /***
      * 列表
-     * @return List
+     * @param info info
+     * @return
      */
-    List<ReadNote> list();
+    List<ReadNote> list(ReadNote info);
 
     /***
      * 详细

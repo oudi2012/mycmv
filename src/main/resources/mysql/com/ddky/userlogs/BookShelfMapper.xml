@@ -21,7 +21,7 @@
     <select id="list" resultType="com.ddky.fms.refund.model.userlogs.entry.BookShelf">
         select
             <include refid="column" />
-        from stu_bookshelf_info
+        from op_bookshelf_info
         <where>
             <include refid="where" />
         </where>
@@ -30,20 +30,20 @@
     <select id="findById" resultType="com.ddky.fms.refund.model.userlogs.entry.BookShelf">
         select
             <include refid="column" />
-        from stu_bookshelf_info
+        from op_bookshelf_info
         <where>
             shelfId = #{id}
         </where>
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.userlogs.entry.BookShelf">
-        insert into stu_bookshelf_info (userId, bookId, cateId, bookCover, readPercent, createDate)
+        insert into op_bookshelf_info (userId, bookId, cateId, bookCover, readPercent, createDate)
         values (#{userId}, #{bookId}, #{cateId}, #{bookCover}, #{readPercent}, now())
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into stu_bookshelf_info (userId, bookId, cateId, bookCover, readPercent, createDate)
+            insert into op_bookshelf_info (userId, bookId, cateId, bookCover, readPercent, createDate)
             values (#{item.userId}, #{item.bookId}, #{item.cateId}, #{item.bookCover}, #{item.readPercent}, now())
         </foreach>
     </insert>

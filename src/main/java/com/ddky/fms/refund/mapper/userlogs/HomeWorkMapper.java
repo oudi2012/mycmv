@@ -13,9 +13,10 @@ public interface HomeWorkMapper {
 
     /***
      * 列表
-     * @return List
+     * @param info info
+     * @return
      */
-    List<HomeWork> list();
+    List<HomeWork> list(HomeWork info);
 
     /***
      * 详细

@@ -30,7 +30,7 @@
     <select id="list" resultType="com.ddky.fms.refund.model.userlogs.entry.Collections">
         select
             <include refid="column" />
-        from stu_collect_info
+        from op_collect_info
         <where>
             <include refid="where" />
         </where>
@@ -39,20 +39,20 @@
     <select id="findById" resultType="com.ddky.fms.refund.model.userlogs.entry.Collections">
         select
             <include refid="column" />
-        from stu_collect_info
+        from op_collect_info
         <where>
             coletId = #{id}
         </where>
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.userlogs.entry.Collections">
-        insert into stu_collect_info (userId, folderId, infoType, infoId, title, imageIndex, images, tags, createDate)
+        insert into op_collect_info (userId, folderId, infoType, infoId, title, imageIndex, images, tags, createDate)
         values (#{userId}, #{folderId}, #{infoType}, #{infoId}, #{title}, #{imageIndex}, #{images}, #{tags}, now())
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into stu_collect_info (userId, folderId, infoType, infoId, title, imageIndex, images, tags, createDate)
+            insert into op_collect_info (userId, folderId, infoType, infoId, title, imageIndex, images, tags, createDate)
             values (#{item.userId}, #{item.folderId}, #{item.infoType}, #{item.infoId}, #{item.title}, #{item.imageIndex}, #{item.images}, #{item.tags}, now())
         </foreach>
     </insert>
