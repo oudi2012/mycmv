@@ -145,20 +145,21 @@ CREATE TABLE stu_term_info (
 
 drop table if exists stu_term_books;
 CREATE TABLE stu_term_books (
-  id int(10) NOT NULL AUTO_INCREMENT,
+  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   schoolId int(10) NOT NULL,
   teamId int(10) NOT NULL,
   gradeId int(10) NOT NULL,
   name varchar(100) NOT NULL,
   bookId int(10) NOT NULL comment '书籍编号',
   bookCate varchar(30) NOT NULL comment '书籍类别',
-  createTime datetime DEFAULT UNIX_TIMESTAMP(),
+  createTime datetime DEFAULT NULL,
   PRIMARY KEY (id)
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '学生每学期的书籍';
 
 drop table if exists stu_term_teachers;
+#id, teamId, schoolId, gradeId, classId, userId, bookId, bookCate, state, startTime, endTime, createTime
 CREATE TABLE stu_term_teachers (
-  id int(10) NOT NULL AUTO_INCREMENT,
+  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   teamId int(10) NOT NULL,
   schoolId int(10) NOT NULL,
   gradeId int(10) NOT NULL,
@@ -169,13 +170,13 @@ CREATE TABLE stu_term_teachers (
   state int(2) NOT NULL comment '10:正常',
   startTime datetime DEFAULT null,
   endTime datetime DEFAULT null,
-  createTime datetime DEFAULT UNIX_TIMESTAMP(),
+  createTime datetime DEFAULT NULL,
   PRIMARY KEY (id)
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '学生每学期任课老师及对应的课程';
 
 drop table if exists stu_term_students;
 CREATE TABLE stu_term_students (
-  id int(10) NOT NULL AUTO_INCREMENT,
+  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   teamId int(10) NOT NULL,
   schoolId int(10) NOT NULL,
   gradeId int(10) NOT NULL,
@@ -184,7 +185,7 @@ CREATE TABLE stu_term_students (
   userId int(10) NOT NULL  comment '学生编号',
   startTime datetime DEFAULT null,
   endTime datetime DEFAULT null,
-  createTime datetime DEFAULT UNIX_TIMESTAMP(),
+  createTime datetime DEFAULT NULL,
   PRIMARY KEY (id)
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '学生每学期状态';
 

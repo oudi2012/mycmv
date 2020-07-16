@@ -1,39 +1,39 @@
-package com.ddky.fms.refund.mapper.students;
+package com.ddky.fms.refund.mapper.term;
 
-import com.ddky.fms.refund.model.students.entry.TermInfo;
+import com.ddky.fms.refund.model.term.entry.TermTeachers;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /***
- * TermInfo
+ * TermTeachers
  * @author oudi
  */
-public interface TermInfoMapper {
+public interface TermTeachersMapper {
 
     /***
      * 列表
      * @param termInfo termInfo
      * @return List
      */
-    List<TermInfo> list(TermInfo termInfo);
+    List<TermTeachers> list(TermTeachers termInfo);
 
     /***
      * 详细
      * @param id id
      * @return obj
      */
-    TermInfo findById(int id);
+    TermTeachers findById(int id);
 
     /***
      * 添加
      * @param item item
      */
-    void insert(TermInfo item);
+    void insert(TermTeachers item);
 
     /***
      * 批量添加
      * @param list list
      */
-    void batchInsert(@Param("list")List<TermInfo> list);
+    void batchInsert(@Param("list")List<TermTeachers> list);
 }

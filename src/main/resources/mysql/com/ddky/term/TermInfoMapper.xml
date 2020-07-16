@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ddky.fms.refund.mapper.students.TermInfoMapper">
+<mapper namespace="com.ddky.fms.refund.mapper.term.TermInfoMapper">
 
     <sql id="column">
         teamId, theYear, name, type, startTime, endTime, createTime
@@ -15,7 +15,7 @@
         </if>
     </sql>
 
-    <select id="list" resultType="com.ddky.fms.refund.model.students.entry.TermInfo">
+    <select id="list" resultType="com.ddky.fms.refund.model.term.entry.TermInfo">
         select
             <include refid="column" />
         from stu_term_info
@@ -24,7 +24,7 @@
         </where>
     </select>
 
-    <select id="findById" resultType="com.ddky.fms.refund.model.students.entry.TermInfo">
+    <select id="findById" resultType="com.ddky.fms.refund.model.term.entry.TermInfo">
         select
             <include refid="column" />
         from stu_term_info
@@ -33,7 +33,7 @@
         </where>
     </select>
 
-    <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.TermInfo">
+    <insert id="insert" parameterType="com.ddky.fms.refund.model.term.entry.TermInfo">
         insert into stu_term_info (theYear, name, type, startTime, endTime, createTime) values
         (#{theYear}, #{name}, #{type}, #{startTime}, #{endTime}, now())
     </insert>

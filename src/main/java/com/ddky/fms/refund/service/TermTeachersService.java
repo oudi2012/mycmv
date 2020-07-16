@@ -1,15 +1,14 @@
 package com.ddky.fms.refund.service;
 
-import com.ddky.fms.refund.model.term.entry.TermInfo;
+import com.ddky.fms.refund.model.term.entry.TermTeachers;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /***
- * 学期
  * @author a
  */
-public interface TermInfoService {
+public interface TermTeachersService {
 
     /***
      * 列表获取
@@ -18,24 +17,25 @@ public interface TermInfoService {
      * @param pageSize pageSize
      * @return
      */
-    PageInfo<TermInfo> list(TermInfo termInfo, int pageIndex, int pageSize);
+    PageInfo<TermTeachers> list(TermTeachers termInfo, int pageIndex, int pageSize);
 
     /***
      * 详细
      * @param id id
-     * @return TermInfo
+     * @return TermTeachers
      */
-    TermInfo findById(int id);
+    TermTeachers findById(int id);
 
     /***
      * 添加
      * @param areaInfo areaInfo
      */
-    void insert(TermInfo areaInfo);
+    void insert(TermTeachers areaInfo);
 
     /***
      * 批量添加
      * @param list list
      */
-    void batchInsert(List<TermInfo> list);
+    void batchInsert(List<TermTeachers> list);
+
 }

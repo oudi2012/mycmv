@@ -1,4 +1,4 @@
-package com.ddky.fms.refund.model.students.entry;
+package com.ddky.fms.refund.model.term.entry;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

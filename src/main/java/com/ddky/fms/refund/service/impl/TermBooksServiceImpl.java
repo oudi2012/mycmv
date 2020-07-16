@@ -2,9 +2,9 @@ package com.ddky.fms.refund.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.ddky.fms.refund.constants.LogConstants;
-import com.ddky.fms.refund.mapper.term.TermInfoMapper;
-import com.ddky.fms.refund.model.term.entry.TermInfo;
-import com.ddky.fms.refund.service.TermInfoService;
+import com.ddky.fms.refund.mapper.term.TermBooksMapper;
+import com.ddky.fms.refund.model.term.entry.TermBooks;
+import com.ddky.fms.refund.service.TermBooksService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -16,10 +16,11 @@ import org.springframework.util.CollectionUtils;
 import java.util.List;
 
 /***
+ * TermBooks
  * @author a
  */
 @Service
-public class TermInfoServiceImpl implements TermInfoService {
+public class TermBooksServiceImpl implements TermBooksService {
 
     private static final Logger logger = LoggerFactory.getLogger(LogConstants.STU_LOG);
 
@@ -37,13 +38,13 @@ public class TermInfoServiceImpl implements TermInfoService {
     private static final String LOG_REMOVE = "delete param {}";
 
     @Autowired
-    private TermInfoMapper termInfoMapper;
+    private TermBooksMapper termBooksMapper;
 
     @Override
-    public PageInfo<TermInfo> list(TermInfo termInfo, int pageIndex, int pageSize) {
+    public PageInfo<TermBooks> list(TermBooks termInfo, int pageIndex, int pageSize) {
         logger.info(LOG_LIST_PARAM, JSON.toJSONString(termInfo), pageIndex, pageSize);
         PageHelper.startPage(pageIndex, pageSize).setOrderBy(" teamId desc");
-        List<TermInfo> termInfoList = termInfoMapper.list(termInfo);
+        List<TermBooks> termInfoList = termBooksMapper.list(termInfo);
         logger.info(LOG_LIST_RESULT, JSON.toJSONString(termInfoList));
         if (CollectionUtils.isEmpty(termInfoList)) {
             return new PageInfo<>();
@@ -52,20 +53,20 @@ public class TermInfoServiceImpl implements TermInfoService {
     }
 
     @Override
-    public TermInfo findById(int id) {
+    public TermBooks findById(int id) {
         logger.info(LOG_FIND_ID, id);
-        return termInfoMapper.findById(id);
+        return termBooksMapper.findById(id);
     }
 
     @Override
-    public void insert(TermInfo termInfo) {
+    public void insert(TermBooks termInfo) {
         logger.info(LOG_INSERT, JSON.toJSONString(termInfo));
-        termInfoMapper.insert(termInfo);
+        termBooksMapper.insert(termInfo);
     }
 
     @Override
-    public void batchInsert(List<TermInfo> list) {
-        logger.info(LOG_INSERT, JSON.toJSONString(list));
-        termInfoMapper.batchInsert(list);
+    public void batchInsert(List<TermBooks> list) {
+        logger.info(LOG_INSERT_LIST, JSON.toJSONString(list));
+        termBooksMapper.batchInsert(list);
     }
 }
