@@ -22,7 +22,7 @@
     <select id="list" resultType="com.ddky.fms.refund.model.userlogs.entry.StudentWork">
         select
             <include refid="column" />
-        from stu_student_work
+        from op_student_work
         <where>
             <include refid="where" />
         </where>
@@ -31,21 +31,21 @@
     <select id="findById" resultType="com.ddky.fms.refund.model.userlogs.entry.StudentWork">
         select
             <include refid="column" />
-        from stu_student_work
+        from op_student_work
         <where>
             workId = #{id}
         </where>
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.userlogs.entry.StudentWork">
-        insert into stu_student_work (userId, schoolId, gradeId, classId, subjectId, teacherId, version, state, scoreCateId, score,
+        insert into op_student_work (userId, schoolId, gradeId, classId, subjectId, teacherId, version, state, scoreCateId, score,
         scoreDesc, imageIndex, createDate) values (#{userId}, #{schoolId}, #{gradeId}, #{classId}, #{subjectId}, #{teacherId},
         #{version}, #{state}, #{scoreCateId}, #{score}, #{scoreDesc}, #{imageIndex}, now())
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into stu_student_work (userId, schoolId, gradeId, classId, subjectId, teacherId, version, state, scoreCateId, score,
+            insert into op_student_work (userId, schoolId, gradeId, classId, subjectId, teacherId, version, state, scoreCateId, score,
             scoreDesc, imageIndex, createDate) values (#{item.userId}, #{item.schoolId}, #{item.gradeId}, #{item.classId},
             #{item.subjectId}, #{item.teacherId}, #{item.version}, #{item.state}, #{item.scoreCateId}, #{item.score}, #{item.scoreDesc},
             #{item.imageIndex}, now())

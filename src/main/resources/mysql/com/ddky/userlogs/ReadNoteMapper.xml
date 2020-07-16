@@ -30,7 +30,7 @@
     <select id="list" resultType="com.ddky.fms.refund.model.userlogs.entry.ReadNote">
         select
             <include refid="column" />
-        from stu_read_note
+        from op_read_note
         <where>
             <include refid="where" />
         </where>
@@ -39,20 +39,20 @@
     <select id="findById" resultType="com.ddky.fms.refund.model.userlogs.entry.ReadNote">
         select
             <include refid="column" />
-        from stu_read_note
+        from op_read_note
         <where>
             shelfId = #{id}
         </where>
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.userlogs.entry.ReadNote">
-        insert into stu_read_note (bookId, pageNo, lineNo, userId, type, content, createDate)
+        insert into op_read_note (bookId, pageNo, lineNo, userId, type, content, createDate)
         values (#{bookId}, #{pageNo}, #{lineNo}, #{userId}, #{type}, #{content}, now())
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into stu_read_note (bookId, pageNo, lineNo, userId, type, content, createDate)
+            insert into op_read_note (bookId, pageNo, lineNo, userId, type, content, createDate)
             values (#{item.bookId}, #{item.pageNo}, #{item.lineNo}, #{item.userId}, #{item.type}, #{item.content}, now())
         </foreach>
     </insert>
