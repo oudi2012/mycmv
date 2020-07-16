@@ -175,6 +175,7 @@ CREATE TABLE stu_term_teachers (
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '学生每学期任课老师及对应的课程';
 
 drop table if exists stu_term_students;
+#id, teamId, schoolId, gradeId, classId, userId, state, startTime, endTime, createTime
 CREATE TABLE stu_term_students (
   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   teamId int(10) NOT NULL,
