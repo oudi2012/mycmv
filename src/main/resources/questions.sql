@@ -1,40 +1,46 @@
-drop table if exists hardLevel;
-CREATE TABLE hardLevel (
+drop table if exists exam_hard_level;
+#id, title, state, createTime, updateTime
+CREATE TABLE exam_hard_level (
   id int(10) NOT NULL AUTO_INCREMENT,
   title varchar(200) NOT NULL,
   state int(2) DEFAULT 0 comment '0unuse,1use',
+  orderNo int(4) NOT NULL DEFAULT 0 COMMENT '编号',
   createTime int(10) DEFAULT UNIX_TIMESTAMP(),
   updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (id)
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '难度系数';
 
-drop table if exists questionType;
-CREATE TABLE questionType (
+drop table if exists exam_question_type;
+#id, title, state, createTime, updateTime
+CREATE TABLE exam_question_type (
   id int(10) NOT NULL AUTO_INCREMENT,
   title varchar(200) NOT NULL,
   state int(2) DEFAULT 0 comment '0unuse,1use',
+  orderNo int(4) NOT NULL DEFAULT 0 COMMENT '编号',
   createTime int(10) DEFAULT UNIX_TIMESTAMP(),
   updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (id)
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '试题类型';
 
-drop table if exists selectQuestions;
-CREATE TABLE selectQuestions (
+drop table if exists exam_select_questions;
+#id, subjectId, gradeId, title, qusType, examScope, creatorId, answers, createTime, updateTime
+CREATE TABLE exam_select_questions (
   id int(11) NOT NULL AUTO_INCREMENT,
   subjectId int(11) NOT NULL,
   gradeId int(11) NOT NULL,
   title varchar(500) NOT NULL,
   qusType tinyint(2) NOT NULL comment '题型,10:单选 20:多选',
   examScope varchar(500) NOT NULL,
-  creatorId int(11) NOT NULL comment '出题人',
+  creatorId bigint(20) NOT NULL comment '出题人',
   answers varchar(20) NOT NULL,
   createTime int(10) DEFAULT UNIX_TIMESTAMP(),
   updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (id)
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '选择题';
 
-drop table if exists selectQuestionOptions;
-CREATE TABLE selectQuestionOptions (
+drop table if exists exam_select_question_options;
+#id, title, state, hardLevelId, createTime, updateTime
+CREATE TABLE exam_select_question_options (
   id int(11) NOT NULL AUTO_INCREMENT,
   title varchar(200) NOT NULL,
   state int(2) DEFAULT 0 comment '0unuse,1use',
@@ -45,14 +51,15 @@ CREATE TABLE selectQuestionOptions (
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '选择题选项';
 
 
-drop table if exists fillQuestions;
-CREATE TABLE fillQuestions (
+drop table if exists exam_fill_questions;
+#id, subjectId, gradeId, title, examScope, creatorId, answers, createTime, updateTime
+CREATE TABLE exam_fill_questions (
   id int(11) NOT NULL AUTO_INCREMENT,
   subjectId int(11) NOT NULL,
   gradeId int(11) NOT NULL,
   title varchar(500) NOT NULL,
   examScope varchar(500) NOT NULL comment '知识点',
-  creatorId int(11) NOT NULL comment '出题人',
+  creatorId bigint(20) NOT NULL comment '出题人',
   answers varchar(20) NOT NULL,
   createTime int(10) DEFAULT UNIX_TIMESTAMP(),
   updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
@@ -60,8 +67,9 @@ CREATE TABLE fillQuestions (
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '填空题';
 
 
-drop table if exists fillQuestionOptions;
-CREATE TABLE fillQuestionOptions (
+drop table if exists exam_fill_question_options;
+#id, title, state, hardLevelId, createTime, updateTime
+CREATE TABLE exam_fill_question_options (
   id int(11) NOT NULL AUTO_INCREMENT,
   title varchar(200) NOT NULL,
   state int(2) DEFAULT 0 comment '0unuse,1use',
@@ -69,17 +77,18 @@ CREATE TABLE fillQuestionOptions (
   createTime int(10) DEFAULT UNIX_TIMESTAMP(),
   updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (id)
-) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '选择题选项';
+) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '填空题选项';
 
 
-drop table if exists askQuestions;
-CREATE TABLE askQuestions (
+drop table if exists exam_ask_questions;
+#id, subjectId, gradeId, title, examScope, creatorId, answers, createTime, updateTime
+CREATE TABLE exam_ask_questions (
   id int(11) NOT NULL AUTO_INCREMENT,
   subjectId int(11) NOT NULL,
   gradeId int(11) NOT NULL,
   title varchar(500) NOT NULL,
   examScope varchar(500) NOT NULL comment '知识点',
-  creatorId int(11) NOT NULL comment '出题人',
+  creatorId bigint(20) NOT NULL comment '出题人',
   answers varchar(20) NOT NULL,
   createTime int(10) DEFAULT UNIX_TIMESTAMP(),
   updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
@@ -87,13 +96,14 @@ CREATE TABLE askQuestions (
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '问答题';
 
 
-drop table if exists askQuestionOptions;
-CREATE TABLE askQuestionOptions (
+drop table if exists exam_ask_question_options;
+#id, title, state, hardLevelId, createTime, updateTime
+CREATE TABLE exam_ask_question_options (
   id int(11) NOT NULL AUTO_INCREMENT,
   title varchar(200) NOT NULL,
   answer varchar(300) NOT NULL,
   state int(2) DEFAULT 0 comment '0unuse,1use',
-  creatorId int(11) NOT NULL comment '出题人',
+  creatorId bigint(20) NOT NULL comment '出题人',
   hardLevelId int(10) DEFAULT 0 comment '难度系数类别',
   createTime int(10) DEFAULT UNIX_TIMESTAMP(),
   updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
@@ -101,13 +111,14 @@ CREATE TABLE askQuestionOptions (
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '问答题项及答案';
 
 
-drop table if exists examPages;
-CREATE TABLE examPages (
+drop table if exists exam_paper_info;
+#id, subjectId, gradeId, title, creatorId, createTime, updateTime, examTime, examLong, expireLong
+CREATE TABLE exam_paper_info (
   id int(11) NOT NULL AUTO_INCREMENT,
   subjectId int(11) NOT NULL,
   gradeId int(11) NOT NULL,
   title varchar(500) NOT NULL,
-  creatorId int(11) NOT NULL comment '创建人',
+  creatorId bigint(20) NOT NULL comment '创建人',
   createTime int(10) DEFAULT UNIX_TIMESTAMP(),
   updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
   examTime int(10) DEFAULT 0 comment '开考时间',
@@ -117,8 +128,8 @@ CREATE TABLE examPages (
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '试卷';
 
 
-drop table if exists examPageQuestionTypes;
-CREATE TABLE examPageQuestionTypes (
+drop table if exists exam_examPageQuestionTypes;
+CREATE TABLE exam_examPageQuestionTypes (
   id int(11) NOT NULL AUTO_INCREMENT,
   examPageId int(11) NOT NULL,
   questionTypeId int(11) NOT NULL,
@@ -128,8 +139,8 @@ CREATE TABLE examPageQuestionTypes (
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '试卷题型';
 
 
-drop table if exists examPageSelects;
-CREATE TABLE examPageSelects (
+drop table if exists exam_examPageSelects;
+CREATE TABLE exam_examPageSelects (
   id int(11) NOT NULL AUTO_INCREMENT,
   examPageId int(11) NOT NULL,
   questionId int(11) NOT NULL,
@@ -146,8 +157,8 @@ CREATE TABLE examPageSelects (
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '试卷选择题';
 
 
-drop table if exists examPageSelectItems;
-CREATE TABLE examPageSelectItems (
+drop table if exists exam_examPageSelectItems;
+CREATE TABLE exam_examPageSelectItems (
   id int(11) NOT NULL AUTO_INCREMENT,
   examPageId int(11) NOT NULL,
   questionId int(11) NOT NULL,
@@ -158,8 +169,8 @@ CREATE TABLE examPageSelectItems (
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '试卷选择题选项';
 
 
-drop table if exists examPageQuestions;
-CREATE TABLE examPageQuestions (
+drop table if exists exam_examPageQuestions;
+CREATE TABLE exam_examPageQuestions (
   id int(11) NOT NULL AUTO_INCREMENT,
   examPageId int(11) NOT NULL,
   questionId int(11) NOT NULL,
@@ -176,8 +187,8 @@ CREATE TABLE examPageQuestions (
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '试卷问答题';
 
 
-drop table if exists examPageUsers;
-CREATE TABLE examPageUsers (
+drop table if exists exam_examPageUsers;
+CREATE TABLE exam_examPageUsers (
   id int(11) NOT NULL AUTO_INCREMENT,
   examPageId int(11) NOT NULL,
   score int(10) DEFAULT 0 comment '分值',
@@ -188,8 +199,8 @@ CREATE TABLE examPageUsers (
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '试卷考试人';
 
 
-drop table if exists examPageProctor;
-CREATE TABLE examPageProctor (
+drop table if exists exam_examPageProctor;
+CREATE TABLE exam_examPageProctor (
   id int(11) NOT NULL AUTO_INCREMENT,
   examPageId int(11) NOT NULL,
   userId int(11) NOT NULL comment '用户',
@@ -199,8 +210,8 @@ CREATE TABLE examPageProctor (
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '试卷监考人';
 
 
-drop table if exists examPageResultInfo;
-CREATE TABLE examPageResultInfo (
+drop table if exists exam_examPageResultInfo;
+CREATE TABLE exam_examPageResultInfo (
   id int(11) NOT NULL AUTO_INCREMENT,
   examPageId int(11) NOT NULL,
   userId int(11) NOT NULL comment '用户',
