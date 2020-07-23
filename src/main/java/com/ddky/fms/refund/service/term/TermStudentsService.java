@@ -17,7 +17,7 @@ public interface TermStudentsService {
      * @param pageSize pageSize
      * @return
      */
-    PageInfo<TermStudents> list(TermStudents termInfo, int pageIndex, int pageSize);
+    PageInfo<TermStudents> pageList(TermStudents termInfo, int pageIndex, int pageSize);
 
     /***
      * 详细

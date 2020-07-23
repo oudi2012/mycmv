@@ -23,7 +23,7 @@ public class TermInfoController {
     @GetMapping("list")
     public ResponseObject list(TermInfo termInfo, int pageIndex, int pageSize) {
         ResponseObject resObj = new ResponseObject();
-        CommonUtils.executeSuccess(resObj, termInfoService.list(termInfo, pageIndex, pageSize));
+        CommonUtils.executeSuccess(resObj, termInfoService.pageList(termInfo, pageIndex, pageSize));
         return resObj;
     }
 

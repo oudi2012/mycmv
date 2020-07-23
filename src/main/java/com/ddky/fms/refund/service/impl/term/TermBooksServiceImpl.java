@@ -41,7 +41,7 @@ public class TermBooksServiceImpl implements TermBooksService {
     private TermBooksMapper termBooksMapper;
 
     @Override
-    public PageInfo<TermBooks> list(TermBooks termInfo, int pageIndex, int pageSize) {
+    public PageInfo<TermBooks> pageList(TermBooks termInfo, int pageIndex, int pageSize) {
         logger.info(LOG_LIST_PARAM, JSON.toJSONString(termInfo), pageIndex, pageSize);
         PageHelper.startPage(pageIndex, pageSize).setOrderBy(" teamId desc");
         List<TermBooks> termInfoList = termBooksMapper.list(termInfo);

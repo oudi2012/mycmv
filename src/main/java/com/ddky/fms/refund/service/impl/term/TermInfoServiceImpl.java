@@ -40,7 +40,7 @@ public class TermInfoServiceImpl implements TermInfoService {
     private TermInfoMapper termInfoMapper;
 
     @Override
-    public PageInfo<TermInfo> list(TermInfo termInfo, int pageIndex, int pageSize) {
+    public PageInfo<TermInfo> pageList(TermInfo termInfo, int pageIndex, int pageSize) {
         logger.info(LOG_LIST_PARAM, JSON.toJSONString(termInfo), pageIndex, pageSize);
         PageHelper.startPage(pageIndex, pageSize).setOrderBy(" teamId desc");
         List<TermInfo> termInfoList = termInfoMapper.list(termInfo);

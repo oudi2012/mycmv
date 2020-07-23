@@ -41,7 +41,7 @@ public class TermStudentsServiceImpl implements TermStudentsService {
     private TermStudentsMapper termBooksMapper;
 
     @Override
-    public PageInfo<TermStudents> list(TermStudents termStudents, int pageIndex, int pageSize) {
+    public PageInfo<TermStudents> pageList(TermStudents termStudents, int pageIndex, int pageSize) {
         logger.info(LOG_LIST_PARAM, JSON.toJSONString(termStudents), pageIndex, pageSize);
         PageHelper.startPage(pageIndex, pageSize).setOrderBy(" teamId desc");
         List<TermStudents> termStudentsList = termBooksMapper.list(termStudents);

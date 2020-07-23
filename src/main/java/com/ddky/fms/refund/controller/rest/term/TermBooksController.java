@@ -22,7 +22,7 @@ public class TermBooksController {
     @GetMapping("list")
     public ResponseObject list(TermBooks termBooks, int pageIndex, int pageSize) {
         ResponseObject resObj = new ResponseObject();
-        CommonUtils.executeSuccess(resObj, termBooksService.list(termBooks, pageIndex, pageSize));
+        CommonUtils.executeSuccess(resObj, termBooksService.pageList(termBooks, pageIndex, pageSize));
         return resObj;
     }
 
