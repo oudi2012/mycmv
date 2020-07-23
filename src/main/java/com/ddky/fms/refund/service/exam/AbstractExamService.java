@@ -1,50 +1,51 @@
-package com.ddky.fms.refund.service.book;
+package com.ddky.fms.refund.service.exam;
 
-import com.ddky.fms.refund.mapper.BookInfoMapper;
-import com.ddky.fms.refund.model.books.BookInfo;
+import com.ddky.fms.refund.mapper.ExamInfoMapper;
+import com.ddky.fms.refund.model.exam.entry.ExamBean;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
+
 /***
- * 课本服务接口
+ * ExamService
  * @author a
  * @param <T>
  */
-public abstract class AbstractBookService<T extends BookInfo> implements BookService<T> {
+public abstract class AbstractExamService<T extends ExamBean> implements ExamService<T>{
 
     /***
      * 获取Mapper
-     * @return BookInfoMapper
+     * @return ExamInfoMapper
      */
-    public abstract BookInfoMapper<T> getBookInfoMapper();
+    public abstract ExamInfoMapper<T> getExamInfoMapper();
 
     @Override
     public List<T> list(T t) {
-        return getBookInfoMapper().list(t);
+        return getExamInfoMapper().list(t);
     }
 
     @Override
-    public T findById(int bookId) {
-        return getBookInfoMapper().findById(bookId);
+    public T findById(int id) {
+        return getExamInfoMapper().findById(id);
     }
 
     @Override
     public void insert(T item) {
-        getBookInfoMapper().insert(item);
+        getExamInfoMapper().insert(item);
     }
 
     @Override
     public void batchInsert(List<T> list) {
-        getBookInfoMapper().batchInsert(list);
+        getExamInfoMapper().batchInsert(list);
     }
 
     @Override
     public PageInfo<T> pageList(T t, int pageIndex, int pageSize) {
         PageHelper.startPage(pageIndex, pageSize);
-        List<T> list = getBookInfoMapper().list(t);
+        List<T> list = getExamInfoMapper().list(t);
         if (CollectionUtils.isEmpty(list)) {
             return new PageInfo<>();
         }

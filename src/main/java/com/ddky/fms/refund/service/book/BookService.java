@@ -22,9 +22,10 @@ public interface BookService<T extends BookInfo> {
 
     /***
      * 列表
-     * @return List
+     * @param t t
+     * @return
      */
-    List<T> list();
+    List<T> list(T t);
 
     /***
      * 详细

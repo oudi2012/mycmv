@@ -7,7 +7,7 @@ import lombok.Data;
  * @author a
  */
 @Data
-public class QuestionType {
+public class QuestionType extends ExamBean {
     private Integer id;
     private String title;
     private Integer state;

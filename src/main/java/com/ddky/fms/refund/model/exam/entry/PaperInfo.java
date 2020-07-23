@@ -8,7 +8,7 @@ import lombok.Data;
  * @author a
  */
 @Data
-public class PaperInfo {
+public class PaperInfo extends ExamBean {
     private Integer id;
     private String title;
     private Integer subjectId;

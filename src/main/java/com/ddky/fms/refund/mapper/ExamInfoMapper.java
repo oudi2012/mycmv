@@ -1,7 +1,7 @@
 package com.ddky.fms.refund.mapper;
 
 
-import com.ddky.fms.refund.model.books.BookInfo;
+import com.ddky.fms.refund.model.exam.entry.ExamBean;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  * @author a
  * @param <T>
  */
-public interface BookInfoMapper<T extends BookInfo> {
+public interface ExamInfoMapper<T extends ExamBean> {
 
     /***
      * 列表

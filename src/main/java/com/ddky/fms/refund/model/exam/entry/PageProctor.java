@@ -8,7 +8,7 @@ import lombok.Data;
  * id, examPageId, userId, state, createTime
  */
 @Data
-public class PageProctor {
+public class PageProctor extends ExamBean {
     private Integer id;
     private Integer examPageId;
     private Long userId;

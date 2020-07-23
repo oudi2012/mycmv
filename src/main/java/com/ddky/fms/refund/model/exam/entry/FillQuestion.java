@@ -7,7 +7,7 @@ import lombok.Data;
  * 填空题
  */
 @Data
-public class FillQuestion {
+public class FillQuestion extends ExamBean {
     private Integer id;
     private String title;
     private Integer subjectId;

@@ -8,7 +8,7 @@ import lombok.Data;
  * id, examPageId, questionId, title, itemNo, createTime
  */
 @Data
-public class PageSelectItem {
+public class PageSelectItem extends ExamBean {
     private Integer id;
     private Integer examPageId;
     private Integer questionId;

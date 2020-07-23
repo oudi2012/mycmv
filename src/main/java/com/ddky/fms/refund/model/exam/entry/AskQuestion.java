@@ -7,7 +7,7 @@ import lombok.Data;
  * 问答题
  */
 @Data
-public class AskQuestion {
+public class AskQuestion extends ExamBean {
     private Integer id;
     private String title;
     private Integer subjectId;
