@@ -1,10 +1,10 @@
 package com.ddky.fms.refund.service.impl.exam;
 
 import com.ddky.fms.refund.mapper.ExamInfoMapper;
-import com.ddky.fms.refund.mapper.exam.PageUserMapper;
-import com.ddky.fms.refund.model.exam.entry.PageUser;
+import com.ddky.fms.refund.mapper.exam.PaperUserMapper;
+import com.ddky.fms.refund.model.exam.entry.PaperUser;
 import com.ddky.fms.refund.service.exam.AbstractExamService;
-import com.ddky.fms.refund.service.exam.PageUserService;
+import com.ddky.fms.refund.service.exam.PaperUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +13,13 @@ import org.springframework.stereotype.Service;
  * @author a
  */
 @Service
-public class PageUserServiceImpl extends AbstractExamService<PageUser> implements PageUserService {
+public class PaperUserServiceImpl extends AbstractExamService<PaperUser> implements PaperUserService {
 
     @Autowired
-    private PageUserMapper pageUserMapper;
+    private PaperUserMapper pageUserMapper;
 
     @Override
-    public ExamInfoMapper<PageUser> getExamInfoMapper() {
+    public ExamInfoMapper<PaperUser> getExamInfoMapper() {
         return pageUserMapper;
     }
 }
