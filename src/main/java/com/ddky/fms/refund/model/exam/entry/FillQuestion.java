@@ -1,11 +1,13 @@
 package com.ddky.fms.refund.model.exam.entry;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /***
  * @author a
  * 填空题
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class FillQuestion extends ExamBean {
     private Integer id;

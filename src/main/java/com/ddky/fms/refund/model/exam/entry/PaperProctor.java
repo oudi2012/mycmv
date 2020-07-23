@@ -1,19 +1,19 @@
 package com.ddky.fms.refund.model.exam.entry;
 
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /***
- * 问答题项及答案
  * @author a
+ * id, examPageId, userId, state, createTime
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class AskQuestionOption extends ExamBean {
+public class PaperProctor extends ExamBean {
     private Integer id;
-    private String title;
+    private Integer examPageId;
+    private Long userId;
     private Integer state;
-    private Integer hardLevelId;
     private Integer createTime;
-    private Integer updateTime;
 }
