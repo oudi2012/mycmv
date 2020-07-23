@@ -4,7 +4,7 @@ import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.students.entry.StudentInfo;
 import com.ddky.fms.refund.model.students.vo.StudentInfoListVo;
-import com.ddky.fms.refund.service.StudentInfoService;
+import com.ddky.fms.refund.service.student.StudentInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import com.google.common.base.Preconditions;
 import org.slf4j.Logger;

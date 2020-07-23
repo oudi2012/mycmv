@@ -2,7 +2,7 @@ package com.ddky.fms.refund.controller.rest.term;
 
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.term.entry.TermBooks;
-import com.ddky.fms.refund.service.TermBooksService;
+import com.ddky.fms.refund.service.term.TermBooksService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

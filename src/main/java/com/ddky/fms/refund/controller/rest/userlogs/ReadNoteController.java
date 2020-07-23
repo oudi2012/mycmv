@@ -3,7 +3,7 @@ package com.ddky.fms.refund.controller.rest.userlogs;
 
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.userlogs.entry.ReadNote;
-import com.ddky.fms.refund.service.ReadNoteService;
+import com.ddky.fms.refund.service.userlog.ReadNoteService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -5,7 +5,7 @@ import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.students.entry.GuardianInfo;
 import com.ddky.fms.refund.model.students.vo.GuardianStudentVo;
-import com.ddky.fms.refund.service.GuardianInfoService;
+import com.ddky.fms.refund.service.student.GuardianInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

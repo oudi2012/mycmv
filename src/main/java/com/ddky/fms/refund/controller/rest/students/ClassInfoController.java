@@ -2,7 +2,7 @@ package com.ddky.fms.refund.controller.rest.students;
 
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.students.entry.GradeInfo;
-import com.ddky.fms.refund.service.GradeService;
+import com.ddky.fms.refund.service.student.GradeService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 

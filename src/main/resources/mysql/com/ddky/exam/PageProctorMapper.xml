@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ddky.fms.refund.mapper.exam.PageProctorMapper">
+
+    <sql id="column">
+        id, examPageId, userId, createTime
+    </sql>
+
+    <sql id="where">
+        <if test="examPageId != null">
+            and examPageId = #{examPageId}
+        </if>
+        <if test="score != null">
+            and score = #{score}
+        </if>
+        <if test="userId != null">
+            and userId = #{userId}
+        </if>
+    </sql>
+
+    <select id="list" resultType="com.ddky.fms.refund.model.exam.entry.PageProctor">
+        select
+            <include refid="column" />
+        from exam_page_users
+        <where>
+            <include refid="where" />
+        </where>
+    </select>
+
+    <select id="findById" resultType="com.ddky.fms.refund.model.exam.entry.PageProctor">
+        select
+            <include refid="column" />
+        from exam_page_users
+        <where>
+            id = #{id}
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.ddky.fms.refund.model.exam.entry.PageProctor">
+        insert into exam_page_users (examPageId, userId, state)
+        values (#{examPageId}, #{userId}, #{state})
+    </insert>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";">
+            insert into exam_page_users (examPageId, userId, state)
+            values (#{item.examPageId}, #{item.userId}, #{item.state})
+        </foreach>
+    </insert>
+
+</mapper>

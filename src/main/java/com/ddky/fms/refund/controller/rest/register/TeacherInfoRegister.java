@@ -5,7 +5,7 @@ import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.students.entry.TeacherInfo;
 import com.ddky.fms.refund.model.students.vo.TeacherInfoListVo;
-import com.ddky.fms.refund.service.TeacherInfoService;
+import com.ddky.fms.refund.service.student.TeacherInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import com.ddky.fms.refund.utils.StringUtils;
 import com.google.common.base.Preconditions;

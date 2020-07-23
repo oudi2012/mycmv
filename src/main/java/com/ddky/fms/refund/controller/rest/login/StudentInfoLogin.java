@@ -5,7 +5,7 @@ import com.ddky.fms.refund.exception.BusinessException;
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.base.LoginVo;
 import com.ddky.fms.refund.model.students.entry.StudentInfo;
-import com.ddky.fms.refund.service.StudentInfoService;
+import com.ddky.fms.refund.service.student.StudentInfoService;
 import com.ddky.fms.refund.utils.CmvDesUtils;
 import com.ddky.fms.refund.utils.CommonUtils;
 import com.google.common.base.Preconditions;

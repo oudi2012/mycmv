@@ -3,7 +3,7 @@ package com.ddky.fms.refund.controller.rest.students;
 
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.students.entry.TeacherInfo;
-import com.ddky.fms.refund.service.TeacherInfoService;
+import com.ddky.fms.refund.service.student.TeacherInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 

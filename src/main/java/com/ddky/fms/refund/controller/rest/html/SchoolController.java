@@ -2,7 +2,7 @@ package com.ddky.fms.refund.controller.rest.html;
 
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.students.entry.SchoolInfo;
-import com.ddky.fms.refund.service.HtmlSchoolService;
+import com.ddky.fms.refund.service.html.HtmlSchoolService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -9,7 +9,7 @@ import com.ddky.fms.refund.configuration.PassToken;
 import com.ddky.fms.refund.configuration.UserLoginToken;
 import com.ddky.fms.refund.exception.BusinessException;
 import com.ddky.fms.refund.model.admin.entry.AdminInfo;
-import com.ddky.fms.refund.service.AdminInfoService;
+import com.ddky.fms.refund.service.admin.AdminInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.method.HandlerMethod;

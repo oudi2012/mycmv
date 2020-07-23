@@ -4,7 +4,7 @@ package com.ddky.fms.refund.controller.rest.register;
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.students.entry.GuardianInfo;
 import com.ddky.fms.refund.model.students.vo.GuardianInfoListVo;
-import com.ddky.fms.refund.service.GuardianInfoService;
+import com.ddky.fms.refund.service.student.GuardianInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import com.google.common.base.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;

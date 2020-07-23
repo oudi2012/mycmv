@@ -4,7 +4,7 @@ package com.ddky.fms.refund.controller.rest.students;
 import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.students.entry.StudentInfo;
-import com.ddky.fms.refund.service.StudentInfoService;
+import com.ddky.fms.refund.service.student.StudentInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
