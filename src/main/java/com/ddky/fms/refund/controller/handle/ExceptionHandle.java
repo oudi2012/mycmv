@@ -25,6 +25,7 @@ public class ExceptionHandle {
             BusinessException businessException = (BusinessException) e;
             CommonUtils.executeFailure(responseObject,  businessException.getMessage());
         }else {
+            e.printStackTrace();
             CommonUtils.executeFailure(responseObject,  "未知错误");
         }
         return responseObject;

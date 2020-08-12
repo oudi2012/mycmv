@@ -48,6 +48,19 @@ public interface AreaInfoService {
     PageInfo<AreaInfo> list(AreaInfo areaInfo);
 
     /***
+     * 更新
+     * @param areaInfo areaInfo
+     * @return AreaInfo
+     */
+    AreaInfo editByCode(AreaInfo areaInfo);
+
+    /***
+     * 删除
+     * @param areaCode areaCode
+     */
+    void removeByCode(int areaCode);
+
+    /***
      * 详细
      * @param areaCode areaCode
      * @return AreaInfo

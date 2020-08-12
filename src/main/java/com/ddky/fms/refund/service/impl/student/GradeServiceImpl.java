@@ -3,9 +3,9 @@ package com.ddky.fms.refund.service.impl.student;
 import com.ddky.fms.refund.mapper.students.GradeInfoMapper;
 import com.ddky.fms.refund.model.students.entry.GradeInfo;
 import com.ddky.fms.refund.service.student.GradeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class GradeServiceImpl implements GradeService {
 
-    @Autowired
+    @Resource
     private GradeInfoMapper gradeInfoMapper;
 
     @Override
@@ -31,6 +31,11 @@ public class GradeServiceImpl implements GradeService {
     @Override
     public void insert(GradeInfo areaInfo) {
         gradeInfoMapper.insert(areaInfo);
+    }
+
+    @Override
+    public void update(GradeInfo areaInfo) {
+        gradeInfoMapper.update(areaInfo);
     }
 
     @Override

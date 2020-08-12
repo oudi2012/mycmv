@@ -18,6 +18,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,7 +46,7 @@ public class AdminInfoServiceImpl implements AdminInfoService {
     private static final String LOG_REMOVE = "delete param {}";
 
 
-    @Autowired
+    @Resource
     private AdminInfoMapper adminInfoMapper;
 
     @Override
@@ -106,11 +107,11 @@ public class AdminInfoServiceImpl implements AdminInfoService {
         logger.info(LOG_INSERT_LIST, JSON.toJSONString(list));
         List<String> userNameList = list.stream().filter(a -> a.getUserName() != null).map(AdminInfo::getUserName).collect(Collectors.toList());
         if (!CollectionUtils.isEmpty(userNameList)) {
-            List<AdminInfo> adminInfos = this.listByUserNameList(userNameList);
-            if (!CollectionUtils.isEmpty(adminInfos)) {
+            List<AdminInfo> adminInfoList = this.listByUserNameList(userNameList);
+            if (!CollectionUtils.isEmpty(adminInfoList)) {
                 StringBuilder sbInfo = new StringBuilder();
                 sbInfo.append("用户名：");
-                adminInfos.forEach(item -> {
+                adminInfoList.forEach(item -> {
                     sbInfo.append(item.getUserName()).append(",");
                 });
                 sbInfo.deleteCharAt(sbInfo.length() - 1);

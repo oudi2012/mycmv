@@ -1,7 +1,7 @@
 package com.ddky.fms.refund.model.students.entry;
 
 
-import com.ddky.fms.refund.model.base.PageVo;
+import com.ddky.fms.refund.model.base.vo.PageVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

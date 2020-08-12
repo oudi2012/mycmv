@@ -1,19 +1,19 @@
 package com.ddky.fms.refund.model.students.entry;
 
 
+import com.ddky.fms.refund.model.AbstractUser;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 用户基本信息
  * @author oudi
  *
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class UserInfo {
+public class UserInfo extends AbstractUser {
 	private Long    id;
-	private String  phone;
-	private String  userName;
-	private String  passWord;
 	/** 注册类型 */
 	private String  regType;
 	/** 注册日期 */

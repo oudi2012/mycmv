@@ -1,4 +1,4 @@
-package com.ddky.fms.refund.model.base;
+package com.ddky.fms.refund.model.base.vo;
 
 import lombok.Data;
 
@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class LoginVo {
     private Long id;
+    private String userType;
     private String phone;
     private String userName;
     private String passWord;

@@ -4,18 +4,19 @@ import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.exam.entry.PaperSelect;
 import com.ddky.fms.refund.service.exam.PaperSelectService;
 import com.ddky.fms.refund.utils.CommonUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+
 /***
- * 难度系数
+ * PaperSelect
  * @author a
  */
 @RestController
-@RequestMapping("exam/hardLevel/")
+@RequestMapping("exam/paperSelect/")
 public class PaperSelectController {
 
-    @Autowired
+    @Resource
     private PaperSelectService examService;
 
     @ResponseBody

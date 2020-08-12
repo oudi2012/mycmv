@@ -5,10 +5,10 @@ import com.ddky.fms.refund.model.students.entry.AreaInfo;
 import com.ddky.fms.refund.service.student.AreaInfoService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class AreaInfoServiceImpl implements AreaInfoService {
 
-    @Autowired
+    @Resource
     private AreaInfoMapper areaInfoMapper;
 
     @Override
@@ -59,6 +59,17 @@ public class AreaInfoServiceImpl implements AreaInfoService {
     @Override
     public void insert(AreaInfo areaInfo) {
         areaInfoMapper.insert(areaInfo);
+    }
+
+    @Override
+    public AreaInfo editByCode(AreaInfo areaInfo) {
+        areaInfoMapper.update(areaInfo);
+        return areaInfo;
+    }
+
+    @Override
+    public void removeByCode(int areaCode) {
+        areaInfoMapper.delete(areaCode);
     }
 
     @Override

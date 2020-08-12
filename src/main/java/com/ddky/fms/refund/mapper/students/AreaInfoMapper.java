@@ -41,6 +41,18 @@ public interface AreaInfoMapper {
     void insert(AreaInfo areaInfo);
 
     /***
+     * 更新
+     * @param areaInfo areaInfo
+     */
+    void update(AreaInfo areaInfo);
+
+    /***
+     * 删除
+     * @param areaCode areaCode
+     */
+    void delete(int areaCode);
+
+    /***
      * 批量添加
      * @param list list
      */

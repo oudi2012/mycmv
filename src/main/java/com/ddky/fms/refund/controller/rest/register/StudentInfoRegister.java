@@ -9,9 +9,9 @@ import com.ddky.fms.refund.utils.CommonUtils;
 import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /***
  * student
@@ -23,7 +23,7 @@ public class StudentInfoRegister {
 
     private static final Logger logger = LoggerFactory.getLogger(LogConstants.STU_LOG);
 
-    @Autowired
+    @Resource
     private StudentInfoService studentInfoService;
 
     @ResponseBody

@@ -29,13 +29,28 @@
             <include refid="column" />
         from stu_grade_info
         <where>
-            id = #{id}
+            gradeId = #{id}
         </where>
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.GradeInfo">
         insert into stu_grade_info (name, orderNo) values (#{name}, #{orderNo})
     </insert>
+
+    <update id="update" parameterType="com.ddky.fms.refund.model.students.entry.GradeInfo">
+        update stu_grade_info
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="orderNo != null">
+                orderNo = #{orderNo},
+            </if>
+        </set>
+        <where>
+            gradeId = #{gradeId}
+        </where>
+    </update>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">

@@ -3,9 +3,9 @@ package com.ddky.fms.refund.service.impl;
 import com.ddky.fms.refund.mapper.books.VersionTypeMapper;
 import com.ddky.fms.refund.model.books.VersionType;
 import com.ddky.fms.refund.service.VersionTypeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class VersionTypeServiceImpl implements VersionTypeService {
 
-    @Autowired
+    @Resource
     private VersionTypeMapper versionTypeMapper;
 
     @Override
@@ -31,6 +31,11 @@ public class VersionTypeServiceImpl implements VersionTypeService {
     @Override
     public void insert(VersionType item) {
         versionTypeMapper.insert(item);
+    }
+
+    @Override
+    public void update(VersionType item) {
+        versionTypeMapper.update(item);
     }
 
     @Override

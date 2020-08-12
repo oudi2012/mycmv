@@ -31,6 +31,12 @@ public interface VersionTypeMapper {
     void insert(VersionType item);
 
     /***
+     * 更新
+     * @param item item
+     */
+    void update(VersionType item);
+
+    /***
      * 批量添加
      * @param list list
      */

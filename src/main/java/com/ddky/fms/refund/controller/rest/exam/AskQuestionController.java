@@ -7,6 +7,8 @@ import com.ddky.fms.refund.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+
 /***
  * AskQuestion
  * @author a
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("exam/askQuestion/")
 public class AskQuestionController {
 
-    @Autowired
+    @Resource
     private AskQuestionService examService;
 
     @ResponseBody

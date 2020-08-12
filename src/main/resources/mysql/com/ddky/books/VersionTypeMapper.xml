@@ -29,13 +29,25 @@
             <include refid="column" />
         from bok_version_type
         <where>
-            id = #{id}
+            verId = #{id}
         </where>
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.books.VersionType">
         insert into bok_version_type (name, orderNo) values (#{name}, #{orderNo})
     </insert>
+
+    <update id="update" parameterType="com.ddky.fms.refund.model.books.VersionType">
+        update bok_version_type
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+        </set>
+        <where>
+            verId = #{verId}
+        </where>
+    </update>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">

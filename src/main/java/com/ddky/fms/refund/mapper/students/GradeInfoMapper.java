@@ -31,6 +31,12 @@ public interface GradeInfoMapper {
     void insert(GradeInfo item);
 
     /***
+     * 更新
+     * @param item item
+     */
+    void update(GradeInfo item);
+
+    /***
      * 批量添加
      * @param list list
      */

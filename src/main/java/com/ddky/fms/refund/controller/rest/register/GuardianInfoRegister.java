@@ -7,9 +7,9 @@ import com.ddky.fms.refund.model.students.vo.GuardianInfoListVo;
 import com.ddky.fms.refund.service.student.GuardianInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import com.google.common.base.Preconditions;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /***
  * guardian
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("register/guardian")
 public class GuardianInfoRegister {
 
-    @Autowired
+    @Resource
     private GuardianInfoService guardianInfoService;
 
 

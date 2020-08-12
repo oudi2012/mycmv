@@ -1,14 +1,12 @@
 package com.ddky.fms.refund.controller.rest.students;
 
 import com.ddky.fms.refund.model.ResponseObject;
+import com.ddky.fms.refund.model.students.entry.AreaInfo;
 import com.ddky.fms.refund.service.student.AreaInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import javax.annotation.Resource;
 
 /***
  * 区域管理
@@ -18,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("area")
 public class AreaInfoController {
 
-    @Autowired
+    @Resource
     private AreaInfoService areaInfoService;
 
     @ResponseBody
@@ -42,6 +40,23 @@ public class AreaInfoController {
     public ResponseObject towns(int cityId) {
         ResponseObject resObj = new ResponseObject();
         CommonUtils.executeSuccess(resObj, areaInfoService.listTown(cityId));
+        return resObj;
+    }
+
+    @ResponseBody
+    @PostMapping("areaEdit")
+    public ResponseObject areaEdit(@RequestBody AreaInfo areaInfo) {
+        ResponseObject resObj = new ResponseObject();
+        CommonUtils.executeSuccess(resObj, areaInfoService.editByCode(areaInfo));
+        return resObj;
+    }
+
+    @ResponseBody
+    @GetMapping("areaDel")
+    public ResponseObject areaDel(Integer areaCode) {
+        ResponseObject resObj = new ResponseObject();
+        areaInfoService.removeByCode(areaCode);
+        CommonUtils.executeSuccess(resObj);
         return resObj;
     }
 }

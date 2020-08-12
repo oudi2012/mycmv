@@ -3,7 +3,7 @@ package com.ddky.fms.refund.controller.rest.login;
 import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.exception.BusinessException;
 import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.base.LoginVo;
+import com.ddky.fms.refund.model.base.vo.LoginVo;
 import com.ddky.fms.refund.model.students.entry.TeacherInfo;
 import com.ddky.fms.refund.service.student.TeacherInfoService;
 import com.ddky.fms.refund.utils.CmvDesUtils;

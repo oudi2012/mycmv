@@ -57,11 +57,33 @@
         insert into stu_area_info (areaCode, areaName, parentCode, orderBy) values (#{areaCode}, #{areaName}, #{parentCode}, #{orderBy})
     </insert>
 
+    <update id="update" parameterType="com.ddky.fms.refund.model.students.entry.AreaInfo">
+        update stu_area_info
+        <set>
+            <if test="areaName != null">
+                areaName = #{areaName},
+            </if>
+            <if test="parentCode != null">
+                parentCode = #{parentCode},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+        </set>
+        <where>
+            areaCode = #{areaCode}
+        </where>
+    </update>
+
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
             insert into stu_area_info (areaCode, areaName, parentCode, orderBy)
             values (#{item.areaCode}, #{item.areaName}, #{item.parentCode}, #{item.orderBy})
         </foreach>
     </insert>
+    
+    <delete id="delete" parameterType="integer">
+        delete from stu_area_info where areaCode=#{areaCode}
+    </delete>
 
 </mapper>
