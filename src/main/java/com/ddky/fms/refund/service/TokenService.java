@@ -21,9 +21,9 @@ public interface TokenService {
      * 根据token认证用户是否登录
      * @param method method
      * @param token token
-     * @return boolean
+     * @return AbstractUser
      */
-    boolean authUserByToken(Method method, String token);
+    AbstractUser authUserByToken(Method method, String token);
 
     /***
      * 根据token获取用户信息

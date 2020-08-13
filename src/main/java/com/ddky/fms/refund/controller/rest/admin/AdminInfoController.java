@@ -1,7 +1,5 @@
 package com.ddky.fms.refund.controller.rest.admin;
 
-
-import com.auth0.jwt.JWT;
 import com.ddky.fms.refund.configuration.CurrentUser;
 import com.ddky.fms.refund.configuration.UserLoginToken;
 import com.ddky.fms.refund.constants.LogConstants;
@@ -15,12 +13,9 @@ import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-
-import static com.ddky.fms.refund.constants.CmvConstants.CHAR_COLON;
 
 /***
  * @author a

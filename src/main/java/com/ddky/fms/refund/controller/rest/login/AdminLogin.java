@@ -5,6 +5,7 @@ import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.exception.BusinessException;
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.admin.entry.AdminInfo;
+import com.ddky.fms.refund.model.base.config.UserTypeEnum;
 import com.ddky.fms.refund.model.base.vo.LoginVo;
 import com.ddky.fms.refund.service.admin.AdminInfoService;
 import com.ddky.fms.refund.service.TokenService;
@@ -52,6 +53,8 @@ public class AdminLogin {
                 throw new BusinessException(501, "用户名和密码不对");
             }
             loginVo.setPassWord(pwd);
+            loginVo.setId(tmpItem.getId());
+            loginVo.setUserType(UserTypeEnum.USER_ADMIN.getCode());
             String token = tokenService.getToken(loginVo);
             logger.info("用户 {} 登录，生成的 token :{}", loginVo.getUserName(), token);
             loginVo.setPassWord(null);

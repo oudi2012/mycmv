@@ -47,12 +47,14 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public String getToken(LoginVo loginVo) {
-        return JWT.create().withAudience(loginVo.getId() + CmvConstants.CHAR_COLON + loginVo.getUserType())
+        String token = loginVo.getId() + CmvConstants.CHAR_COLON + loginVo.getUserType();
+        logger.info("生成 token => {}", token);
+        return JWT.create().withAudience(token)
                 .sign(Algorithm.HMAC256(loginVo.getPassWord()));
     }
 
     @Override
-    public boolean authUserByToken(Method method, String token) {
+    public AbstractUser authUserByToken(Method method, String token) {
         UserLoginToken userLoginToken = method.getAnnotation(UserLoginToken.class);
         if (userLoginToken.required()) {
             // 获取 token 中的 user id
@@ -71,9 +73,9 @@ public class TokenServiceImpl implements TokenService {
             } catch (JWTVerificationException e) {
                 throw new BusinessException("用户名和密码不对");
             }
-            return true;
+            return abstractUser;
         }
-        return false;
+        return null;
     }
 
     @Override

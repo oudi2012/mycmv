@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -15,7 +16,7 @@ import java.net.UnknownHostException;
  */
 @MapperScan("com.ddky.fms.refund.mapper")
 @SpringBootApplication
-public class DdkyFmsRefundApplication {
+public class DdkyFmsRefundApplication{
 
 	private static final Logger log = LoggerFactory.getLogger(DdkyFmsRefundApplication.class);
 

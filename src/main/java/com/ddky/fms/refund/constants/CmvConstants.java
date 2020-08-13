@@ -12,4 +12,6 @@ public class CmvConstants {
     public static final String DEFAULT_PWD = "123456";
     /** token */
     public static final String TOKEN = "token";
+    /** currentUser */
+    public static final String CURRENT_USER = "currentUser";
 }

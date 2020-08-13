@@ -2,9 +2,12 @@ package com.ddky.fms.refund.controller.handle;
 
 import com.ddky.fms.refund.configuration.PassToken;
 import com.ddky.fms.refund.configuration.UserLoginToken;
+import com.ddky.fms.refund.constants.CmvConstants;
+import com.ddky.fms.refund.model.AbstractUser;
 import com.ddky.fms.refund.service.TokenService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,7 +51,13 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         }
         //检查有没有需要用户权限的注解
         if (method.isAnnotationPresent(UserLoginToken.class)) {
-            return tokenService.authUserByToken(method, token);
+            AbstractUser abstractUser = tokenService.authUserByToken(method, token);
+            if (!ObjectUtils.isEmpty(abstractUser)) {
+                request.setAttribute(CmvConstants.CURRENT_USER, abstractUser);
+                return true;
+            } else {
+                return false;
+            }
         }
         return true;
     }
