@@ -53,6 +53,13 @@
         </where>
     </select>
 
+    <select id="findMaxNodeByParentCode" resultType="Integer">
+        select max(areaCode) from stu_area_info
+        <where>
+            parentCode = #{parentCode}
+        </where>
+    </select>
+
     <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.AreaInfo">
         insert into stu_area_info (areaCode, areaName, parentCode, orderBy) values (#{areaCode}, #{areaName}, #{parentCode}, #{orderBy})
     </insert>

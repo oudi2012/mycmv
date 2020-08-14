@@ -34,6 +34,13 @@ public interface AreaInfoService {
     List<AreaInfo> listCities(Integer provinceId);
 
     /***
+     * 下级列表
+     * @param parentId parentId
+     * @return list
+     */
+    List<AreaInfo> listArea(Integer parentId);
+
+    /***
      * 县级级列表
      * @param cityId cityId
      * @return
@@ -53,6 +60,21 @@ public interface AreaInfoService {
      * @return AreaInfo
      */
     AreaInfo editByCode(AreaInfo areaInfo);
+
+    /***
+     * 获取地区路径
+     * @param areaCode areaCode
+     * @return list
+     */
+    List<AreaInfo> pathListByCode(Integer areaCode);
+
+
+    /***
+     * 获取该父节点下最大的子节点
+     * @param parentCode parentCode
+     * @return Integer
+     */
+    Integer findMaxNodeByParentCode(int parentCode);
 
     /***
      * 删除

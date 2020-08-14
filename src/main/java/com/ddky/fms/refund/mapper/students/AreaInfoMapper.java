@@ -35,6 +35,13 @@ public interface AreaInfoMapper {
     AreaInfo findByCode(int areaCode);
 
     /***
+     * 获取该父节点下最大的子节点
+     * @param parentCode parentCode
+     * @return Integer
+     */
+    Integer findMaxNodeByParentCode(int parentCode);
+
+    /***
      * 添加
      * @param areaInfo areaInfo
      */

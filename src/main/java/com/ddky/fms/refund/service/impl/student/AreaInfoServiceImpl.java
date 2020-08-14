@@ -7,8 +7,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,6 +34,13 @@ public class AreaInfoServiceImpl implements AreaInfoService {
     public List<AreaInfo> listCities(Integer provinceId) {
         AreaInfo areaInfo = new AreaInfo();
         areaInfo.setParentCode(provinceId);
+        return areaInfoMapper.list(areaInfo);
+    }
+
+    @Override
+    public List<AreaInfo> listArea(Integer parentId) {
+        AreaInfo areaInfo = new AreaInfo();
+        areaInfo.setParentCode(parentId);
         return areaInfoMapper.list(areaInfo);
     }
 
@@ -65,6 +75,32 @@ public class AreaInfoServiceImpl implements AreaInfoService {
     public AreaInfo editByCode(AreaInfo areaInfo) {
         areaInfoMapper.update(areaInfo);
         return areaInfo;
+    }
+
+    @Override
+    public List<AreaInfo> pathListByCode(Integer areaCode) {
+        List<AreaInfo> areaInfos = new ArrayList<>();
+        boolean hasChild = true;
+        while (hasChild) {
+            AreaInfo areaInfo = this.findByCode(areaCode);
+            if (!ObjectUtils.isEmpty(areaInfo)) {
+                areaInfos.add(areaInfo);
+                if (areaInfo.getParentCode().equals(0)) {
+                    hasChild = false;
+                } else {
+                    areaCode = areaInfo.getParentCode();
+                }
+            } else {
+                hasChild = false;
+            }
+        }
+        Collections.reverse(areaInfos);
+        return areaInfos;
+    }
+
+    @Override
+    public Integer findMaxNodeByParentCode(int parentCode) {
+        return areaInfoMapper.findMaxNodeByParentCode(parentCode);
     }
 
     @Override

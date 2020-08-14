@@ -44,6 +44,44 @@ public class AreaInfoController {
     }
 
     @ResponseBody
+    @GetMapping("areaList")
+    public ResponseObject areaList(int parentId) {
+        ResponseObject resObj = new ResponseObject();
+        CommonUtils.executeSuccess(resObj, areaInfoService.listArea(parentId));
+        return resObj;
+    }
+
+    @ResponseBody
+    @GetMapping("pathListByCode")
+    public ResponseObject pathListByCode(int parentId) {
+        ResponseObject resObj = new ResponseObject();
+        CommonUtils.executeSuccess(resObj, areaInfoService.pathListByCode(parentId));
+        return resObj;
+    }
+
+    @ResponseBody
+    @PostMapping("findByCode")
+    public ResponseObject findById(int code) {
+        ResponseObject resObj = new ResponseObject();
+        CommonUtils.executeSuccess(resObj, areaInfoService.findByCode(code));
+        return resObj;
+    }
+
+    @ResponseBody
+    @PostMapping("areaAdd")
+    public ResponseObject areaAdd(@RequestBody AreaInfo areaInfo) {
+        ResponseObject resObj = new ResponseObject();
+        Integer maxAreaCode = areaInfoService.findMaxNodeByParentCode(areaInfo.getParentCode());
+        if (maxAreaCode == null) {
+            maxAreaCode = areaInfo.getParentCode() * 100;
+        }
+        areaInfo.setAreaCode(maxAreaCode + 1);
+        areaInfoService.insert(areaInfo);
+        CommonUtils.executeSuccess(resObj, areaInfo);
+        return resObj;
+    }
+
+    @ResponseBody
     @PostMapping("areaEdit")
     public ResponseObject areaEdit(@RequestBody AreaInfo areaInfo) {
         ResponseObject resObj = new ResponseObject();
