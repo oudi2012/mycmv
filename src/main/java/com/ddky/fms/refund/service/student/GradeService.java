@@ -41,4 +41,10 @@ public interface GradeService {
      */
     void batchInsert(List<GradeInfo> list);
 
+    /***
+     * 删除
+     * @param id id
+     */
+    void delete(int id);
+
 }

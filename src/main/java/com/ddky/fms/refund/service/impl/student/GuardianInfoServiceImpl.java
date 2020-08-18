@@ -21,6 +21,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,9 +47,9 @@ public class GuardianInfoServiceImpl implements GuardianInfoService {
     private static final String LOG_EDIT = "edit param {}";
     private static final String LOG_REMOVE = "delete param {}";
 
-    @Autowired
+    @Resource
     private GuardianInfoMapper guardianInfoMapper;
-    @Autowired
+    @Resource
     private StudentInfoService studentInfoService;
 
     @Override

@@ -41,4 +41,10 @@ public interface GradeInfoMapper {
      * @param list list
      */
     void batchInsert(@Param("list")List<GradeInfo> list);
+
+    /***
+     * 删除
+     * @param id id
+     */
+    void delete(int id);
 }

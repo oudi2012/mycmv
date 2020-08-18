@@ -42,4 +42,9 @@ public class GradeServiceImpl implements GradeService {
     public void batchInsert(List<GradeInfo> list) {
         gradeInfoMapper.batchInsert(list);
     }
+
+    @Override
+    public void delete(int id) {
+        gradeInfoMapper.delete(id);
+    }
 }

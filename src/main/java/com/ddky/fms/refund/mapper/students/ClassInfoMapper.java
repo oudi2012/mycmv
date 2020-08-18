@@ -31,8 +31,20 @@ public interface ClassInfoMapper {
     void insert(ClassInfo item);
 
     /***
+     * 更新
+     * @param item item
+     */
+    void update(ClassInfo item);
+
+    /***
      * 批量添加
      * @param list list
      */
     void batchInsert(@Param("list")List<ClassInfo> list);
+
+    /***
+     * 删除
+     * @param id id
+     */
+    void delete(int id);
 }

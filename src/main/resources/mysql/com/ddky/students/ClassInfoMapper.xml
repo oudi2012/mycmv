@@ -29,7 +29,7 @@
             <include refid="column" />
         from stu_class_info
         <where>
-            id = #{id}
+            classId = #{id}
         </where>
     </select>
 
@@ -37,11 +37,27 @@
         insert into stu_class_info (name, type) values (#{name}, #{type})
     </insert>
 
+    <update id="update" parameterType="com.ddky.fms.refund.model.students.entry.ClassInfo">
+        update stu_class_info
+        <set>
+            <if test="name != null">
+                name = #{name}
+            </if>
+        </set>
+        <where>
+            classId = #{gradeId}
+        </where>
+    </update>
+
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
             insert into stu_class_info (name, type)
             values (#{item.name}, #{item.type})
         </foreach>
     </insert>
+
+    <delete id="delete" parameterType="integer">
+        delete from stu_class_info where classId=#{id}
+    </delete>
 
 </mapper>

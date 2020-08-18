@@ -59,4 +59,8 @@
         </foreach>
     </insert>
 
+    <delete id="delete" parameterType="integer">
+        delete from stu_grade_info where gradeId=#{id}
+    </delete>
+
 </mapper>

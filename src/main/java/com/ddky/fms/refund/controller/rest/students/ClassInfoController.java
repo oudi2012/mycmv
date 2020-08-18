@@ -1,8 +1,8 @@
 package com.ddky.fms.refund.controller.rest.students;
 
 import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.students.entry.GradeInfo;
-import com.ddky.fms.refund.service.student.GradeService;
+import com.ddky.fms.refund.model.students.entry.ClassInfo;
+import com.ddky.fms.refund.service.student.ClassInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,30 +18,30 @@ import javax.annotation.Resource;
 public class ClassInfoController {
 
     @Resource
-    private GradeService gradeService;
+    private ClassInfoService classInfoService;
 
     @ResponseBody
     @GetMapping("list")
     public ResponseObject list() {
         ResponseObject resObj = new ResponseObject();
-        CommonUtils.executeSuccess(resObj, gradeService.list());
+        CommonUtils.executeSuccess(resObj, classInfoService.list());
         return resObj;
     }
 
     @ResponseBody
     @PostMapping("create")
-    public ResponseObject create(@RequestBody GradeInfo gradeInfo) {
+    public ResponseObject create(@RequestBody ClassInfo classInfo) {
         ResponseObject resObj = new ResponseObject();
-        gradeService.insert(gradeInfo);
-        CommonUtils.executeSuccess(resObj, gradeInfo);
+        classInfoService.insert(classInfo);
+        CommonUtils.executeSuccess(resObj, classInfo);
         return resObj;
     }
 
     @ResponseBody
     @PostMapping("edit")
-    public ResponseObject edit(@RequestBody GradeInfo gradeInfo) {
+    public ResponseObject edit(@RequestBody ClassInfo gradeInfo) {
         ResponseObject resObj = new ResponseObject();
-        gradeService.update(gradeInfo);
+        classInfoService.update(gradeInfo);
         CommonUtils.executeSuccess(resObj, gradeInfo);
         return resObj;
     }
@@ -50,8 +50,17 @@ public class ClassInfoController {
     @GetMapping("findById")
     public ResponseObject findById(Integer gradeId) {
         ResponseObject resObj = new ResponseObject();
-        GradeInfo gradeInfo = gradeService.findById(gradeId);
-        CommonUtils.executeSuccess(resObj, gradeInfo);
+        ClassInfo classInfo = classInfoService.findById(gradeId);
+        CommonUtils.executeSuccess(resObj, classInfo);
+        return resObj;
+    }
+
+    @ResponseBody
+    @GetMapping("remove")
+    public ResponseObject remove(Integer id) {
+        ResponseObject resObj = new ResponseObject();
+        classInfoService.delete(id);
+        CommonUtils.executeSuccess(resObj);
         return resObj;
     }
 
