@@ -8,10 +8,10 @@ import com.ddky.fms.refund.service.student.StudentInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /***
@@ -24,12 +24,13 @@ public class StudentInfoController {
 
     private static final Logger logger = LoggerFactory.getLogger(LogConstants.STU_LOG);
 
-    @Autowired
+    @Resource
     private StudentInfoService studentInfoService;
 
     @ResponseBody
     @GetMapping("list")
     public ResponseObject list(StudentInfo studentInfo, int pageIndex, int pageSize) {
+        logger.info("分页获取学生列表");
         ResponseObject resObj = new ResponseObject();
         CommonUtils.executeSuccess(resObj, studentInfoService.list(studentInfo, pageIndex, pageSize));
         return resObj;

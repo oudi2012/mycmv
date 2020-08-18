@@ -13,7 +13,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class UserInfo extends AbstractUser {
-	private Long    id;
 	/** 注册类型 */
 	private String  regType;
 	/** 注册日期 */
