@@ -14,4 +14,8 @@ public class CmvConstants {
     public static final String TOKEN = "token";
     /** currentUser */
     public static final String CURRENT_USER = "currentUser";
+
+    public static final int ZERO = 0;
+    public static final int ONE = 1;
+    public static final int TWO = 2;
 }

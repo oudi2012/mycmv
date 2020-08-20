@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
 @Data
 public class UserInfo extends AbstractUser {
 	/** 注册类型 */
-	private String  regType;
+	private Integer  regType;
 	/** 注册日期 */
 	private Long    regDate;
 	/** 头像 */

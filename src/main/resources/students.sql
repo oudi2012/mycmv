@@ -24,7 +24,7 @@ CREATE TABLE stu_student_info (
   guardianId bigint(20) unsigned DEFAULT 0 COMMENT '监护人编号',
   userName varchar(100) NOT NULL,
   passWord varchar(100) NOT NULL,
-  regType TINYINT(1) DEFAULT 1 COMMENT '1:注册2:手机,3:微信,4:weibo 5：qq',
+  regType TINYINT(1) DEFAULT 1 COMMENT '1:注册2:手机,3:微信,4:weibo 5：qq 6:sys',
   sex TINYINT(1) DEFAULT 0 COMMENT '0f,1m',
   birthDay int(10) DEFAULT NULL COMMENT '生日',
   areaId int(10) DEFAULT NULL comment '所属地区',
