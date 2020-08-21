@@ -5,10 +5,9 @@ import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.students.entry.TeacherInfo;
 import com.ddky.fms.refund.service.student.TeacherInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /***
@@ -19,7 +18,7 @@ import java.util.List;
 @RequestMapping("teacher")
 public class TeacherInfoController {
 
-    @Autowired
+    @Resource
     private TeacherInfoService teacherInfoService;
 
     @ResponseBody

@@ -8,6 +8,7 @@ CREATE TABLE stu_guardian_info (
   sex TINYINT(1) DEFAULT 0 COMMENT '0f,1m',
   birthDay int(10) DEFAULT NULL COMMENT '生日',
   areaId int(10) DEFAULT NULL comment '所属地区',
+  roleId int(2) DEFAULT NULL comment '监护人身份 GuardianRoleEnum',
   headImage varchar(100) DEFAULT NULL comment '头像',
   realName varchar(100) DEFAULT NULL comment '真实姓名',
   role tinyint(1) DEFAULT 3 comment '角色',
@@ -15,7 +16,7 @@ CREATE TABLE stu_guardian_info (
   regDate int(10) DEFAULT UNIX_TIMESTAMP(),
   updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (id)
-) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '用户数据表';
+) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '监护人';
 
 drop table if exists stu_student_info;
 CREATE TABLE stu_student_info (

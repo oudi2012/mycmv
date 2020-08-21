@@ -3,7 +3,7 @@
 <mapper namespace="com.ddky.fms.refund.mapper.students.GuardianInfoMapper">
 
     <sql id="column">
-        id, phone, userName, passWord, regType, regDate, headImage, areaId, sex, birthDay, realName
+        id, phone, userName, passWord, regType, regDate, headImage, areaId, roleId, sex, birthDay, realName
     </sql>
 
     <sql id="where">
@@ -11,6 +11,7 @@
         <if test="userName != null">and  userName = #{userName} </if>
         <if test="regType != null">and  regType = #{regType} </if>
         <if test="areaId != null">and  areaId = #{areaId} </if>
+        <if test="roleId != null">and  roleId = #{roleId} </if>
         <if test="sex != null">and  sex = #{sex} </if>
         <if test="realName != null">and  realName = #{realName} </if>
     </sql>
@@ -68,15 +69,15 @@
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.GuardianInfo">
-        insert into stu_guardian_info (phone, userName, passWord, regType, headImage, areaId, sex, birthDay, realName)
-        values (#{phone}, #{userName}, #{passWord}, #{regType}, #{headImage}, #{areaId}, #{sex}, #{birthDay}, #{realName})
+        insert into stu_guardian_info (phone, userName, passWord, regType, headImage, areaId, roleId, sex, birthDay, realName)
+        values (#{phone}, #{userName}, #{passWord}, #{regType}, #{headImage}, #{areaId}, #{roleId}, #{sex}, #{birthDay}, #{realName})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into stu_guardian_info (phone, userName, passWord, regType, headImage, areaId, sex, birthDay, realName)
-            values (#{item.phone}, #{item.userName}, #{item.passWord}, #{item.regType}, #{item.headImage}, #{item.areaId}, #{item.sex},
-            #{item.birthDay}, #{item.realName})
+            insert into stu_guardian_info (phone, userName, passWord, regType, headImage, areaId, roleId, sex, birthDay, realName)
+            values (#{item.phone}, #{item.userName}, #{item.passWord}, #{item.regType}, #{item.headImage}, #{item.areaId}, #{item.roleId},
+            #{item.sex}, #{item.birthDay}, #{item.realName})
         </foreach>
     </insert>
 
@@ -87,6 +88,7 @@
             <if test="userName != null">  userName = #{userName}, </if>
             <if test="regType != null">  regType = #{regType}, </if>
             <if test="areaId != null">  areaId = #{areaId}, </if>
+            <if test="roleId != null">  roleId = #{roleId}, </if>
             <if test="sex != null">  sex = #{sex}, </if>
             <if test="realName != null">  realName = #{realName}, </if>
         </set>
