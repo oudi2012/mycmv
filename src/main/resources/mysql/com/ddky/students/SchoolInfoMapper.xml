@@ -39,6 +39,18 @@
         </where>
     </select>
 
+    <select id="findByIds" resultType="com.ddky.fms.refund.model.students.entry.SchoolInfo">
+        select
+        <include refid="column" />
+        from stu_school_info
+        <where>
+            schoolId in (
+            <foreach collection="idList" index="index" item="item" separator=",">
+                #{item}
+            </foreach>)
+        </where>
+    </select>
+
     <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.SchoolInfo">
         insert into stu_school_info (name, headImage, shortName, pinyin, address, country, areaId, createDate, weight, href)
         values (#{name}, #{headImage}, #{shortName}, #{pinyin}, #{address}, #{country}, #{areaId}, UNIX_TIMESTAMP(), #{weight}, #{href})

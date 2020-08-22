@@ -4,22 +4,34 @@ import com.alibaba.fastjson.JSON;
 import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.exception.BusinessException;
 import com.ddky.fms.refund.mapper.students.TeacherInfoMapper;
+import com.ddky.fms.refund.model.students.entry.AreaInfo;
+import com.ddky.fms.refund.model.students.entry.SchoolInfo;
 import com.ddky.fms.refund.model.students.entry.TeacherInfo;
+import com.ddky.fms.refund.model.students.vo.TeacherInfoVo;
+import com.ddky.fms.refund.service.student.AreaInfoService;
+import com.ddky.fms.refund.service.student.SchoolInfoService;
 import com.ddky.fms.refund.service.student.TeacherInfoService;
 import com.ddky.fms.refund.utils.CmvDesUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
+import static com.ddky.fms.refund.constants.CmvConstants.ONE_OO_OO;
+import static com.ddky.fms.refund.constants.CmvConstants.ONE_OO_OO_OO;
 
 
 /**
@@ -31,8 +43,12 @@ public class TeacherInfoServiceImpl implements TeacherInfoService {
 
     private static final Logger logger = LoggerFactory.getLogger(LogConstants.TEACH_LOG);
 
-    @Autowired
+    @Resource
     private TeacherInfoMapper teacherInfoMapper;
+    @Resource
+    private AreaInfoService areaInfoService;
+    @Resource
+    private SchoolInfoService schoolInfoService;
 
     private static final String LOG_LIST_PARAM = "list param {},{},{}";
     private static final String LOG_LIST_RESULT = "list result {}";
@@ -101,6 +117,69 @@ public class TeacherInfoServiceImpl implements TeacherInfoService {
         List<TeacherInfo> result = teacherInfoMapper.listByUserNameList(list);
         logger.info("listByUserNameList result {}", JSON.toJSONString(result));
         return result;
+    }
+
+    @Override
+    public TeacherInfoVo itemToVo(TeacherInfo teacherInfo) {
+        logger.info("itemToVo param {}", JSON.toJSONString(teacherInfo));
+        TeacherInfoVo teacherInfoVo = new TeacherInfoVo();
+        BeanUtils.copyProperties(teacherInfo, teacherInfoVo);
+        List<Integer> areaIdList = areaInfoService.cutAreaCode(teacherInfo.getAreaId());
+        Map<Integer, AreaInfo> areaInfoMap = areaInfoService.pathListByCode(areaIdList);
+        setVoAreaInfo(teacherInfoVo, areaInfoMap);
+        return teacherInfoVo;
+    }
+
+    @Override
+    public List<TeacherInfoVo> listToVo(List<TeacherInfo> teacherInfoList) {
+        List<Integer> areaCodeList = teacherInfoList.stream().map(TeacherInfo::getAreaId).collect(Collectors.toList());
+        List<Long> schoolIds = teacherInfoList.stream().map(TeacherInfo::getSchoolId).collect(Collectors.toList());
+        Map<Long, SchoolInfo> schoolInfoMap = new HashMap<>(24);
+        if (!CollectionUtils.isEmpty(schoolIds)) {
+            schoolInfoMap = schoolInfoService.findMapByIds(schoolIds);
+        }
+        Map<Integer, AreaInfo> areaInfoMap = areaInfoService.pathListByCode(areaCodeList);
+        List<TeacherInfoVo> teacherInfoVoList = new ArrayList<>();
+        //需要完全获取到值后才能使用
+        Map<Long, SchoolInfo> finalSchoolInfoMap = schoolInfoMap;
+        teacherInfoList.forEach(teacherItem -> {
+            TeacherInfoVo teacherInfoVo = new TeacherInfoVo();
+            BeanUtils.copyProperties(teacherItem, teacherInfoVo);
+            setVoAreaInfo(teacherInfoVo, areaInfoMap);
+            if (finalSchoolInfoMap.containsKey(teacherInfoVo.getSchoolId())) {
+                teacherInfoVo.setSchoolName(finalSchoolInfoMap.get(teacherInfoVo.getSchoolId()).getName());
+            }
+            teacherInfoVoList.add(teacherInfoVo);
+        });
+        return teacherInfoVoList;
+    }
+
+    @Override
+    public TeacherInfoVo findVoById(Long id) {
+        logger.info("findVoById param {}", id);
+        TeacherInfo teacherInfo = teacherInfoMapper.findById(id);
+        if (ObjectUtils.isEmpty(teacherInfo)) {
+            return null;
+        }
+        return itemToVo(teacherInfo);
+    }
+
+    private void setVoAreaInfo(TeacherInfoVo teacherInfoVo, Map<Integer, AreaInfo> areaInfoMap) {
+        List<Integer> areaIdList = areaInfoService.cutAreaCode(teacherInfoVo.getAreaId());
+        areaIdList.forEach(areaId -> {
+            if (areaInfoMap.containsKey(areaId)) {
+                if (areaId/ONE_OO_OO_OO > 0) {
+                    teacherInfoVo.setTownCode(areaInfoMap.get(areaId).getAreaCode());
+                    teacherInfoVo.setTownName(areaInfoMap.get(areaId).getAreaName());
+                } else if (areaId/ONE_OO_OO > 0) {
+                    teacherInfoVo.setCityCode(areaInfoMap.get(areaId).getAreaCode());
+                    teacherInfoVo.setCityName(areaInfoMap.get(areaId).getAreaName());
+                } else {
+                    teacherInfoVo.setProvinceCode(areaInfoMap.get(areaId).getAreaCode());
+                    teacherInfoVo.setProvinceName(areaInfoMap.get(areaId).getAreaName());
+                }
+            }
+        });
     }
 
     @Override

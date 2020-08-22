@@ -23,7 +23,14 @@ public interface SchoolInfoMapper {
      * @param id areaCode
      * @return SchoolInfo
      */
-    SchoolInfo findById(int id);
+    SchoolInfo findById(Long id);
+
+    /***
+     * 详细
+     * @param ids ids
+     * @return SchoolInfo
+     */
+    List<SchoolInfo> findByIds(@Param("idList")List<Long> ids);
 
     /***
      * 添加

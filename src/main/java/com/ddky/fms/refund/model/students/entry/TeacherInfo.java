@@ -11,5 +11,5 @@ import lombok.EqualsAndHashCode;
 @Data
 public class TeacherInfo extends UserInfo{
     /** 所属学校 */
-    private Integer schoolId;
+    private Long schoolId;
 }

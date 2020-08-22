@@ -3,10 +3,9 @@ package com.ddky.fms.refund.controller.rest.students;
 import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.base.vo.IdListVo;
+import com.ddky.fms.refund.model.base.vo.KeyValueVo;
 import com.ddky.fms.refund.model.students.entry.SchoolInfo;
-import com.ddky.fms.refund.model.students.entry.StudentInfo;
 import com.ddky.fms.refund.model.students.vo.SchoolInfoVo;
-import com.ddky.fms.refund.service.student.AreaInfoService;
 import com.ddky.fms.refund.service.student.SchoolInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import com.github.pagehelper.PageInfo;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /***
@@ -69,6 +69,26 @@ public class SchoolInfoController {
         return resObj;
     }
 
+    /***
+     * 返回编号和名称
+     * @param schoolInfo schoolInfo
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("listKv")
+    public ResponseObject listKv(SchoolInfo schoolInfo) {
+        logger.info("调用接口 {} => listKv", MODEL_NAME);
+        ResponseObject resObj = new ResponseObject();
+        List<SchoolInfo> schoolInfoList = schoolInfoService.listByParam(schoolInfo);
+        if (!CollectionUtils.isEmpty(schoolInfoList)) {
+            List<KeyValueVo> keyValueVoList = schoolInfoList.stream().map(item -> new KeyValueVo(item.getSchoolId(), item.getName())).collect(Collectors.toList());
+            CommonUtils.executeSuccess(resObj, keyValueVoList);
+        } else {
+            CommonUtils.executeSuccess(resObj);
+        }
+        return resObj;
+    }
+
     @ResponseBody
     @PostMapping("create")
     public ResponseObject create(@RequestBody SchoolInfo schoolInfo) {
@@ -81,7 +101,7 @@ public class SchoolInfoController {
 
     @ResponseBody
     @GetMapping("findById")
-    public ResponseObject findById(Integer id) {
+    public ResponseObject findById(Long id) {
         logger.info("调用接口 {} => findById", MODEL_NAME);
         ResponseObject resObj = new ResponseObject();
         SchoolInfoVo schoolInfoVo = schoolInfoService.findVoById(id);

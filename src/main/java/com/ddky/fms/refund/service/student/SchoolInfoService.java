@@ -5,6 +5,7 @@ import com.ddky.fms.refund.model.students.vo.SchoolInfoVo;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
+import java.util.Map;
 
 /***
  * 学校
@@ -47,14 +48,28 @@ public interface SchoolInfoService {
      * @param id areaCode
      * @return SchoolInfo
      */
-    SchoolInfo findById(int id);
+    SchoolInfo findById(Long id);
+
+    /***
+     * 详细
+     * @param ids ids
+     * @return list
+     */
+    List<SchoolInfo> findByIds(List<Long> ids);
+
+    /***
+     * 详细
+     * @param ids ids
+     * @return list
+     */
+    Map<Long, SchoolInfo> findMapByIds(List<Long> ids);
 
     /***
      * 详细
      * @param id id
      * @return
      */
-    SchoolInfoVo findVoById(int id);
+    SchoolInfoVo findVoById(Long id);
 
     /***
      * 添加

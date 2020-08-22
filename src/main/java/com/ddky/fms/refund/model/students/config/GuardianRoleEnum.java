@@ -41,7 +41,7 @@ public enum GuardianRoleEnum {
         List<KeyValueVo> keyValueVoList = new ArrayList<>();
         for (GuardianRoleEnum item : GuardianRoleEnum.values()) {
             KeyValueVo keyValueVo = new KeyValueVo();
-            keyValueVo.setCode(item.code);
+            keyValueVo.setCode(Long.parseLong(String.valueOf(item.code)));
             keyValueVo.setName(item.name);
             keyValueVoList.add(keyValueVo);
         }

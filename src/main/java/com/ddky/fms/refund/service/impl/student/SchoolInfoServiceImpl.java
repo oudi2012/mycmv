@@ -22,6 +22,7 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.ddky.fms.refund.constants.CmvConstants.ONE_OO_OO;
@@ -103,12 +104,22 @@ public class SchoolInfoServiceImpl implements SchoolInfoService {
     }
 
     @Override
-    public SchoolInfo findById(int id) {
+    public SchoolInfo findById(Long id) {
         return schoolInfoMapper.findById(id);
     }
 
     @Override
-    public SchoolInfoVo findVoById(int id) {
+    public List<SchoolInfo> findByIds(List<Long> ids) {
+        return schoolInfoMapper.findByIds(ids);
+    }
+
+    @Override
+    public Map<Long, SchoolInfo> findMapByIds(List<Long> ids) {
+        return findByIds(ids).stream().collect(Collectors.toMap(SchoolInfo::getSchoolId, Function.identity()));
+    }
+
+    @Override
+    public SchoolInfoVo findVoById(Long id) {
         SchoolInfo schoolInfo = schoolInfoMapper.findById(id);
         if (ObjectUtils.isEmpty(schoolInfo)) {
             return null;
