@@ -75,14 +75,13 @@ drop table if exists stu_school_info;
 CREATE TABLE stu_school_info (
   schoolId int(10) NOT NULL AUTO_INCREMENT,
   name varchar(100) NOT NULL comment '全称',
+  headImage varchar(200) NOT NULL comment '头像',
   shortName varchar(100) NOT NULL comment '简称',
   pinyin varchar(100) NOT NULL comment '拼音',
   address varchar(200) DEFAULT NULL comment '地址',
   country int(8) DEFAULT 0,
-  province int(8) DEFAULT 0,
-  city int(8) DEFAULT 0,
-  town int(8) DEFAULT 0,
-  createDate datetime DEFAULT null,
+  areaId int(8) DEFAULT 0,
+  createDate int(10) DEFAULT null,
   weight varchar(10) NOT NULL comment '是否是重点',
   href varchar(200) DEFAULT NULL comment '地址',
   PRIMARY KEY (schoolId)

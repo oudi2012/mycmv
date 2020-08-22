@@ -7,12 +7,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author a
@@ -79,23 +78,19 @@ public class AreaInfoServiceImpl implements AreaInfoService {
 
     @Override
     public List<AreaInfo> pathListByCode(Integer areaCode) {
-        List<AreaInfo> areaInfos = new ArrayList<>();
-        boolean hasChild = true;
-        while (hasChild) {
-            AreaInfo areaInfo = this.findByCode(areaCode);
-            if (!ObjectUtils.isEmpty(areaInfo)) {
-                areaInfos.add(areaInfo);
-                if (areaInfo.getParentCode().equals(0)) {
-                    hasChild = false;
-                } else {
-                    areaCode = areaInfo.getParentCode();
-                }
-            } else {
-                hasChild = false;
-            }
-        }
-        Collections.reverse(areaInfos);
-        return areaInfos;
+        List<Integer> areaCodeList = cutAreaCode(areaCode);
+        return areaInfoMapper.findByCodeList(areaCodeList);
+    }
+
+    @Override
+    public Map<Integer, AreaInfo> pathListByCode(List<Integer> areaCodeList) {
+        Set<Integer> codeSet = new HashSet<>();
+        areaCodeList.forEach(areaCode -> {
+            List<Integer> subAreaCodeList = cutAreaCode(areaCode);
+            codeSet.addAll(subAreaCodeList);
+        });
+        List<AreaInfo> areaInfoList = areaInfoMapper.findByCodeList(new ArrayList<>(codeSet));
+        return areaInfoList.stream().collect(Collectors.toMap(AreaInfo::getAreaCode, Function.identity()));
     }
 
     @Override

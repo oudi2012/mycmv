@@ -95,7 +95,6 @@ public class StudentInfoController {
     @ResponseBody
     @PostMapping("remove")
     public ResponseObject remove(@RequestBody IdListVo idListVo) {
-        Preconditions.checkArgument(!ObjectUtils.isEmpty(idListVo), "删除参数不能为空");
         ResponseObject resObj = new ResponseObject();
         if (CollectionUtils.isEmpty(idListVo.getIds())) {
             idListVo.setIds(Collections.singletonList(idListVo.getId()));

@@ -53,6 +53,18 @@
         </where>
     </select>
 
+    <select id="findByCodeList" parameterType="List"
+            resultType="com.ddky.fms.refund.model.students.entry.AreaInfo">
+        select
+        <include refid="area_column" />
+        from stu_area_info
+        <where>
+            areaCode in <foreach collection="areaCodeList" index="index" item="item" open="(" close=")" separator=",">
+                            #{item}
+                        </foreach>
+        </where>
+    </select>
+
     <select id="findMaxNodeByParentCode" resultType="Integer">
         select max(areaCode) from stu_area_info
         <where>

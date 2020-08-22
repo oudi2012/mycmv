@@ -1,7 +1,5 @@
 package com.ddky.fms.refund.utils;
 
-import org.dom4j.Document;
-import org.dom4j.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +19,7 @@ public class StringUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(StringUtils.class);
 
+    private static final Pattern pattern = Pattern.compile("^-?[0-9]+");
 
     public static boolean isEmpty(String str) {
         return !isNotEmpty(str);
@@ -51,13 +50,10 @@ public class StringUtils {
     }
 
     public static boolean isInteger(String str){
-        Pattern pattern = Pattern.compile("^-?[0-9]+");
         Matcher isNum = pattern.matcher(str);
-        if( !isNum.matches() ){
-            return false;
-        }
-        return true;
+        return isNum.matches();
     }
+
     public static boolean isBigDecimal(String str){
         try {
             new BigDecimal(str);
@@ -107,11 +103,9 @@ public class StringUtils {
      */
     public static String formatMobile(String mobile) {
         if(isNumeric(mobile) && mobile.length() == 11) {
-            StringBuilder result = new StringBuilder();
-            result.append(mobile.substring(0, 4));
-            result.append("****");
-            result.append(mobile.substring(8));
-            return result.toString();
+            return mobile.substring(0, 4) +
+                    "****" +
+                    mobile.substring(8);
         }
         return mobile;
     }
@@ -125,11 +119,9 @@ public class StringUtils {
      */
     public static String formatIdCard(String idCard) {
         if( idCard.length() == 18) {
-            StringBuilder result = new StringBuilder();
-            result.append(idCard.substring(0, 6));
-            result.append("********");
-            result.append(idCard.substring(14));
-            return result.toString();
+            return idCard.substring(0, 6) +
+                    "********" +
+                    idCard.substring(14);
         }
         return idCard;
     }
@@ -144,21 +136,22 @@ public class StringUtils {
     public static int compareVersion(String v1, String v2) {
         String[] numArr1 = v1.split("\\.");
         String[] numArr2 = v2.split("\\.");
-        int length = numArr1.length > numArr2.length ? numArr2.length : numArr1.length;
+        int length = Math.min(numArr1.length, numArr2.length);
 
         //比较同级版本号数字大小
         for (int i = 0; i < length; i++) {
             int num1 = Integer.parseInt(numArr1[i]);
             int num2 = Integer.parseInt(numArr2[i]);
-            if(num1 > num2) return 1;
-            if(num1 < num2) return -1;
+            if(num1 > num2) {
+                return 1;
+            }
+            if(num1 < num2) {
+                return -1;
+            }
         }
         //比较版本号长度
-        if(numArr1.length > numArr2.length) return 1;
-        if(numArr1.length < numArr2.length) return -1;
-
+        return Integer.compare(numArr1.length, numArr2.length);
         //版本号相同
-        return 0;
     }
     /***
      * 处理金额
@@ -179,10 +172,10 @@ public class StringUtils {
                 return price;
             }
             if (isNotEmpty(items[0]) && isNotEmpty(items[1])) {
-                if (Long.valueOf(items[1]) < 10 && items[1].length() == 2) {
+                if (Long.parseLong(items[1]) < 10 && items[1].length() == 2) {
                     price = Long.valueOf(items[0]) + ".0"
                             + Long.valueOf(items[1]);
-                } else if (Long.valueOf(items[1]) < 10
+                } else if (Long.parseLong(items[1]) < 10
                         && items[1].length() == 1) {
                     price = Long.valueOf(items[0]) + "."
                             + Long.valueOf(items[1]) + "0";
@@ -190,9 +183,9 @@ public class StringUtils {
                 return price;
             }
             if (price.indexOf(".") == 0) {
-                if (Long.valueOf(items[1]) < 10 && items[1].length() == 2) {
+                if (Long.parseLong(items[1]) < 10 && items[1].length() == 2) {
                     price = "0.0" + Long.valueOf(items[1]);
-                } else if (Long.valueOf(items[1]) < 10
+                } else if (Long.parseLong(items[1]) < 10
                         && items[1].length() == 1) {
                     price = "0." + Long.valueOf(items[1]) + "0";
                 } else {
@@ -203,14 +196,15 @@ public class StringUtils {
             price = Long.valueOf(items[0]) + "0.0";
             return price;
         }
-        long money = Long.valueOf(price);
+        long money = Long.parseLong(price);
         long mod = money % 100;
         long imod = money / 100;
         String temp = "";
-        if ((mod < 10) && (mod > -10))
+        if ((mod < 10) && (mod > -10)) {
             temp = ".0" + mod;
-        else
+        } else {
             temp = "." + mod;
+        }
         return "" + imod + temp;
     }
 
@@ -229,7 +223,7 @@ public class StringUtils {
     /**
      *
      * 集合转换成 特字符分隔的字符串
-     * @param coll
+     * @param coll coll
      * @param separator 分隔符
      * @param show 每个数据前后是否需要添加引号 '
      * @return
@@ -243,9 +237,9 @@ public class StringUtils {
         StringBuilder buff = new StringBuilder();
         for(Object o : coll){
             if(show){
-                buff.append("'").append(String.valueOf(o)).append("'").append(separator);
+                buff.append("'").append(o).append("'").append(separator);
             }else{
-                buff.append(String.valueOf(o)).append(separator);
+                buff.append(o).append(separator);
             }
         }
         return buff.substring(0, buff.lastIndexOf(separator));
@@ -261,9 +255,10 @@ public class StringUtils {
      * @return 分割后的字符链表
      */
     public static List<Long> str2LongListByE(String str, String spec) {
-        if (str == null)
+        if (str == null) {
             str = "";
-        Vector<Long> vt = new Vector<Long>();
+        }
+        Vector<Long> vt = new Vector<>();
         String[] strs = str.split(spec);
         for(String s:strs){
             vt.addElement(Long.valueOf(s));
@@ -296,7 +291,7 @@ public class StringUtils {
     }
     /**
      * 将字符串中\\u格式字符进行解码，解决GBK数据库不能储存UTF-8问题
-     * @param str
+     * @param str str
      * @return
      */
     public static String decodeNoGBK(String str) {
@@ -308,7 +303,7 @@ public class StringUtils {
                 try {
                     c = (char) Integer.parseInt(str.substring(i + 2, i + 6), 16);
                     i += 5;
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
             sb.append(c);

@@ -3,13 +3,35 @@ package com.ddky.fms.refund.service.student;
 import com.ddky.fms.refund.model.students.entry.AreaInfo;
 import com.github.pagehelper.PageInfo;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import static com.ddky.fms.refund.constants.CmvConstants.*;
 
 /***
  * 地区接口
  * @author oudi
  */
 public interface AreaInfoService {
+
+    /***
+     * 截取区域编号
+     * @param areaCode areaCode
+     * @return list
+     */
+    default List<Integer> cutAreaCode(int areaCode) {
+        String strAreaCode = String.valueOf(areaCode);
+        List<Integer> areaCodeList = new ArrayList<>();
+        if (areaCode/ONE_OO_OO_OO > 0) {
+            areaCodeList.add(Integer.parseInt(strAreaCode.substring(0, 3)));
+        }
+        if (areaCode/ONE_OO_OO > 0) {
+            areaCodeList.add(Integer.parseInt(strAreaCode.substring(0, 5)));
+        }
+        areaCodeList.add(areaCode);
+        return areaCodeList;
+    }
 
     /***
      * 省级列表
@@ -67,6 +89,13 @@ public interface AreaInfoService {
      * @return list
      */
     List<AreaInfo> pathListByCode(Integer areaCode);
+
+    /***
+     * 批量获取地区路径
+     * @param areaCodeList areaCodeList
+     * @return list
+     */
+    Map<Integer, AreaInfo> pathListByCode(List<Integer> areaCodeList);
 
 
     /***

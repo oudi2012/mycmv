@@ -2,8 +2,6 @@ package com.ddky.fms.refund.model.students.entry;
 
 import lombok.Data;
 
-import java.util.Date;
-
 /***
  * 学校信息
  * @author a
@@ -12,6 +10,8 @@ import java.util.Date;
 public class SchoolInfo {
     private Long        schoolId;
     private String      name;
+    /** 头像 */
+    private String      headImage;
     private String      shortName;
     private String      pinyin;
     private String      address;
@@ -19,10 +19,8 @@ public class SchoolInfo {
     private String      weight;
     /** 国家 */
     private Integer     country;
-    private Integer     province;
-    private Integer     city;
-    private Integer     town;
-    private Date        createDate;
+    private Integer     areaId;
+    private Long        createDate;
     /** 临时字段 */
     private String      href;
 }

@@ -32,8 +32,21 @@ public interface SchoolInfoMapper {
     void insert(SchoolInfo item);
 
     /***
+     * 编辑
+     * @param item item
+     */
+    void update(SchoolInfo item);
+
+    /***
      * 批量添加
      * @param list list
      */
     void batchInsert(@Param("list")List<SchoolInfo> list);
+
+    /***
+     * 删除
+     * @param idList idList
+     * @return int
+     */
+    int delete(@Param("idList")List<Long> idList);
 }

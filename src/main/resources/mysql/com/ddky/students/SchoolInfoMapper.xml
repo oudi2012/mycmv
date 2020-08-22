@@ -3,11 +3,11 @@
 <mapper namespace="com.ddky.fms.refund.mapper.students.SchoolInfoMapper">
 
     <sql id="column">
-        schoolId, name, shortName, pinyin, address, country, province, city, town, createDate
+        schoolId, name, headImage, shortName, pinyin, address, country, areaId, weight, createDate
     </sql>
 
     <sql id="where">
-        <if test="name != null">
+        <if test="name != null and !name.equals('')">
             and name = #{name}
         </if>
         <if test="shortName != null">
@@ -16,14 +16,8 @@
         <if test="country != null">
             and country = #{country}
         </if>
-        <if test="province != null">
-            and province = #{province}
-        </if>
-        <if test="city != null">
-            and city = #{city}
-        </if>
-        <if test="town != null">
-            and town = #{town}
+        <if test="areaId != null">
+            and areaId = #{areaId}
         </if>
     </sql>
 
@@ -46,15 +40,39 @@
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.SchoolInfo">
-        insert into stu_school_info (name, shortName, pinyin, address, country, province, city, town, createDate, weight, href)
-        values (#{name}, #{shortName}, #{pinyin}, #{address}, #{country}, #{province}, #{city}, #{town}, now(), #{weight}, #{href})
+        insert into stu_school_info (name, headImage, shortName, pinyin, address, country, areaId, createDate, weight, href)
+        values (#{name}, #{headImage}, #{shortName}, #{pinyin}, #{address}, #{country}, #{areaId}, UNIX_TIMESTAMP(), #{weight}, #{href})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into stu_school_info (name, shortName, pinyin, address, country, province, city, town, createDate, weight, href)
-            values (#{item.name}, #{item.shortName}, #{item.pinyin}, #{item.address}, #{item.country}, #{item.province}, #{item.city}, #{item.town}, now(), #{item.weight}, #{item.href})
+            insert into stu_school_info (name, headImage, shortName, pinyin, address, country, areaId, createDate, weight, href)
+            values (#{item.name}, #{item.headImage}, #{item.shortName}, #{item.pinyin}, #{item.address}, #{item.country}, #{item.areaId}, UNIX_TIMESTAMP(), #{item.weight}, #{item.href})
         </foreach>
     </insert>
+
+    <update id="update" parameterType="com.ddky.fms.refund.model.students.entry.SchoolInfo">
+        update stu_school_info
+        <set>
+            <if test="name != null">  name = #{name}, </if>
+            <if test="headImage != null">  headImage = #{headImage}, </if>
+            <if test="shortName != null">  shortName = #{shortName}, </if>
+            <if test="pinyin != null">  pinyin = #{pinyin}, </if>
+            <if test="address != null">  address = #{address}, </if>
+            <if test="country != null">  country = #{country}, </if>
+            <if test="areaId != null">  areaId = #{areaId}, </if>
+            <if test="weight != null">  weight = #{weight}, </if>
+        </set>
+        <where>
+            schoolId = #{schoolId}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="java.util.List">
+        delete from stu_school_info where schoolId in (
+        <foreach collection="idList" index="index" item="item" separator=",">
+            #{item}
+        </foreach>)
+    </delete>
 
 </mapper>

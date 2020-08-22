@@ -104,15 +104,7 @@ public class HtmlSchoolServiceImpl implements HtmlSchoolService, HtmlDataService
             if (!CollectionUtils.isEmpty(areaInfoList)) {
                 Map<Integer, AreaInfo> areaInfoMap = areaInfoList.stream().collect(Collectors.toMap(AreaInfo::getAreaCode, Function.identity()));
                 areaInfoMap.forEach((key, value) -> {
-                    if (String.valueOf(key).length() == AREA_LENGTH_3) {
-                        schoolInfo.setProvince(key);
-                    }
-                    if (String.valueOf(key).length() == AREA_LENGTH_5) {
-                        schoolInfo.setCity(key);
-                    }
-                    if (String.valueOf(key).length() == AREA_LENGTH_7) {
-                        schoolInfo.setTown(key);
-                    }
+                    schoolInfo.setAreaId(key);
                 });
             }
         }

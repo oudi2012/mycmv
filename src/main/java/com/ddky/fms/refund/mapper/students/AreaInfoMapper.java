@@ -35,6 +35,13 @@ public interface AreaInfoMapper {
     AreaInfo findByCode(int areaCode);
 
     /***
+     * 批量详细
+     * @param areaCodeList areaCodeList
+     * @return AreaInfo
+     */
+    List<AreaInfo> findByCodeList(@Param("areaCodeList") List<Integer> areaCodeList);
+
+    /***
      * 获取该父节点下最大的子节点
      * @param parentCode parentCode
      * @return Integer
