@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("book/chemistry")
-public class ChemistryController extends AbstractBookController<ChemistryBook> {
+public class ChemistryController extends AbstractController<ChemistryBook> {
 
     @Resource
     private ChemistryService chemistryService;

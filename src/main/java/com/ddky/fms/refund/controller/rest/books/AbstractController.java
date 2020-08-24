@@ -24,7 +24,7 @@ import java.util.List;
  * 书籍管理
  * @author a
  */
-public abstract class AbstractBookController<T extends BookInfo> implements BookInfoApiFunc<T>{
+public abstract class AbstractController<T extends BookInfo> implements BookInfoApiFunc<T>{
 
     private static final Logger logger = LoggerFactory.getLogger(LogConstants.ADM_LOG);
 

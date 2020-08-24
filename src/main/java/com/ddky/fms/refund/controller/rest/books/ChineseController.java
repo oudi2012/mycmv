@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("book/chinese")
-public class ChineseController extends AbstractBookController<ChineseBook> {
+public class ChineseController extends AbstractController<ChineseBook> {
 
     @Resource
     private ChineseBookService chineseBookService;

@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("book/foreign")
-public class ForeignController extends AbstractBookController<ForeignBook> {
+public class ForeignController extends AbstractController<ForeignBook> {
 
     @Resource
     private ForeignService foreignService;

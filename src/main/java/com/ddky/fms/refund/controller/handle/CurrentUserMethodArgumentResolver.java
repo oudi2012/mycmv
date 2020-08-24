@@ -29,9 +29,7 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
         //如果参数类型是User并且有CurrentUser注解则支持
-        boolean hasCurrentUser = methodParameter.hasParameterAnnotation(CurrentUser.class);
-        logger.info("判断函数参数中是否有注解CurrentUser : {}", hasCurrentUser);
-        return hasCurrentUser;
+        return methodParameter.hasParameterAnnotation(CurrentUser.class);
     }
 
     @Override
