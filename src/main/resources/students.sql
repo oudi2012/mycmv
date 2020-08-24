@@ -68,7 +68,7 @@ CREATE TABLE stu_area_info  (
   parentCode int(11) NULL DEFAULT NULL,
   orderBy int(11) NULL DEFAULT NULL,
   PRIMARY KEY (areaCode) USING BTREE
-) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '学校';
+) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '区域';
 
 
 drop table if exists stu_school_info;
@@ -87,6 +87,7 @@ CREATE TABLE stu_school_info (
   PRIMARY KEY (schoolId)
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '学校';
 
+
 drop table if exists stu_grade_info;
 CREATE TABLE stu_grade_info (
   gradeId int(10) NOT NULL AUTO_INCREMENT,
@@ -96,6 +97,7 @@ CREATE TABLE stu_grade_info (
   createTime int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (gradeId)
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '年级';
+
 
 insert into stu_grade_info(name) values ("一年级");
 insert into stu_grade_info(name) values ("二年级");

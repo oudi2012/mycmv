@@ -46,6 +46,15 @@ public class GradeInfoController {
     }
 
     @ResponseBody
+    @PostMapping("edit")
+    public ResponseObject edit(@RequestBody GradeInfo gradeInfo) {
+        ResponseObject resObj = new ResponseObject();
+        gradeService.update(gradeInfo);
+        CommonUtils.executeSuccess(resObj, gradeInfo);
+        return resObj;
+    }
+
+    @ResponseBody
     @GetMapping("remove")
     public ResponseObject remove(Integer gradeId) {
         ResponseObject resObj = new ResponseObject();

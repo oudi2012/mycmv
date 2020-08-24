@@ -5,8 +5,9 @@ import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.term.entry.TermInfo;
 import com.ddky.fms.refund.service.term.TermInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /***
  * 学期管理
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("term")
 public class TermInfoController {
 
-    @Autowired
+    @Resource
     private TermInfoService termInfoService;
 
     @ResponseBody

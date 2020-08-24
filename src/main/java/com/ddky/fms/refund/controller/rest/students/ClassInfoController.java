@@ -38,20 +38,20 @@ public class ClassInfoController {
     }
 
     @ResponseBody
-    @PostMapping("edit")
-    public ResponseObject edit(@RequestBody ClassInfo gradeInfo) {
-        ResponseObject resObj = new ResponseObject();
-        classInfoService.update(gradeInfo);
-        CommonUtils.executeSuccess(resObj, gradeInfo);
-        return resObj;
-    }
-
-    @ResponseBody
     @GetMapping("findById")
     public ResponseObject findById(Integer gradeId) {
         ResponseObject resObj = new ResponseObject();
         ClassInfo classInfo = classInfoService.findById(gradeId);
         CommonUtils.executeSuccess(resObj, classInfo);
+        return resObj;
+    }
+
+    @ResponseBody
+    @PostMapping("edit")
+    public ResponseObject edit(@RequestBody ClassInfo gradeInfo) {
+        ResponseObject resObj = new ResponseObject();
+        classInfoService.update(gradeInfo);
+        CommonUtils.executeSuccess(resObj, gradeInfo);
         return resObj;
     }
 

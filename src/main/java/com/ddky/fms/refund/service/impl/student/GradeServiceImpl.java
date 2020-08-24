@@ -29,13 +29,13 @@ public class GradeServiceImpl implements GradeService {
     }
 
     @Override
-    public void insert(GradeInfo areaInfo) {
-        gradeInfoMapper.insert(areaInfo);
+    public void insert(GradeInfo itemInfo) {
+        gradeInfoMapper.insert(itemInfo);
     }
 
     @Override
-    public void update(GradeInfo areaInfo) {
-        gradeInfoMapper.update(areaInfo);
+    public void update(GradeInfo itemInfo) {
+        gradeInfoMapper.update(itemInfo);
     }
 
     @Override

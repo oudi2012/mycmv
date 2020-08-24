@@ -8,7 +8,7 @@ import lombok.Data;
  *
  */
 @Data
-public class BookInfo {
+public class BookInfo implements java.io.Serializable{
 	 Long bookId;
 	/** 书名 */
 	 String bookName;

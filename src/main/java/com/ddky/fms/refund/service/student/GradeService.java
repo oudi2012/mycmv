@@ -25,15 +25,15 @@ public interface GradeService {
 
     /***
      * 添加
-     * @param areaInfo areaInfo
+     * @param itemInfo itemInfo
      */
-    void insert(GradeInfo areaInfo);
+    void insert(GradeInfo itemInfo);
 
     /***
      * 更新
-     * @param areaInfo areaInfo
+     * @param itemInfo itemInfo
      */
-    void update(GradeInfo areaInfo);
+    void update(GradeInfo itemInfo);
 
     /***
      * 批量添加
