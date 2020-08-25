@@ -96,8 +96,9 @@ public class VersionTypeController {
         return resObj;
     }
 
+    @UserLoginToken
     @ResponseBody
-    @GetMapping("remove")
+    @PostMapping("remove")
     public ResponseObject delete(@CurrentUser AbstractUser user, @RequestBody IdListVo idListVo) {
         logger.info("用户 {} ，访问 {} ", user.getUserName(), "version/remove");
         Preconditions.checkArgument(!ObjectUtils.isEmpty(idListVo), "删除参数不能为空");

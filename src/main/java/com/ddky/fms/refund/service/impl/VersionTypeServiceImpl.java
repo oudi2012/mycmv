@@ -24,7 +24,7 @@ public class VersionTypeServiceImpl implements VersionTypeService {
 
     @Override
     public PageInfo<VersionType> pageList(int pageIndex, int pageSize) {
-        PageHelper.startPage(pageIndex, pageSize);
+        PageHelper.startPage(pageIndex, pageSize).setOrderBy(" verId desc");
         List<VersionType> list = versionTypeMapper.list();
         if (CollectionUtils.isEmpty(list)) {
             return new PageInfo<>();

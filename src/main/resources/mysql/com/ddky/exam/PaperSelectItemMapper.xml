@@ -45,4 +45,24 @@
         </foreach>
     </insert>
 
+    <update id="update" parameterType="com.ddky.fms.refund.model.exam.entry.PaperSelectItem">
+        update exam_paper_select_items
+        <set>
+            <if test="examPageId != null">  examPageId = #{examPageId}, </if>
+            <if test="questionId != null">  questionId = #{questionId}, </if>
+            <if test="title != null">  title = #{title}, </if>
+            <if test="itemNo != null">  itemNo = #{itemNo}, </if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="java.util.List">
+        delete from exam_paper_select_items where id in (
+        <foreach collection="idList" index="index" item="item" separator=",">
+            #{item}
+        </foreach>)
+    </delete>
+
 </mapper>

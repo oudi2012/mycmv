@@ -51,4 +51,27 @@
         </foreach>
     </insert>
 
+    <update id="update" parameterType="com.ddky.fms.refund.model.exam.entry.SelectQuestion">
+        update exam_select_questions
+        <set>
+            <if test="subjectId != null">  subjectId = #{subjectId}, </if>
+            <if test="gradeId != null">  gradeId = #{gradeId}, </if>
+            <if test="title != null">  title = #{title}, </if>
+            <if test="qusType != null">  qusType = #{qusType}, </if>
+            <if test="examScope != null">  examScope = #{examScope}, </if>
+            <if test="creatorId != null">  creatorId = #{creatorId}, </if>
+            <if test="answers != null">  answers = #{answers}, </if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="java.util.List">
+        delete from exam_select_questions where id in (
+        <foreach collection="idList" index="index" item="item" separator=",">
+            #{item}
+        </foreach>)
+    </delete>
+
 </mapper>

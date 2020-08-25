@@ -8,6 +8,8 @@ import com.ddky.fms.refund.service.exam.PaperInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 
 /***
  * @author a
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaperInfoServiceImpl extends AbstractExamService<PaperInfo> implements PaperInfoService {
 
-    @Autowired
+    @Resource
     private PaperInfoMapper paperInfoMapper;
 
     @Override

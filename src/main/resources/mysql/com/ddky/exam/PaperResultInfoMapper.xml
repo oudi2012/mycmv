@@ -51,4 +51,27 @@
         </foreach>
     </insert>
 
+    <update id="update" parameterType="com.ddky.fms.refund.model.exam.entry.PaperResultInfo">
+        update exam_paper_result_info
+        <set>
+            <if test="examPageId != null">  examPageId = #{examPageId}, </if>
+            <if test="userId != null">  userId = #{userId}, </if>
+            <if test="questionId != null">  questionId = #{questionId}, </if>
+            <if test="answers != null">  answers = #{answers}, </if>
+            <if test="isRight != null">  isRight = #{isRight}, </if>
+            <if test="score != null">  score = #{score}, </if>
+            <if test="state != null">  state = #{state}, </if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="java.util.List">
+        delete from exam_paper_result_info where id in (
+        <foreach collection="idList" index="index" item="item" separator=",">
+            #{item}
+        </foreach>)
+    </delete>
+
 </mapper>

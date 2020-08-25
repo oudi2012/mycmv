@@ -43,6 +43,11 @@ public abstract class AbstractExamService<T extends ExamBean> implements ExamSer
     }
 
     @Override
+    public void update(T item) {
+        getExamInfoMapper().update(item);
+    }
+
+    @Override
     public PageInfo<T> pageList(T t, int pageIndex, int pageSize) {
         PageHelper.startPage(pageIndex, pageSize);
         List<T> list = getExamInfoMapper().list(t);
@@ -50,5 +55,10 @@ public abstract class AbstractExamService<T extends ExamBean> implements ExamSer
             return new PageInfo<>();
         }
         return new PageInfo<>(list);
+    }
+
+    @Override
+    public int delete(List<Long> idList) {
+        return getExamInfoMapper().delete(idList);
     }
 }

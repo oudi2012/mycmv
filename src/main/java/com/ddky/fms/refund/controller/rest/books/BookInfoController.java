@@ -129,8 +129,7 @@ public class BookInfoController{
     @ResponseBody
     @PostMapping("remove")
     public ResponseObject delete(@CurrentUser AbstractUser user, @RequestBody IdListVo idListVo) {
-        String url = "book/remove";
-        logger.info("用户 {} ，访问 {} , 数量：{}", user.getUserName(), url, JSON.toJSON(idListVo));
+        logger.info("用户 {} ，访问 {} , 数量：{}", user.getUserName(), "book/remove", JSON.toJSON(idListVo));
         ResponseObject resObj = new ResponseObject();
         if (CollectionUtils.isEmpty(idListVo.getIds())) {
             idListVo.setIds(Collections.singletonList(idListVo.getId()));

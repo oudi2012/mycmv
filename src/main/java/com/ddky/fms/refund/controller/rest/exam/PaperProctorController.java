@@ -4,8 +4,9 @@ import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.exam.entry.PaperProctor;
 import com.ddky.fms.refund.service.exam.PaperProctorService;
 import com.ddky.fms.refund.utils.CommonUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /***
  * PaperProctor
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("exam/paperProctor/")
 public class PaperProctorController {
 
-    @Autowired
+    @Resource
     private PaperProctorService examService;
 
     @ResponseBody

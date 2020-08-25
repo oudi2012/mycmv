@@ -38,6 +38,12 @@ public interface ExamService<T extends ExamBean> {
     void batchInsert(List<T> list);
 
     /***
+     * 编辑
+     * @param item item
+     */
+    void update(T item);
+
+    /***
      * 分页显示
      * @param t t
      * @param pageIndex pageIndex
@@ -45,5 +51,12 @@ public interface ExamService<T extends ExamBean> {
      * @return PageInfo
      */
     PageInfo<T> pageList(T t, int pageIndex, int pageSize);
+
+    /***
+     * 删除
+     * @param idList idList
+     * @return int
+     */
+    int delete(List<Long> idList);
 
 }

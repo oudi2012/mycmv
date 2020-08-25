@@ -41,4 +41,21 @@
         </foreach>
     </insert>
 
+    <update id="update" parameterType="com.ddky.fms.refund.model.exam.entry.HardLevel">
+        update exam_hard_level
+        <set>
+            <if test="title != null">  title = #{title}, </if>
+            <if test="orderNo != null">  orderNo = #{orderNo}, </if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="java.util.List">
+        delete from exam_hard_level where id in (
+        <foreach collection="idList" index="index" item="item" separator=",">
+            #{item}
+        </foreach>)
+    </delete>
 </mapper>
