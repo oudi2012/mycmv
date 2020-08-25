@@ -1,6 +1,6 @@
 package com.ddky.fms.refund.mapper.books;
 
-import com.ddky.fms.refund.model.books.SubjectInfo;
+import com.ddky.fms.refund.model.books.entry.SubjectInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -3,7 +3,7 @@ package com.ddky.fms.refund.controller.rest.books;
 import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.base.vo.IdListVo;
-import com.ddky.fms.refund.model.books.SubjectInfo;
+import com.ddky.fms.refund.model.books.entry.SubjectInfo;
 import com.ddky.fms.refund.service.book.SubjectInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import com.google.common.base.Preconditions;
@@ -20,8 +20,8 @@ import java.util.Collections;
  * subject
  * @author a
  */
-@RestController("SubjectController")
-@RequestMapping("book/subject")
+@RestController
+@RequestMapping("subject")
 public class SubjectController {
 
     private static final Logger logger = LoggerFactory.getLogger(LogConstants.STU_LOG);

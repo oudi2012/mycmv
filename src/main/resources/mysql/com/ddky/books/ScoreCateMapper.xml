@@ -15,7 +15,7 @@
         </if>
     </sql>
 
-    <select id="list" resultType="com.ddky.fms.refund.model.books.ScoreCate">
+    <select id="list" resultType="com.ddky.fms.refund.model.books.entry.ScoreCate">
         select
             <include refid="column" />
         from stu_score_cate
@@ -24,7 +24,7 @@
         </where>
     </select>
 
-    <select id="findById" resultType="com.ddky.fms.refund.model.books.ScoreCate">
+    <select id="findById" resultType="com.ddky.fms.refund.model.books.entry.ScoreCate">
         select
             <include refid="column" />
         from stu_score_cate
@@ -33,7 +33,7 @@
         </where>
     </select>
 
-    <insert id="insert" parameterType="com.ddky.fms.refund.model.books.ScoreCate">
+    <insert id="insert" parameterType="com.ddky.fms.refund.model.books.entry.ScoreCate">
         insert into stu_score_cate (name, type, score, scoreDesc, orderNo) values (#{name}, #{type}, #{score}, #{scoreDesc}, #{orderNo})
     </insert>
 

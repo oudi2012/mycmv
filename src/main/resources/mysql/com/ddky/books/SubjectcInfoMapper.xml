@@ -18,7 +18,7 @@
         </if>
     </sql>
 
-    <select id="list" resultType="com.ddky.fms.refund.model.books.SubjectInfo">
+    <select id="list" resultType="com.ddky.fms.refund.model.books.entry.SubjectInfo">
         select
             <include refid="column" />
         from bok_subject_info
@@ -27,7 +27,7 @@
         </where>
     </select>
 
-    <select id="findById" resultType="com.ddky.fms.refund.model.books.SubjectInfo">
+    <select id="findById" resultType="com.ddky.fms.refund.model.books.entry.SubjectInfo">
         select
             <include refid="column" />
         from bok_subject_info
@@ -36,7 +36,7 @@
         </where>
     </select>
 
-    <select id="findByName" resultType="com.ddky.fms.refund.model.books.SubjectInfo">
+    <select id="findByName" resultType="com.ddky.fms.refund.model.books.entry.SubjectInfo">
         select
         <include refid="column" />
         from bok_subject_info
@@ -45,7 +45,7 @@
         </where>
     </select>
 
-    <insert id="insert" parameterType="com.ddky.fms.refund.model.books.SubjectInfo">
+    <insert id="insert" parameterType="com.ddky.fms.refund.model.books.entry.SubjectInfo">
         insert into bok_subject_info (name, title, orderNo) values (#{name}, #{title}, #{orderNo})
     </insert>
 
@@ -56,7 +56,7 @@
         </foreach>
     </insert>
 
-    <update id="update" parameterType="com.ddky.fms.refund.model.books.SubjectInfo">
+    <update id="update" parameterType="com.ddky.fms.refund.model.books.entry.SubjectInfo">
         update bok_subject_info
         <set>
             <if test="name != null">  name = #{name}, </if>

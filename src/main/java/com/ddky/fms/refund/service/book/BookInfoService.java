@@ -1,54 +1,56 @@
-package com.ddky.fms.refund.service;
+package com.ddky.fms.refund.service.book;
 
-import com.ddky.fms.refund.model.books.entry.VersionType;
+import com.ddky.fms.refund.model.books.entry.BookInfo;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 /***
- * 版本类型
+ * 课本接口
  * @author oudi
  */
-public interface VersionTypeService {
+public interface BookInfoService {
 
     /***
      * 分页显示
+     * @param t t
      * @param pageIndex pageIndex
      * @param pageSize pageSize
      * @return PageInfo
      */
-    PageInfo<VersionType> pageList(int pageIndex, int pageSize);
+    PageInfo<BookInfo> pageList(BookInfo t, int pageIndex, int pageSize);
 
     /***
-     * 列表获取
-     * @return list
+     * 列表
+     * @param t t
+     * @return
      */
-    List<VersionType> list();
+    List<BookInfo> list(BookInfo t);
 
     /***
      * 详细
-     * @param id id
-     * @return GradeInfo
+     * @param bookId id
+     * @return obj
      */
-    VersionType findById(int id);
+    BookInfo findById(int bookId);
 
     /***
      * 添加
      * @param item item
      */
-    void insert(VersionType item);
+    void insert(BookInfo item);
 
     /***
-     * 更新
+     * 编辑
      * @param item item
      */
-    void update(VersionType item);
+    void update(BookInfo item);
 
     /***
      * 批量添加
      * @param list list
      */
-    void batchInsert(List<VersionType> list);
+    void batchInsert(List<BookInfo> list);
 
     /***
      * 删除

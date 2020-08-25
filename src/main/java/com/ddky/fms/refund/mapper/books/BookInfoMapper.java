@@ -1,46 +1,48 @@
 package com.ddky.fms.refund.mapper.books;
 
-import com.ddky.fms.refund.model.books.entry.VersionType;
+
+import com.ddky.fms.refund.model.books.entry.BookInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+
 /***
- * SubjectInfo
- * @author oudi
+ * @author a
  */
-public interface VersionTypeMapper {
+public interface BookInfoMapper {
 
     /***
      * 列表
+     * @param t t
      * @return List
      */
-    List<VersionType> list();
+    List<BookInfo> list(BookInfo t);
 
     /***
      * 详细
-     * @param id id
+     * @param bookId id
      * @return obj
      */
-    VersionType findById(int id);
+    BookInfo findById(int bookId);
 
     /***
      * 添加
      * @param item item
      */
-    void insert(VersionType item);
+    void insert(BookInfo item);
 
     /***
-     * 更新
+     * 添加
      * @param item item
      */
-    void update(VersionType item);
+    void update(BookInfo item);
 
     /***
      * 批量添加
      * @param list list
      */
-    void batchInsert(@Param("list") List<VersionType> list);
+    void batchInsert(@Param("list")List<BookInfo> list);
 
     /***
      * 删除

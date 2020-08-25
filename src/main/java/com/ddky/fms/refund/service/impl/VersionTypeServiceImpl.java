@@ -1,9 +1,13 @@
 package com.ddky.fms.refund.service.impl;
 
 import com.ddky.fms.refund.mapper.books.VersionTypeMapper;
-import com.ddky.fms.refund.model.books.VersionType;
+import com.ddky.fms.refund.model.books.entry.BookInfo;
+import com.ddky.fms.refund.model.books.entry.VersionType;
 import com.ddky.fms.refund.service.VersionTypeService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -17,6 +21,16 @@ public class VersionTypeServiceImpl implements VersionTypeService {
 
     @Resource
     private VersionTypeMapper versionTypeMapper;
+
+    @Override
+    public PageInfo<VersionType> pageList(int pageIndex, int pageSize) {
+        PageHelper.startPage(pageIndex, pageSize);
+        List<VersionType> list = versionTypeMapper.list();
+        if (CollectionUtils.isEmpty(list)) {
+            return new PageInfo<>();
+        }
+        return new PageInfo<>(list);
+    }
 
     @Override
     public List<VersionType> list() {
@@ -41,5 +55,10 @@ public class VersionTypeServiceImpl implements VersionTypeService {
     @Override
     public void batchInsert(List<VersionType> list) {
         versionTypeMapper.batchInsert(list);
+    }
+
+    @Override
+    public int delete(List<Long> idList) {
+        return versionTypeMapper.delete(idList);
     }
 }

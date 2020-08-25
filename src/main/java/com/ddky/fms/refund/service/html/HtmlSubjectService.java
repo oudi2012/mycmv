@@ -1,6 +1,6 @@
 package com.ddky.fms.refund.service.html;
 
-import com.ddky.fms.refund.model.books.BookInfo;
+import com.ddky.fms.refund.model.books.entry.BookInfo;
 
 import java.util.List;
 

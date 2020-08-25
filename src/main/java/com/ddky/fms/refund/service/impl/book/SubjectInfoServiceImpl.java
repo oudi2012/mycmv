@@ -1,7 +1,7 @@
 package com.ddky.fms.refund.service.impl.book;
 
 import com.ddky.fms.refund.mapper.books.SubjectInfoMapper;
-import com.ddky.fms.refund.model.books.SubjectInfo;
+import com.ddky.fms.refund.model.books.entry.SubjectInfo;
 import com.ddky.fms.refund.service.book.SubjectInfoService;
 import org.springframework.stereotype.Service;
 

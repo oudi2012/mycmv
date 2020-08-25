@@ -1,11 +1,13 @@
 package com.ddky.fms.refund.service.impl.html;
 
 import com.alibaba.fastjson.JSON;
-import com.ddky.fms.refund.model.books.*;
-import com.ddky.fms.refund.model.books.chinese.entry.ChineseBook;
+import com.ddky.fms.refund.model.books.config.ElectiveEnum;
+import com.ddky.fms.refund.model.books.config.VolumeEnum;
+import com.ddky.fms.refund.model.books.entry.BookInfo;
+import com.ddky.fms.refund.model.books.entry.VersionType;
 import com.ddky.fms.refund.model.students.entry.GradeInfo;
 import com.ddky.fms.refund.service.*;
-import com.ddky.fms.refund.service.book.BookService;
+import com.ddky.fms.refund.service.book.BookInfoService;
 import com.ddky.fms.refund.service.book.SubjectInfoService;
 import com.ddky.fms.refund.service.html.HtmlDataService;
 import com.ddky.fms.refund.service.html.HtmlSubjectService;
@@ -17,9 +19,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -44,16 +46,16 @@ public class HtmlSubjectServiceImpl implements HtmlSubjectService, HtmlDataServi
     private static final int AREA_LENGTH_5 = 5;
     private static final int AREA_LENGTH_7 = 7;
 
-    @Autowired
+    @Resource
     private SubjectInfoService subjectInfoService;
-    @Autowired
+    @Resource
     private DownLoadImageService downLoadImageService;
-    @Autowired
+    @Resource
     private GradeService gradeService;
-    @Autowired
+    @Resource
     private VersionTypeService versionTypeService;
-    @Autowired
-    private BookService<ChineseBook> bookBookService;
+    @Resource
+    private BookInfoService bookBookService;
 
     private static final String ROOT_PATH = "E:/images";
 
@@ -75,19 +77,19 @@ public class HtmlSubjectServiceImpl implements HtmlSubjectService, HtmlDataServi
         Document document = getContent(url);
         Elements typeContent = document.getElementById("main").getElementsByClass("list mb_list");
         for (Element typeCont : typeContent) {
-            List<ChineseBook> chineseBookList = fromElement(typeCont);
+            List<BookInfo> chineseBookList = fromElement(typeCont);
             bookBookService.batchInsert(chineseBookList);
         }
         return null;
     }
 
-    private List<ChineseBook> fromElement(Element element) {
+    private List<BookInfo> fromElement(Element element) {
         List<GradeInfo> gradeInfos = gradeService.list();
         List<VersionType> versionTypes =  versionTypeService.list();
         Map<String, GradeInfo> gradeInfoMap = gradeInfos.stream().collect(Collectors.toMap(GradeInfo::getName, Function.identity()));
         Map<String, VersionType> versionTypeMap = versionTypes.stream().collect(Collectors.toMap(VersionType::getName, Function.identity()));
         List<Element> elLis = element.children().first().children();
-        List<ChineseBook> chineseBookList = new ArrayList<>();
+        List<BookInfo> chineseBookList = new ArrayList<>();
         for (Element typeCont : elLis) {
             Element elImg = typeCont.getElementsByTag("img").first();
             String imageUrl = school_list_href + elImg.attr("data-original");
@@ -95,7 +97,7 @@ public class HtmlSubjectServiceImpl implements HtmlSubjectService, HtmlDataServi
             String name = elImg.attr("alt");
             downLoadImageService.download(imageUrl, imageSavePath);
             logger.info(typeCont.toString());
-            ChineseBook chineseBook = new ChineseBook();
+            BookInfo chineseBook = new BookInfo();
             chineseBook.setBookName(name);
             //设置年级
             gradeInfoMap.forEach((key, value) -> {
