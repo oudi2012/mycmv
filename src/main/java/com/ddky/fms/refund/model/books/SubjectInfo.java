@@ -10,5 +10,6 @@ import lombok.Data;
 public class SubjectInfo {
     private Integer subjectId;
     private String name;
+    private String title;
     private Integer orderNo;
 }

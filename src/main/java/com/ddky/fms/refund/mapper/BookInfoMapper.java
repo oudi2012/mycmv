@@ -34,8 +34,21 @@ public interface BookInfoMapper<T extends BookInfo> {
     void insert(T item);
 
     /***
+     * 添加
+     * @param item item
+     */
+    void update(T item);
+
+    /***
      * 批量添加
      * @param list list
      */
     void batchInsert(@Param("list")List<T> list);
+
+    /***
+     * 删除
+     * @param idList idList
+     * @return int
+     */
+    int delete(@Param("idList") List<Long> idList);
 }

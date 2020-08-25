@@ -3,7 +3,7 @@
 <mapper namespace="com.ddky.fms.refund.mapper.books.ChineseBookMapper">
 
     <sql id="column">
-        bookId, bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId, volume, elective
+        bookId, bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId, createDate, volume, elective
     </sql>
 
     <sql id="where">
@@ -46,15 +46,39 @@
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.books.chinese.entry.ChineseBook">
-        insert into bok_chinese_info (bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId, volume, elective)
-        values (#{bookName}, #{shortName}, #{publisher}, #{theYear}, #{coverImage}, #{cipImage}, #{gradeId}, #{volume}, #{elective})
+        insert into bok_chinese_info (bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId, createDate, volume, elective)
+        values (#{bookName}, #{shortName}, #{publisher}, #{theYear}, #{coverImage}, #{cipImage}, #{gradeId}, UNIX_TIMESTAMP(), #{volume}, #{elective})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into bok_chinese_info (bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId, volume, elective)
-            values (#{item.bookName}, #{item.shortName}, #{item.publisher}, #{item.theYear}, #{item.coverImage}, #{item.cipImage}, #{item.gradeId}, #{item.volume}, #{item.elective})
+            insert into bok_chinese_info (bookName, shortName, publisher, theYear, coverImage, cipImage, gradeId, createDate, volume, elective)
+            values (#{item.bookName}, #{item.shortName}, #{item.publisher}, #{item.theYear}, #{item.coverImage}, #{item.cipImage},
+            #{item.gradeId}, UNIX_TIMESTAMP(), #{item.volume}, #{item.elective})
         </foreach>
     </insert>
+
+    <update id="update" parameterType="com.ddky.fms.refund.model.books.chinese.entry.ChineseBook">
+        update bok_chinese_info
+        <set>
+            <if test="bookName != null">  bookName = #{bookName}, </if>
+            <if test="shortName != null">  shortName = #{shortName}, </if>
+            <if test="publisher != null">  publisher = #{publisher}, </if>
+            <if test="theYear != null">  theYear = #{theYear}, </if>
+            <if test="coverImage != null">  coverImage = #{coverImage}, </if>
+            <if test="cipImage != null">  cipImage = #{cipImage}, </if>
+            <if test="gradeId != null">  gradeId = #{gradeId}, </if>
+        </set>
+        <where>
+            bookId = #{bookId}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="java.util.List">
+        delete from bok_chinese_info where id in (
+        <foreach collection="idList" index="index" item="item" separator=",">
+            #{item}
+        </foreach>)
+    </delete>
 
 </mapper>

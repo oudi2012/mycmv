@@ -6,18 +6,22 @@ import com.ddky.fms.refund.configuration.UserLoginToken;
 import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.model.AbstractUser;
 import com.ddky.fms.refund.model.ResponseObject;
+import com.ddky.fms.refund.model.base.vo.IdListVo;
 import com.ddky.fms.refund.model.books.BookInfo;
 import com.ddky.fms.refund.service.book.BookService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import com.github.pagehelper.PageInfo;
+import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Collections;
 import java.util.List;
 
 /***
@@ -96,7 +100,20 @@ public abstract class AbstractController<T extends BookInfo> implements BookInfo
     @UserLoginToken
     @ResponseBody
     @GetMapping("create")
-    public ResponseObject create(@CurrentUser AbstractUser user, T item) {
+    public ResponseObject create(@CurrentUser AbstractUser user, @RequestBody T item) {
+        String url = getRootPath() + "/create";
+        logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), url, JSON.toJSON(item));
+        ResponseObject responseObject = new ResponseObject();
+        getBookService().insert(item);
+        CommonUtils.executeSuccess(responseObject);
+        return responseObject;
+    }
+
+    @Override
+    @UserLoginToken
+    @ResponseBody
+    @GetMapping("edit")
+    public ResponseObject edit(@CurrentUser AbstractUser user, @RequestBody  T item) {
         String url = getRootPath() + "/create";
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), url, JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
@@ -109,12 +126,27 @@ public abstract class AbstractController<T extends BookInfo> implements BookInfo
     @UserLoginToken
     @ResponseBody
     @GetMapping("batchCreate")
-    public ResponseObject batchCreate(@CurrentUser AbstractUser user, List<T> list) {
+    public ResponseObject batchCreate(@CurrentUser AbstractUser user, @RequestBody  List<T> list) {
         String url = getRootPath() + "/create";
         logger.info("用户 {} ，访问 {} , 数量：{}", user.getUserName(), url, list.size());
         ResponseObject responseObject = new ResponseObject();
         getBookService().batchInsert(list);
         CommonUtils.executeSuccess(responseObject);
         return responseObject;
+    }
+
+    @Override
+    @UserLoginToken
+    @ResponseBody
+    @GetMapping("remove")
+    public ResponseObject delete(@CurrentUser AbstractUser user, @RequestBody IdListVo idListVo) {
+        logger.info("调用接口 guardian => remove");
+        Preconditions.checkArgument(!ObjectUtils.isEmpty(idListVo), "删除参数不能为空");
+        ResponseObject resObj = new ResponseObject();
+        if (CollectionUtils.isEmpty(idListVo.getIds())) {
+            idListVo.setIds(Collections.singletonList(idListVo.getId()));
+        }
+        CommonUtils.executeSuccess(resObj, getBookService().delete(idListVo.getIds()));
+        return resObj;
     }
 }

@@ -41,9 +41,22 @@ public interface BookService<T extends BookInfo> {
     void insert(T item);
 
     /***
+     * 编辑
+     * @param item item
+     */
+    void update(T item);
+
+    /***
      * 批量添加
      * @param list list
      */
     void batchInsert(List<T> list);
+
+    /***
+     * 删除
+     * @param idList idList
+     * @return int
+     */
+    int delete(List<Long> idList);
 
 }

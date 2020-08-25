@@ -2,20 +2,21 @@ drop table if exists bok_subject_info;
 CREATE TABLE `bok_subject_info` (
   `subjectId` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(100) DEFAULT NULL COMMENT '名称',
+  `title` varchar(100) DEFAULT NULL COMMENT '标题',
   `orderNo` int(2) DEFAULT 1 COMMENT '排序',
   PRIMARY KEY (`subjectId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='科目';
 
-insert into bok_subject_info(name) values ("语文");
-insert into bok_subject_info(name) values ("数学");
-insert into bok_subject_info(name) values ("英语");
-insert into bok_subject_info(name) values ("物理");
-insert into bok_subject_info(name) values ("化学");
-insert into bok_subject_info(name) values ("生物");
-insert into bok_subject_info(name) values ("历史");
-insert into bok_subject_info(name) values ("政治");
-insert into bok_subject_info(name) values ("地理");
-insert into bok_subject_info(name) values ("其他");
+insert into bok_subject_info(subjectId, name, title) values (1, 'chinese', '语文');
+insert into bok_subject_info(subjectId, name, title) values (2, 'math', '数学');
+insert into bok_subject_info(subjectId, name, title) values (3, 'foreign', '英语');
+insert into bok_subject_info(subjectId, name, title) values (4, 'physic', '物理');
+insert into bok_subject_info(subjectId, name, title) values (5, 'chemistry', '化学');
+insert into bok_subject_info(subjectId, name, title) values (6, 'biology', '生物');
+insert into bok_subject_info(subjectId, name, title) values (7, 'history', '历史');
+insert into bok_subject_info(subjectId, name, title) values (8, 'political', '政治');
+insert into bok_subject_info(subjectId, name, title) values (9, 'geographical', '地理');
+insert into bok_subject_info(subjectId, name, title) values (10, 'other', '其他');
 
 drop table if exists bok_version_type;
 CREATE TABLE `bok_version_type` (

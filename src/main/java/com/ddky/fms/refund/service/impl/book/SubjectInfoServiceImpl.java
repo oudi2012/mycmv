@@ -3,9 +3,9 @@ package com.ddky.fms.refund.service.impl.book;
 import com.ddky.fms.refund.mapper.books.SubjectInfoMapper;
 import com.ddky.fms.refund.model.books.SubjectInfo;
 import com.ddky.fms.refund.service.book.SubjectInfoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class SubjectInfoServiceImpl implements SubjectInfoService {
 
-    @Autowired
+    @Resource
     private SubjectInfoMapper subjectInfoMapper;
 
     @Override
@@ -29,6 +29,11 @@ public class SubjectInfoServiceImpl implements SubjectInfoService {
     }
 
     @Override
+    public SubjectInfo findByName(String name) {
+        return subjectInfoMapper.findByName(name);
+    }
+
+    @Override
     public void insert(SubjectInfo item) {
         subjectInfoMapper.insert(item);
     }
@@ -36,5 +41,15 @@ public class SubjectInfoServiceImpl implements SubjectInfoService {
     @Override
     public void batchInsert(List<SubjectInfo> list) {
         subjectInfoMapper.batchInsert(list);
+    }
+
+    @Override
+    public void update(SubjectInfo item) {
+        subjectInfoMapper.update(item);
+    }
+
+    @Override
+    public int delete(List<Long> idList) {
+        return subjectInfoMapper.delete(idList);
     }
 }

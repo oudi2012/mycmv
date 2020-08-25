@@ -37,8 +37,18 @@ public abstract class AbstractBookService<T extends BookInfo> implements BookSer
     }
 
     @Override
+    public void update(T item) {
+        getBookInfoMapper().update(item);
+    }
+
+    @Override
     public void batchInsert(List<T> list) {
         getBookInfoMapper().batchInsert(list);
+    }
+
+    @Override
+    public int delete(List<Long> idList) {
+        return getBookInfoMapper().delete(idList);
     }
 
     @Override

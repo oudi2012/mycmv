@@ -26,4 +26,6 @@ public class BookInfo implements java.io.Serializable{
 	private Integer  volume;
 	/** 选修0和必修1 */
 	private Integer  elective;
+	/** 创建时间 */
+	Long createDate;
 }

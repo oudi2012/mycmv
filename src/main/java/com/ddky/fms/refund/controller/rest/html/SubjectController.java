@@ -14,18 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /***
  * @author a
  */
-@RestController
+@RestController("HtmlSubjectController")
 @RequestMapping("html")
 public class SubjectController {
 
     private static final Logger logger = LoggerFactory.getLogger(SubjectController.class);
 
-    @Autowired
+    @Resource
     private HtmlSubjectService htmlSubjectService;
 
     @ResponseBody

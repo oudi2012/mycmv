@@ -3,12 +3,15 @@
 <mapper namespace="com.ddky.fms.refund.mapper.books.SubjectInfoMapper">
 
     <sql id="column">
-        subjectId, name, orderNo
+        subjectId, name, title, orderNo
     </sql>
 
     <sql id="where">
         <if test="name != null">
             and name = #{name}
+        </if>
+        <if test="title != null">
+            and title = #{title}
         </if>
         <if test="orderNo != null">
             and orderNo = #{orderNo}
@@ -18,7 +21,7 @@
     <select id="list" resultType="com.ddky.fms.refund.model.books.SubjectInfo">
         select
             <include refid="column" />
-        from stu_subject_info
+        from bok_subject_info
         <where>
             <include refid="where" />
         </where>
@@ -27,21 +30,49 @@
     <select id="findById" resultType="com.ddky.fms.refund.model.books.SubjectInfo">
         select
             <include refid="column" />
-        from stu_subject_info
+        from bok_subject_info
         <where>
-            id = #{id}
+            subjectId = #{id}
+        </where>
+    </select>
+
+    <select id="findByName" resultType="com.ddky.fms.refund.model.books.SubjectInfo">
+        select
+        <include refid="column" />
+        from bok_subject_info
+        <where>
+            name = #{name}
         </where>
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.books.SubjectInfo">
-        insert into stu_subject_info (name, orderNo) values (#{name}, #{orderNo})
+        insert into bok_subject_info (name, title, orderNo) values (#{name}, #{title}, #{orderNo})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into stu_subject_info (name, orderNo)
-            values (#{item.name}, #{item.orderNo})
+            insert into bok_subject_info (name, title, orderNo)
+            values (#{item.name}, #{item.title}, #{item.orderNo})
         </foreach>
     </insert>
+
+    <update id="update" parameterType="com.ddky.fms.refund.model.books.SubjectInfo">
+        update bok_subject_info
+        <set>
+            <if test="name != null">  name = #{name}, </if>
+            <if test="title != null">  title = #{title}, </if>
+            <if test="orderNo != null">  orderNo = #{orderNo}, </if>
+        </set>
+        <where>
+            subjectId = #{subjectId}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="java.util.List">
+        delete from bok_subject_info where subjectId in (
+        <foreach collection="idList" index="index" item="item" separator=",">
+            #{item}
+        </foreach>)
+    </delete>
 
 </mapper>

@@ -25,6 +25,13 @@ public interface SubjectInfoMapper {
     SubjectInfo findById(int id);
 
     /***
+     * 详细
+     * @param name name
+     * @return obj
+     */
+    SubjectInfo findByName(String name);
+
+    /***
      * 添加
      * @param item item
      */
@@ -35,4 +42,17 @@ public interface SubjectInfoMapper {
      * @param list list
      */
     void batchInsert(@Param("list")List<SubjectInfo> list);
+
+    /***
+     * 更新
+     * @param item item
+     */
+    void update(SubjectInfo item);
+
+    /***
+     * 删除
+     * @param idList idList
+     * @return int
+     */
+    int delete(@Param("idList")List<Long> idList);
 }

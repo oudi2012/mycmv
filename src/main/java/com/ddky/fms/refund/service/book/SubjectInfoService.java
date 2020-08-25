@@ -24,6 +24,13 @@ public interface SubjectInfoService {
     SubjectInfo findById(int id);
 
     /***
+     * 详细
+     * @param name name
+     * @return obj
+     */
+    SubjectInfo findByName(String name);
+
+    /***
      * 添加
      * @param item item
      */
@@ -34,5 +41,18 @@ public interface SubjectInfoService {
      * @param list list
      */
     void batchInsert(List<SubjectInfo> list);
+
+    /***
+     * 更新
+     * @param item item
+     */
+    void update(SubjectInfo item);
+
+    /***
+     * 删除
+     * @param idList idList
+     * @return int
+     */
+    int delete(List<Long> idList);
 
 }
