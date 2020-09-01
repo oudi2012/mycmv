@@ -4,7 +4,7 @@ package com.ddky.fms.refund.controller.rest.students;
 import com.alibaba.fastjson.JSON;
 import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.base.vo.IdListVo;
+import com.ddky.fms.refund.model.base.vo.LongIdListVo;
 import com.ddky.fms.refund.model.students.entry.TeacherInfo;
 import com.ddky.fms.refund.model.students.vo.TeacherInfoVo;
 import com.ddky.fms.refund.service.student.TeacherInfoService;
@@ -82,13 +82,13 @@ public class TeacherInfoController {
 
     @ResponseBody
     @PostMapping("remove")
-    public ResponseObject remove(@RequestBody IdListVo idListVo) {
-        logger.info("调用接口 {} => remove, 参数：{}", MODEL_NAME, JSON.toJSONString(idListVo));
+    public ResponseObject remove(@RequestBody LongIdListVo longIdListVo) {
+        logger.info("调用接口 {} => remove, 参数：{}", MODEL_NAME, JSON.toJSONString(longIdListVo));
         ResponseObject resObj = new ResponseObject();
-        if (CollectionUtils.isEmpty(idListVo.getIds())) {
-            idListVo.setIds(Collections.singletonList(idListVo.getId()));
+        if (CollectionUtils.isEmpty(longIdListVo.getIds())) {
+            longIdListVo.setIds(Collections.singletonList(longIdListVo.getId()));
         }
-        CommonUtils.executeSuccess(resObj, teacherInfoService.delete(idListVo.getIds()));
+        CommonUtils.executeSuccess(resObj, teacherInfoService.delete(longIdListVo.getIds()));
         return resObj;
     }
 

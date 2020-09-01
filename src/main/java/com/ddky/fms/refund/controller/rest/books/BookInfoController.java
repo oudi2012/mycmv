@@ -6,13 +6,12 @@ import com.ddky.fms.refund.configuration.UserLoginToken;
 import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.model.AbstractUser;
 import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.base.vo.IdListVo;
+import com.ddky.fms.refund.model.base.vo.LongIdListVo;
 import com.ddky.fms.refund.model.books.entry.BookInfo;
 import com.ddky.fms.refund.model.books.vo.BookListVo;
 import com.ddky.fms.refund.service.book.BookInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
 import com.github.pagehelper.PageInfo;
-import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
@@ -128,13 +127,13 @@ public class BookInfoController{
     @UserLoginToken
     @ResponseBody
     @PostMapping("remove")
-    public ResponseObject delete(@CurrentUser AbstractUser user, @RequestBody IdListVo idListVo) {
-        logger.info("用户 {} ，访问 {} , 数量：{}", user.getUserName(), "book/remove", JSON.toJSON(idListVo));
+    public ResponseObject delete(@CurrentUser AbstractUser user, @RequestBody LongIdListVo longIdListVo) {
+        logger.info("用户 {} ，访问 {} , 数量：{}", user.getUserName(), "book/remove", JSON.toJSON(longIdListVo));
         ResponseObject resObj = new ResponseObject();
-        if (CollectionUtils.isEmpty(idListVo.getIds())) {
-            idListVo.setIds(Collections.singletonList(idListVo.getId()));
+        if (CollectionUtils.isEmpty(longIdListVo.getIds())) {
+            longIdListVo.setIds(Collections.singletonList(longIdListVo.getId()));
         }
-        CommonUtils.executeSuccess(resObj, bookInfoService.delete(idListVo.getIds()));
+        CommonUtils.executeSuccess(resObj, bookInfoService.delete(longIdListVo.getIds()));
         return resObj;
     }
 }

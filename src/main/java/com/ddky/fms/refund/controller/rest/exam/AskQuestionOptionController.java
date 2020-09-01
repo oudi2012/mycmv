@@ -6,8 +6,7 @@ import com.ddky.fms.refund.configuration.UserLoginToken;
 import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.model.AbstractUser;
 import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.base.vo.IdListVo;
-import com.ddky.fms.refund.model.exam.entry.AskQuestion;
+import com.ddky.fms.refund.model.base.vo.LongIdListVo;
 import com.ddky.fms.refund.model.exam.entry.AskQuestionOption;
 import com.ddky.fms.refund.service.exam.AskQuestionOptionService;
 import com.ddky.fms.refund.utils.CommonUtils;
@@ -79,13 +78,13 @@ public class AskQuestionOptionController {
     @UserLoginToken
     @ResponseBody
     @PostMapping("remove")
-    public ResponseObject delete(@CurrentUser AbstractUser user, @RequestBody IdListVo idListVo) {
-        logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/askQuestionOption/remove", JSON.toJSON(idListVo));
+    public ResponseObject delete(@CurrentUser AbstractUser user, @RequestBody LongIdListVo longIdListVo) {
+        logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/askQuestionOption/remove", JSON.toJSON(longIdListVo));
         ResponseObject resObj = new ResponseObject();
-        if (CollectionUtils.isEmpty(idListVo.getIds())) {
-            idListVo.setIds(Collections.singletonList(idListVo.getId()));
+        if (CollectionUtils.isEmpty(longIdListVo.getIds())) {
+            longIdListVo.setIds(Collections.singletonList(longIdListVo.getId()));
         }
-        CommonUtils.executeSuccess(resObj, examService.delete(idListVo.getIds()));
+        CommonUtils.executeSuccess(resObj, examService.delete(longIdListVo.getIds()));
         return resObj;
     }
 

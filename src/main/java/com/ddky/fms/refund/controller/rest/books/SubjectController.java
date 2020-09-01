@@ -2,7 +2,7 @@ package com.ddky.fms.refund.controller.rest.books;
 
 import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.base.vo.IdListVo;
+import com.ddky.fms.refund.model.base.vo.LongIdListVo;
 import com.ddky.fms.refund.model.books.entry.SubjectInfo;
 import com.ddky.fms.refund.service.book.SubjectInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
@@ -78,14 +78,14 @@ public class SubjectController {
 
     @ResponseBody
     @PostMapping("remove")
-    public ResponseObject remove(@RequestBody IdListVo idListVo) {
-        Preconditions.checkArgument(!ObjectUtils.isEmpty(idListVo), "删除参数不能为空");
+    public ResponseObject remove(@RequestBody LongIdListVo longIdListVo) {
+        Preconditions.checkArgument(!ObjectUtils.isEmpty(longIdListVo), "删除参数不能为空");
         logger.info("调用接口 {} => remove", MODEL_NAME);
         ResponseObject resObj = new ResponseObject();
-        if (CollectionUtils.isEmpty(idListVo.getIds())) {
-            idListVo.setIds(Collections.singletonList(idListVo.getId()));
+        if (CollectionUtils.isEmpty(longIdListVo.getIds())) {
+            longIdListVo.setIds(Collections.singletonList(longIdListVo.getId()));
         }
-        CommonUtils.executeSuccess(resObj, subjectInfoService.delete(idListVo.getIds()));
+        CommonUtils.executeSuccess(resObj, subjectInfoService.delete(longIdListVo.getIds()));
         return resObj;
     }
 }

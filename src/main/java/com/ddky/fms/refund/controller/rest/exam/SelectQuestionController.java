@@ -6,7 +6,7 @@ import com.ddky.fms.refund.configuration.UserLoginToken;
 import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.model.AbstractUser;
 import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.base.vo.IdListVo;
+import com.ddky.fms.refund.model.base.vo.LongIdListVo;
 import com.ddky.fms.refund.model.exam.entry.SelectQuestion;
 import com.ddky.fms.refund.model.exam.vo.SelectQuestionVo;
 import com.ddky.fms.refund.service.exam.SelectQuestionOptionService;
@@ -63,8 +63,10 @@ public class SelectQuestionController {
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/selectQuestion/create", JSON.toJSON(item));
         ResponseObject resObj = new ResponseObject();
         item.setCreatorId(user.getId());
+        if (item.getMultiId() == null) {
+            item.setMultiId(0L);
+        }
         examService.insert(item);
-        logger.info("SelectQuestionId : " + item.getId());
         if (!CollectionUtils.isEmpty(item.getSelectQuestionOptionList())) {
             item.getSelectQuestionOptionList().forEach(optionItem -> {
                 optionItem.setQuestionId(item.getId());
@@ -95,10 +97,18 @@ public class SelectQuestionController {
     @UserLoginToken
     @ResponseBody
     @PostMapping("edit")
-    public ResponseObject edit(@CurrentUser AbstractUser user, @RequestBody SelectQuestion item) {
+    public ResponseObject edit(@CurrentUser AbstractUser user, @RequestBody SelectQuestionVo item) {
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/selectQuestion/edit", JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
         examService.update(item);
+        questionOptionService.deleteByQuestionId(item.getId());
+        if (!CollectionUtils.isEmpty(item.getSelectQuestionOptionList())) {
+            item.getSelectQuestionOptionList().forEach(optionItem -> {
+                optionItem.setQuestionId(item.getId());
+                optionItem.setState(1);
+            });
+            questionOptionService.batchInsert(item.getSelectQuestionOptionList());
+        }
         CommonUtils.executeSuccess(responseObject);
         return responseObject;
     }
@@ -106,17 +116,17 @@ public class SelectQuestionController {
     @UserLoginToken
     @ResponseBody
     @PostMapping("remove")
-    public ResponseObject delete(@CurrentUser AbstractUser user, @RequestBody IdListVo idListVo) {
-        logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/selectQuestion/remove", JSON.toJSON(idListVo));
+    public ResponseObject delete(@CurrentUser AbstractUser user, @RequestBody LongIdListVo longIdListVo) {
+        logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/selectQuestion/remove", JSON.toJSON(longIdListVo));
         ResponseObject resObj = new ResponseObject();
-        if (CollectionUtils.isEmpty(idListVo.getIds())) {
-            idListVo.setIds(Collections.singletonList(idListVo.getId()));
+        if (CollectionUtils.isEmpty(longIdListVo.getIds())) {
+            longIdListVo.setIds(Collections.singletonList(longIdListVo.getId()));
         }
-        examService.delete(idListVo.getIds());
-        idListVo.getIds().forEach(id -> {
+        examService.delete(longIdListVo.getIds());
+        longIdListVo.getIds().forEach(id -> {
             questionOptionService.deleteByQuestionId(id);
         });
-        CommonUtils.executeSuccess(resObj, examService.delete(idListVo.getIds()));
+        CommonUtils.executeSuccess(resObj);
         return resObj;
     }
 

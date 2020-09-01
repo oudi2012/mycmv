@@ -17,14 +17,14 @@ public interface SelectQuestionOptionMapper extends ExamInfoMapper<SelectQuestio
      * @param questionId questionId
      * @return List
      */
-    List<SelectQuestionOption> listByQuestionId(Integer questionId);
+    List<SelectQuestionOption> listByQuestionId(Long questionId);
 
     /***
      * 获取列表
      * @param questionIds questionIds
      * @return List
      */
-    List<SelectQuestionOption> listByQuestionIds(@Param("idList") List<Integer> questionIds);
+    List<SelectQuestionOption> listByQuestionIds(@Param("idList") List<Long> questionIds);
 
     /***
      * 根据问题编号，删除选择项

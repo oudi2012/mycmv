@@ -10,8 +10,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class SelectQuestionOption extends ExamBean {
-    private Integer id;
-    private Integer questionId;
+    private Long id;
+    private Long questionId;
     private String title;
     private Integer state;
     private Integer createTime;

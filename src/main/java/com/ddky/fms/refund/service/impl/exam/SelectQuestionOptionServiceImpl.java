@@ -28,17 +28,17 @@ public class SelectQuestionOptionServiceImpl extends AbstractExamService<SelectQ
     }
 
     @Override
-    public List<SelectQuestionOption> listByQuestionId(Integer questionId) {
+    public List<SelectQuestionOption> listByQuestionId(Long questionId) {
         return questionOptionMapper.listByQuestionId(questionId);
     }
 
     @Override
-    public List<SelectQuestionOption> listByQuestionIds(List<Integer> questionIdList) {
+    public List<SelectQuestionOption> listByQuestionIds(List<Long> questionIdList) {
         return questionOptionMapper.listByQuestionIds(questionIdList);
     }
 
     @Override
-    public Map<Integer, List<SelectQuestionOption>> mapByQuestionIds(List<Integer> questionIdList) {
+    public Map<Long, List<SelectQuestionOption>> mapByQuestionIds(List<Long> questionIdList) {
         return questionOptionMapper.listByQuestionIds(questionIdList).stream().collect(Collectors.groupingBy(SelectQuestionOption::getQuestionId));
     }
 

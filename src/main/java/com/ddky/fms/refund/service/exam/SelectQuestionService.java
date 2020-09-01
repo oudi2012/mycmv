@@ -25,4 +25,11 @@ public interface SelectQuestionService extends ExamService<SelectQuestion> {
      */
     List<SelectQuestionVo> listToVo(List<SelectQuestion> selectQuestionList);
 
+    /***
+     * 根据问题组编号，删除选择项
+     * @param multiIds multiIds
+     * @return int
+     */
+    int deleteByMultiIds(List<Long> multiIds);
+
 }

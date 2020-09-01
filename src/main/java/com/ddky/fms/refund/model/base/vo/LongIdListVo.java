@@ -9,7 +9,7 @@ import java.util.List;
  * @author a
  */
 @Data
-public class IdListVo {
+public class LongIdListVo {
     private Long id;
     private List<Long> ids;
 }

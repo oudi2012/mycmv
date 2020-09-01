@@ -17,21 +17,21 @@ public interface SelectQuestionOptionService extends ExamService<SelectQuestionO
      * @param questionId questionId
      * @return List
      */
-    List<SelectQuestionOption> listByQuestionId(Integer questionId);
+    List<SelectQuestionOption> listByQuestionId(Long questionId);
 
     /***
      * 获取列表
      * @param questionIdList questionIdList
      * @return List
      */
-    List<SelectQuestionOption> listByQuestionIds(List<Integer> questionIdList);
+    List<SelectQuestionOption> listByQuestionIds(List<Long> questionIdList);
 
     /***
      * 获取列表
      * @param questionIdList questionIdList
      * @return Map
      */
-    Map<Integer, List<SelectQuestionOption>> mapByQuestionIds(List<Integer> questionIdList);
+    Map<Long, List<SelectQuestionOption>> mapByQuestionIds(List<Long> questionIdList);
 
     /***
      * 根据问题编号，删除选择项

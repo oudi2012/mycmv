@@ -3,7 +3,7 @@
 <mapper namespace="com.ddky.fms.refund.mapper.exam.SelectQuestionMapper">
 
     <sql id="column">
-        id, subjectId, gradeId, title, qusType, examScope, creatorId, answers, hardLevelId, createTime, updateTime
+        id, subjectId, gradeId, multiId, title, qusType, examScope, creatorId, answers, hardLevelId, orderNo, createTime, updateTime
     </sql>
 
     <sql id="where">
@@ -15,6 +15,9 @@
         </if>
         <if test="gradeId != null">
             and gradeId = #{gradeId}
+        </if>
+        <if test="multiId != null">
+            and multiId = #{multiId}
         </if>
         <if test="qusType != null">
             and qusType = #{qusType}
@@ -43,14 +46,14 @@
     </select>
 
     <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.ddky.fms.refund.model.exam.entry.SelectQuestion">
-        insert into exam_select_questions (subjectId, gradeId, title, qusType, examScope, creatorId, answers, hardLevelId)
-        values (#{subjectId}, #{gradeId}, #{title}, #{qusType}, #{examScope}, #{creatorId}, #{answers}, #{hardLevelId})
+        insert into exam_select_questions (subjectId, gradeId, multiId, title, qusType, examScope, creatorId, answers, hardLevelId)
+        values (#{subjectId}, #{gradeId}, #{multiId}, #{title}, #{qusType}, #{examScope}, #{creatorId}, #{answers}, #{hardLevelId})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into exam_select_questions (subjectId, gradeId, title, qusType, examScope, creatorId, answers, hardLevelId)
-            values (#{item.subjectId}, #{item.gradeId}, #{item.title}, #{item.qusType}, #{item.examScope}, #{item.creatorId}, #{item.answers}, #{item.hardLevelId})
+            insert into exam_select_questions (subjectId, gradeId, multiId, title, qusType, examScope, creatorId, answers, hardLevelId)
+            values (#{item.subjectId}, #{item.gradeId}, #{item.multiId}, #{item.title}, #{item.qusType}, #{item.examScope}, #{item.creatorId}, #{item.answers}, #{item.hardLevelId})
         </foreach>
     </insert>
 
@@ -59,12 +62,14 @@
         <set>
             <if test="subjectId != null">  subjectId = #{subjectId}, </if>
             <if test="gradeId != null">  gradeId = #{gradeId}, </if>
+            <if test="multiId != null">  multiId = #{multiId}, </if>
             <if test="title != null">  title = #{title}, </if>
             <if test="qusType != null">  qusType = #{qusType}, </if>
             <if test="examScope != null">  examScope = #{examScope}, </if>
             <if test="creatorId != null">  creatorId = #{creatorId}, </if>
             <if test="answers != null">  answers = #{answers}, </if>
             <if test="hardLevelId != null">  hardLevelId = #{hardLevelId}, </if>
+            <if test="orderNo != null">  orderNo = #{orderNo}, </if>
         </set>
         <where>
             id = #{id}
@@ -77,5 +82,18 @@
             #{item}
         </foreach>)
     </delete>
+
+    <update id="deleteByMultiIds" parameterType="java.util.List">
+        update exam_select_questions
+        <set>
+            multiId = 0
+        </set>
+        <where>
+            multiId in
+            <foreach collection="idList" index="index" item="item" separator=",">
+                #{item}
+            </foreach>)
+        </where>
+    </update>
 
 </mapper>

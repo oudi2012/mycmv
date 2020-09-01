@@ -4,14 +4,13 @@ package com.ddky.fms.refund.controller.rest.students;
 import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.exception.BusinessException;
 import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.base.vo.IdListVo;
+import com.ddky.fms.refund.model.base.vo.LongIdListVo;
 import com.ddky.fms.refund.model.students.entry.AreaInfo;
 import com.ddky.fms.refund.model.students.entry.StudentInfo;
 import com.ddky.fms.refund.model.students.vo.StudentInfoVo;
 import com.ddky.fms.refund.service.student.AreaInfoService;
 import com.ddky.fms.refund.service.student.StudentInfoService;
 import com.ddky.fms.refund.utils.CommonUtils;
-import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -94,12 +93,12 @@ public class StudentInfoController {
 
     @ResponseBody
     @PostMapping("remove")
-    public ResponseObject remove(@RequestBody IdListVo idListVo) {
+    public ResponseObject remove(@RequestBody LongIdListVo longIdListVo) {
         ResponseObject resObj = new ResponseObject();
-        if (CollectionUtils.isEmpty(idListVo.getIds())) {
-            idListVo.setIds(Collections.singletonList(idListVo.getId()));
+        if (CollectionUtils.isEmpty(longIdListVo.getIds())) {
+            longIdListVo.setIds(Collections.singletonList(longIdListVo.getId()));
         }
-        CommonUtils.executeSuccess(resObj, studentInfoService.delete(idListVo.getIds()));
+        CommonUtils.executeSuccess(resObj, studentInfoService.delete(longIdListVo.getIds()));
         return resObj;
     }
 }

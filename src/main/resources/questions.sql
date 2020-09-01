@@ -22,18 +22,33 @@ CREATE TABLE exam_question_type (
   PRIMARY KEY (id)
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '试题类型';
 
+drop table if exists exam_multi_select;
+#id, subjectId, gradeId, title, creatorId, createTime, updateTime
+CREATE TABLE exam_multi_select (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  subjectId int(11) NOT NULL,
+  gradeId int(11) NOT NULL,
+  title varchar(500) NOT NULL,
+  creatorId bigint(20) NOT NULL comment '出题人',
+  createTime int(10) DEFAULT UNIX_TIMESTAMP(),
+  updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
+  PRIMARY KEY (id)
+) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '选择题组';
+
 drop table if exists exam_select_questions;
 #id, subjectId, gradeId, title, qusType, examScope, creatorId, answers, createTime, updateTime
 CREATE TABLE exam_select_questions (
   id int(11) NOT NULL AUTO_INCREMENT,
   subjectId int(11) NOT NULL,
   gradeId int(11) NOT NULL,
+  multiId int(11) DEFAULT 0 comment '所属选择题组',
   title varchar(500) NOT NULL,
   qusType tinyint(2) NOT NULL comment '题型,10:单选 20:多选',
   examScope varchar(500) NOT NULL,
   creatorId bigint(20) NOT NULL comment '出题人',
   answers varchar(20) NOT NULL,
   hardLevelId int(10) DEFAULT 0 comment '难度系数类别',
+  orderNo int(10) DEFAULT 0 comment '排序',
   createTime int(10) DEFAULT UNIX_TIMESTAMP(),
   updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (id)

@@ -60,9 +60,9 @@ public class SelectQuestionServiceImpl extends AbstractExamService<SelectQuestio
     @Override
     public List<SelectQuestionVo> listToVo(List<SelectQuestion> selectQuestionList) {
         List<Integer> subjectIds = selectQuestionList.stream().map(SelectQuestion::getSubjectId).collect(Collectors.toList());
-        List<Integer> questionIds = selectQuestionList.stream().map(SelectQuestion::getId).collect(Collectors.toList());
+        List<Long> questionIds = selectQuestionList.stream().map(SelectQuestion::getId).collect(Collectors.toList());
         List<Integer> gradeIds = selectQuestionList.stream().map(SelectQuestion::getGradeId).collect(Collectors.toList());
-        Map<Integer, List<SelectQuestionOption>> groupOptions = selectQuestionOptionService.mapByQuestionIds(questionIds);
+        Map<Long, List<SelectQuestionOption>> groupOptions = selectQuestionOptionService.mapByQuestionIds(questionIds);
         Map<Integer, SubjectInfo> subjectInfoMap = new HashMap<>(24);
         if (!CollectionUtils.isEmpty(subjectIds)) {
             subjectInfoMap = subjectInfoService.findMapByIds(subjectIds);
@@ -90,5 +90,10 @@ public class SelectQuestionServiceImpl extends AbstractExamService<SelectQuestio
             selectQuestionVos.add(selectQuestionVo);
         });
         return selectQuestionVos;
+    }
+
+    @Override
+    public int deleteByMultiIds(List<Long> multiIds) {
+        return selectQuestionMapper.deleteByMultiIds(multiIds);
     }
 }

@@ -3,8 +3,7 @@ package com.ddky.fms.refund.controller.rest.students;
 
 import com.ddky.fms.refund.constants.LogConstants;
 import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.base.vo.IdListVo;
-import com.ddky.fms.refund.model.base.vo.KeyValueVo;
+import com.ddky.fms.refund.model.base.vo.LongIdListVo;
 import com.ddky.fms.refund.model.students.config.GuardianRoleEnum;
 import com.ddky.fms.refund.model.students.entry.AreaInfo;
 import com.ddky.fms.refund.model.students.entry.GuardianInfo;
@@ -138,14 +137,14 @@ public class GuardianInfoController {
 
     @ResponseBody
     @PostMapping("remove")
-    public ResponseObject remove(@RequestBody IdListVo idListVo) {
+    public ResponseObject remove(@RequestBody LongIdListVo longIdListVo) {
         logger.info("调用接口 guardian => remove");
-        Preconditions.checkArgument(!ObjectUtils.isEmpty(idListVo), "删除参数不能为空");
+        Preconditions.checkArgument(!ObjectUtils.isEmpty(longIdListVo), "删除参数不能为空");
         ResponseObject resObj = new ResponseObject();
-        if (CollectionUtils.isEmpty(idListVo.getIds())) {
-            idListVo.setIds(Collections.singletonList(idListVo.getId()));
+        if (CollectionUtils.isEmpty(longIdListVo.getIds())) {
+            longIdListVo.setIds(Collections.singletonList(longIdListVo.getId()));
         }
-        CommonUtils.executeSuccess(resObj, guardianInfoService.delete(idListVo.getIds()));
+        CommonUtils.executeSuccess(resObj, guardianInfoService.delete(longIdListVo.getIds()));
         return resObj;
     }
 
