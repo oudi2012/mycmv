@@ -33,18 +33,19 @@ CREATE TABLE exam_select_questions (
   examScope varchar(500) NOT NULL,
   creatorId bigint(20) NOT NULL comment '出题人',
   answers varchar(20) NOT NULL,
+  hardLevelId int(10) DEFAULT 0 comment '难度系数类别',
   createTime int(10) DEFAULT UNIX_TIMESTAMP(),
   updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (id)
 ) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '选择题';
 
 drop table if exists exam_select_question_options;
-#id, title, state, hardLevelId, createTime, updateTime
+#id, questionId, title, state, hardLevelId, createTime, updateTime
 CREATE TABLE exam_select_question_options (
   id int(11) NOT NULL AUTO_INCREMENT,
+  questionId int(11) NOT NULL,
   title varchar(200) NOT NULL,
   state int(2) DEFAULT 0 comment '0unuse,1use',
-  hardLevelId int(10) DEFAULT 0 comment '难度系数类别',
   createTime int(10) DEFAULT UNIX_TIMESTAMP(),
   updateTime int(10) DEFAULT UNIX_TIMESTAMP(),
   PRIMARY KEY (id)

@@ -3,6 +3,7 @@ package com.ddky.fms.refund.service.book;
 import com.ddky.fms.refund.model.books.entry.SubjectInfo;
 
 import java.util.List;
+import java.util.Map;
 
 /***
  * 科目
@@ -22,6 +23,20 @@ public interface SubjectInfoService {
      * @return obj
      */
     SubjectInfo findById(int id);
+
+    /***
+     * 列表
+     * @param ids ids
+     * @return list
+     */
+    List<SubjectInfo> findByIds(List<Integer> ids);
+
+    /***
+     * 列表
+     * @param ids ids
+     * @return list
+     */
+    Map<Integer, SubjectInfo> findMapByIds(List<Integer> ids);
 
     /***
      * 详细

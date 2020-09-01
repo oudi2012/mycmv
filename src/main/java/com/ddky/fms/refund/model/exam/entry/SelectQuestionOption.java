@@ -11,9 +11,9 @@ import lombok.EqualsAndHashCode;
 @Data
 public class SelectQuestionOption extends ExamBean {
     private Integer id;
+    private Integer questionId;
     private String title;
     private Integer state;
-    private Integer hardLevelId;
     private Integer createTime;
     private Integer updateTime;
 }

@@ -5,8 +5,12 @@ import com.ddky.fms.refund.mapper.exam.SelectQuestionOptionMapper;
 import com.ddky.fms.refund.model.exam.entry.SelectQuestionOption;
 import com.ddky.fms.refund.service.exam.AbstractExamService;
 import com.ddky.fms.refund.service.exam.SelectQuestionOptionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /***
  * SelectQuestionOptionService
@@ -15,11 +19,31 @@ import org.springframework.stereotype.Service;
 @Service
 public class SelectQuestionOptionServiceImpl extends AbstractExamService<SelectQuestionOption> implements SelectQuestionOptionService {
 
-    @Autowired
+    @Resource
     private SelectQuestionOptionMapper questionOptionMapper;
 
     @Override
     public ExamInfoMapper<SelectQuestionOption> getExamInfoMapper() {
         return questionOptionMapper;
+    }
+
+    @Override
+    public List<SelectQuestionOption> listByQuestionId(Integer questionId) {
+        return questionOptionMapper.listByQuestionId(questionId);
+    }
+
+    @Override
+    public List<SelectQuestionOption> listByQuestionIds(List<Integer> questionIdList) {
+        return questionOptionMapper.listByQuestionIds(questionIdList);
+    }
+
+    @Override
+    public Map<Integer, List<SelectQuestionOption>> mapByQuestionIds(List<Integer> questionIdList) {
+        return questionOptionMapper.listByQuestionIds(questionIdList).stream().collect(Collectors.groupingBy(SelectQuestionOption::getQuestionId));
+    }
+
+    @Override
+    public int deleteByQuestionId(Long questionId) {
+        return questionOptionMapper.deleteByQuestionId(questionId);
     }
 }

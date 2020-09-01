@@ -36,6 +36,18 @@
         </where>
     </select>
 
+    <select id="findByIds" resultType="com.ddky.fms.refund.model.books.entry.SubjectInfo">
+        select
+        <include refid="column" />
+        from bok_subject_info
+        <where>
+            subjectId in (
+            <foreach collection="listIds" index="index" item="item" separator=",">
+                #{item}
+            </foreach>)
+        </where>
+    </select>
+
     <select id="findByName" resultType="com.ddky.fms.refund.model.books.entry.SubjectInfo">
         select
         <include refid="column" />

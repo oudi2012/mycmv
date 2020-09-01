@@ -4,6 +4,7 @@ import com.ddky.fms.refund.model.students.entry.GradeInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /***
  * GradeInfo
@@ -23,6 +24,13 @@ public interface GradeInfoMapper {
      * @return obj
      */
     GradeInfo findById(int id);
+
+    /***
+     * 列表
+     * @param ids ids
+     * @return obj
+     */
+    List<GradeInfo> findByIds(@Param("listIds") List<Integer> ids);
 
     /***
      * 添加

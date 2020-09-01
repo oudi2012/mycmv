@@ -8,11 +8,16 @@ import com.ddky.fms.refund.model.AbstractUser;
 import com.ddky.fms.refund.model.ResponseObject;
 import com.ddky.fms.refund.model.base.vo.IdListVo;
 import com.ddky.fms.refund.model.exam.entry.SelectQuestion;
+import com.ddky.fms.refund.model.exam.vo.SelectQuestionVo;
+import com.ddky.fms.refund.service.exam.SelectQuestionOptionService;
 import com.ddky.fms.refund.service.exam.SelectQuestionService;
 import com.ddky.fms.refund.utils.CommonUtils;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -30,6 +35,8 @@ public class SelectQuestionController {
 
     @Resource
     private SelectQuestionService examService;
+    @Resource
+    private SelectQuestionOptionService questionOptionService;
 
     @UserLoginToken
     @ResponseBody
@@ -37,17 +44,34 @@ public class SelectQuestionController {
     public ResponseObject list(@CurrentUser AbstractUser user, SelectQuestion item, int pageIndex, int pageSize) {
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/selectQuestion/create", JSON.toJSON(item));
         ResponseObject resObj = new ResponseObject();
-        CommonUtils.executeSuccess(resObj, examService.pageList(item, pageIndex, pageSize));
+        PageInfo<SelectQuestion> selectQuestionPageInfo = examService.pageList(item, pageIndex, pageSize);
+        if (!CollectionUtils.isEmpty(selectQuestionPageInfo.getList())) {
+            PageInfo<SelectQuestionVo> selectQuestionVoPageInfo = new PageInfo<>();
+            BeanUtils.copyProperties(selectQuestionPageInfo, selectQuestionVoPageInfo);
+            selectQuestionVoPageInfo.setList(examService.listToVo(selectQuestionPageInfo.getList()));
+            CommonUtils.executeSuccess(resObj, selectQuestionVoPageInfo);
+        } else {
+            CommonUtils.executeSuccess(resObj, selectQuestionPageInfo);
+        }
         return resObj;
     }
 
     @UserLoginToken
     @ResponseBody
     @PostMapping("create")
-    public ResponseObject create(@CurrentUser AbstractUser user, @RequestBody SelectQuestion item) {
+    public ResponseObject create(@CurrentUser AbstractUser user, @RequestBody SelectQuestionVo item) {
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/selectQuestion/create", JSON.toJSON(item));
         ResponseObject resObj = new ResponseObject();
+        item.setCreatorId(user.getId());
         examService.insert(item);
+        logger.info("SelectQuestionId : " + item.getId());
+        if (!CollectionUtils.isEmpty(item.getSelectQuestionOptionList())) {
+            item.getSelectQuestionOptionList().forEach(optionItem -> {
+                optionItem.setQuestionId(item.getId());
+                optionItem.setState(1);
+            });
+            questionOptionService.batchInsert(item.getSelectQuestionOptionList());
+        }
         CommonUtils.executeSuccess(resObj, item);
         return resObj;
     }
@@ -55,11 +79,16 @@ public class SelectQuestionController {
     @UserLoginToken
     @ResponseBody
     @GetMapping("findById")
-    public ResponseObject findById(@CurrentUser AbstractUser user, Integer id) {
-        logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/selectQuestion/findById", id);
+    public ResponseObject findById(@CurrentUser AbstractUser user, Integer examId) {
+        logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/selectQuestion/findById", examId);
         ResponseObject resObj = new ResponseObject();
-        SelectQuestion item = examService.findById(id);
-        CommonUtils.executeSuccess(resObj, item);
+        SelectQuestion item = examService.findById(examId);
+        if (!ObjectUtils.isEmpty(item)) {
+            SelectQuestionVo selectQuestionVo = examService.itemToVo(item);
+            CommonUtils.executeSuccess(resObj, selectQuestionVo);
+        } else {
+            CommonUtils.executeSuccess(resObj, item);
+        }
         return resObj;
     }
 
@@ -83,6 +112,10 @@ public class SelectQuestionController {
         if (CollectionUtils.isEmpty(idListVo.getIds())) {
             idListVo.setIds(Collections.singletonList(idListVo.getId()));
         }
+        examService.delete(idListVo.getIds());
+        idListVo.getIds().forEach(id -> {
+            questionOptionService.deleteByQuestionId(id);
+        });
         CommonUtils.executeSuccess(resObj, examService.delete(idListVo.getIds()));
         return resObj;
     }

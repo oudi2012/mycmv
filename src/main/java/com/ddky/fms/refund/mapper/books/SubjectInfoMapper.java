@@ -25,6 +25,13 @@ public interface SubjectInfoMapper {
     SubjectInfo findById(int id);
 
     /***
+     * 列表
+     * @param listIds listIds
+     * @return obj
+     */
+    List<SubjectInfo> findByIds(@Param("listIds")List<Integer> listIds);
+
+    /***
      * 详细
      * @param name name
      * @return obj

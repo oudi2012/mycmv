@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @Author wanghaikuo
@@ -26,6 +29,16 @@ public class GradeServiceImpl implements GradeService {
     @Override
     public GradeInfo findById(int id) {
         return gradeInfoMapper.findById(id);
+    }
+
+    @Override
+    public List<GradeInfo> findByIds(List<Integer> ids) {
+        return gradeInfoMapper.findByIds(ids);
+    }
+
+    @Override
+    public Map<Integer, GradeInfo> findMapByIds(List<Integer> ids) {
+        return gradeInfoMapper.findByIds(ids).stream().collect(Collectors.toMap(GradeInfo::getGradeId, Function.identity()));
     }
 
     @Override

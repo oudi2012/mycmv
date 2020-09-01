@@ -3,6 +3,7 @@ package com.ddky.fms.refund.service.student;
 import com.ddky.fms.refund.model.students.entry.GradeInfo;
 
 import java.util.List;
+import java.util.Map;
 
 /***
  * 年级接口
@@ -22,6 +23,20 @@ public interface GradeService {
      * @return GradeInfo
      */
     GradeInfo findById(int id);
+
+    /***
+     * 列表获取
+     * @param ids ids
+     * @return GradeInfo
+     */
+    List<GradeInfo> findByIds(List<Integer> ids);
+
+    /***
+     * 列表获取
+     * @param ids ids
+     * @return GradeInfo
+     */
+    Map<Integer, GradeInfo> findMapByIds(List<Integer> ids);
 
     /***
      * 添加

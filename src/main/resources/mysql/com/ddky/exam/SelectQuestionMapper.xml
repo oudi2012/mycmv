@@ -3,7 +3,7 @@
 <mapper namespace="com.ddky.fms.refund.mapper.exam.SelectQuestionMapper">
 
     <sql id="column">
-        id, subjectId, gradeId, title, qusType, examScope, creatorId, answers, createTime, updateTime
+        id, subjectId, gradeId, title, qusType, examScope, creatorId, answers, hardLevelId, createTime, updateTime
     </sql>
 
     <sql id="where">
@@ -18,6 +18,9 @@
         </if>
         <if test="qusType != null">
             and qusType = #{qusType}
+        </if>
+        <if test="hardLevelId != null">
+            and hardLevelId = #{hardLevelId}
         </if>
     </sql>
 
@@ -39,15 +42,15 @@
         </where>
     </select>
 
-    <insert id="insert" parameterType="com.ddky.fms.refund.model.exam.entry.SelectQuestion">
-        insert into exam_select_questions (subjectId, gradeId, title, qusType, examScope, creatorId, answers)
-        values (#{subjectId}, #{gradeId}, #{title}, #{qusType}, #{examScope}, #{creatorId}, #{answers})
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.ddky.fms.refund.model.exam.entry.SelectQuestion">
+        insert into exam_select_questions (subjectId, gradeId, title, qusType, examScope, creatorId, answers, hardLevelId)
+        values (#{subjectId}, #{gradeId}, #{title}, #{qusType}, #{examScope}, #{creatorId}, #{answers}, #{hardLevelId})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into exam_select_questions (subjectId, gradeId, title, qusType, examScope, creatorId, answers)
-            values (#{item.subjectId}, #{item.gradeId}, #{item.title}, #{item.qusType}, #{item.examScope}, #{item.creatorId}, #{item.answers})
+            insert into exam_select_questions (subjectId, gradeId, title, qusType, examScope, creatorId, answers, hardLevelId)
+            values (#{item.subjectId}, #{item.gradeId}, #{item.title}, #{item.qusType}, #{item.examScope}, #{item.creatorId}, #{item.answers}, #{item.hardLevelId})
         </foreach>
     </insert>
 
@@ -61,6 +64,7 @@
             <if test="examScope != null">  examScope = #{examScope}, </if>
             <if test="creatorId != null">  creatorId = #{creatorId}, </if>
             <if test="answers != null">  answers = #{answers}, </if>
+            <if test="hardLevelId != null">  hardLevelId = #{hardLevelId}, </if>
         </set>
         <where>
             id = #{id}

@@ -33,6 +33,18 @@
         </where>
     </select>
 
+    <select id="findByIds" resultType="com.ddky.fms.refund.model.students.entry.GradeInfo">
+        select
+        <include refid="column" />
+        from stu_grade_info
+        <where>
+            gradeId in (
+            <foreach collection="listIds" index="index" item="item" separator=",">
+                #{item}
+            </foreach>)
+        </where>
+    </select>
+
     <insert id="insert" parameterType="com.ddky.fms.refund.model.students.entry.GradeInfo">
         insert into stu_grade_info (name, orderNo) values (#{name}, #{orderNo})
     </insert>

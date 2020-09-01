@@ -18,6 +18,7 @@ public class SelectQuestion extends ExamBean {
     private String examScope;
     private Long creatorId;
     private String answers;
+    private Integer hardLevelId;
     private Integer createTime;
     private Integer updateTime;
 }

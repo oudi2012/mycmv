@@ -3,10 +3,13 @@
 <mapper namespace="com.ddky.fms.refund.mapper.exam.SelectQuestionOptionMapper">
 
     <sql id="column">
-        id, title, state, hardLevelId, createTime, updateTime
+        id, questionId, title, state, createTime, updateTime
     </sql>
 
     <sql id="where">
+        <if test="questionId != null">
+            and questionId = #{questionId}
+        </if>
         <if test="title != null">
             and title = #{title}
         </if>
@@ -21,6 +24,27 @@
         </where>
     </select>
 
+    <select id="listByQuestionId" resultType="com.ddky.fms.refund.model.exam.entry.SelectQuestionOption">
+        select
+        <include refid="column" />
+        from exam_select_question_options
+        <where>
+            questionId = #{questionId}
+        </where>
+    </select>
+
+    <select id="listByQuestionIds" resultType="com.ddky.fms.refund.model.exam.entry.SelectQuestionOption">
+        select
+        <include refid="column" />
+        from exam_select_question_options
+        <where>
+            questionId in
+            (<foreach collection="idList" index="index" item="item" separator=",">
+                #{item}
+            </foreach>)
+        </where>
+    </select>
+
     <select id="findById" resultType="com.ddky.fms.refund.model.exam.entry.SelectQuestionOption">
         select
             <include refid="column" />
@@ -31,13 +55,13 @@
     </select>
 
     <insert id="insert" parameterType="com.ddky.fms.refund.model.exam.entry.SelectQuestionOption">
-        insert into exam_select_question_options (title, hardLevelId) values (#{title}, #{hardLevelId})
+        insert into exam_select_question_options (title, questionId) values (#{title}, #{questionId})
     </insert>
 
     <insert id="batchInsert" parameterType="java.util.List">
         <foreach collection="list" index="index" item="item" separator=";">
-            insert into exam_select_question_options (title, hardLevelId)
-            values (#{item.title}, #{item.hardLevelId})
+            insert into exam_select_question_options (title, questionId)
+            values (#{item.title}, #{item.questionId})
         </foreach>
     </insert>
 
@@ -45,7 +69,7 @@
         update exam_select_question_options
         <set>
             <if test="title != null">  title = #{title}, </if>
-            <if test="hardLevelId != null">  hardLevelId = #{hardLevelId}, </if>
+            <if test="questionId != null">  questionId = #{questionId}, </if>
         </set>
         <where>
             id = #{id}
@@ -57,6 +81,10 @@
         <foreach collection="idList" index="index" item="item" separator=",">
             #{item}
         </foreach>)
+    </delete>
+
+    <delete id="deleteByQuestionId">
+        delete from exam_select_question_options where questionId=#{questionId}
     </delete>
 
 </mapper>

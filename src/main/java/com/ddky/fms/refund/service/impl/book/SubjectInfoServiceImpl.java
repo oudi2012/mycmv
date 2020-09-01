@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @Author wanghaikuo
@@ -31,6 +34,16 @@ public class SubjectInfoServiceImpl implements SubjectInfoService {
     @Override
     public SubjectInfo findByName(String name) {
         return subjectInfoMapper.findByName(name);
+    }
+
+    @Override
+    public List<SubjectInfo> findByIds(List<Integer> ids) {
+        return subjectInfoMapper.findByIds(ids);
+    }
+
+    @Override
+    public Map<Integer, SubjectInfo> findMapByIds(List<Integer> ids) {
+        return subjectInfoMapper.findByIds(ids).stream().collect(Collectors.toMap(SubjectInfo::getSubjectId, Function.identity()));
     }
 
     @Override
