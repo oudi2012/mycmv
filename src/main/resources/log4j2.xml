@@ -9,7 +9,7 @@
 
         <!--studentInfo-->
         <RollingRandomAccessFile name="stuLogRollingFile" fileName="E:/logs/stu_log.log"
-                                 filePattern="E:/logs/stu_log-%d{yyyy-MM-dd}-%i.log.gz">
+                                 filePattern="../logs/stu_log-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout charset="UTF-8" pattern="%d [%t] %-5level - %msg [%C.%M():%L]%n"/>
             <Filters>
                 <ThresholdFilter level="info"/>
@@ -23,7 +23,7 @@
 
         <!--studentInfo-->
         <RollingRandomAccessFile name="teachLogRollingFile" fileName="E:/logs/teach_log.log"
-                                 filePattern="E:/logs/teach_log-%d{yyyy-MM-dd}-%i.log.gz">
+                                 filePattern="../logs/teach_log-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout charset="UTF-8" pattern="%d [%t] %-5level - %msg [%C.%M():%L]%n"/>
             <Filters>
                 <ThresholdFilter level="info"/>
