@@ -1,9 +1,9 @@
 package com.ddky.fms.refund.controller.rest.students;
 
-import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.students.entry.ClassInfo;
-import com.ddky.fms.refund.service.student.ClassInfoService;
-import com.ddky.fms.refund.utils.CommonUtils;
+import com.mycmv.server.model.ResponseObject;
+import com.mycmv.server.model.students.entry.ClassInfo;
+import com.mycmv.server.service.student.ClassInfoService;
+import com.mycmv.server.utils.CommonUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

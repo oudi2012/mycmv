@@ -1,10 +1,10 @@
 package com.ddky.fms.refund.controller.rest.term;
 
 
-import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.term.entry.TermInfo;
-import com.ddky.fms.refund.service.term.TermInfoService;
-import com.ddky.fms.refund.utils.CommonUtils;
+import com.mycmv.server.model.ResponseObject;
+import com.mycmv.server.model.term.entry.TermInfo;
+import com.mycmv.server.service.term.TermInfoService;
+import com.mycmv.server.utils.CommonUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

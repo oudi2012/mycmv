@@ -1,10 +1,10 @@
 package com.ddky.fms.refund.controller.handle;
 
-import com.ddky.fms.refund.configuration.PassToken;
-import com.ddky.fms.refund.configuration.UserLoginToken;
-import com.ddky.fms.refund.constants.CmvConstants;
-import com.ddky.fms.refund.model.AbstractUser;
-import com.ddky.fms.refund.service.TokenService;
+import com.mycmv.server.configuration.PassToken;
+import com.mycmv.server.configuration.UserLoginToken;
+import com.mycmv.server.constants.CmvConstants;
+import com.mycmv.server.model.AbstractUser;
+import com.mycmv.server.service.TokenService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ObjectUtils;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
-import static com.ddky.fms.refund.constants.CmvConstants.TOKEN;
+import static com.mycmv.server.constants.CmvConstants.TOKEN;
 
 /***
  * 此处的注解的识别还可以用另一种方式来实现 ApplicationListener

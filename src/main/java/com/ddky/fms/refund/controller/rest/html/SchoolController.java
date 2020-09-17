@@ -1,9 +1,9 @@
 package com.ddky.fms.refund.controller.rest.html;
 
-import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.students.entry.SchoolInfo;
-import com.ddky.fms.refund.service.html.HtmlSchoolService;
-import com.ddky.fms.refund.utils.CommonUtils;
+import com.mycmv.server.model.ResponseObject;
+import com.mycmv.server.model.students.entry.SchoolInfo;
+import com.mycmv.server.service.html.HtmlSchoolService;
+import com.mycmv.server.utils.CommonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

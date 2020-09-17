@@ -1,13 +1,13 @@
 package com.ddky.fms.refund.controller.rest.students;
 
-import com.ddky.fms.refund.constants.LogConstants;
-import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.base.vo.LongIdListVo;
-import com.ddky.fms.refund.model.base.vo.KeyValueVo;
-import com.ddky.fms.refund.model.students.entry.SchoolInfo;
-import com.ddky.fms.refund.model.students.vo.SchoolInfoVo;
-import com.ddky.fms.refund.service.student.SchoolInfoService;
-import com.ddky.fms.refund.utils.CommonUtils;
+import com.mycmv.server.constants.LogConstants;
+import com.mycmv.server.model.ResponseObject;
+import com.mycmv.server.model.base.vo.LongIdListVo;
+import com.mycmv.server.model.base.vo.KeyValueVo;
+import com.mycmv.server.model.students.entry.SchoolInfo;
+import com.mycmv.server.model.students.vo.SchoolInfoVo;
+import com.mycmv.server.service.student.SchoolInfoService;
+import com.mycmv.server.utils.CommonUtils;
 import com.github.pagehelper.PageInfo;
 import com.google.common.base.Preconditions;
 import org.slf4j.Logger;

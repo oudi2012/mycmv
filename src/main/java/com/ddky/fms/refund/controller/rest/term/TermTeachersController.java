@@ -1,9 +1,9 @@
 package com.ddky.fms.refund.controller.rest.term;
 
-import com.ddky.fms.refund.model.ResponseObject;
-import com.ddky.fms.refund.model.term.entry.TermTeachers;
-import com.ddky.fms.refund.service.term.TermTeachersService;
-import com.ddky.fms.refund.utils.CommonUtils;
+import com.mycmv.server.model.ResponseObject;
+import com.mycmv.server.model.term.entry.TermTeachers;
+import com.mycmv.server.service.term.TermTeachersService;
+import com.mycmv.server.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
