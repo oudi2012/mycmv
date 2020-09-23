@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-import static com.ddky.fms.refund.constants.CmvConstants.DEFAULT_PWD;
+import static com.mycmv.server.constants.CmvConstants.DEFAULT_PWD;
 
 /***
  * @author a

@@ -27,8 +27,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.ddky.fms.refund.constants.CmvConstants.*;
-import static com.ddky.fms.refund.constants.CmvConstants.TWO;
+import static com.mycmv.server.constants.CmvConstants.*;
 
 /***
  * guardian
