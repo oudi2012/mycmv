@@ -6,13 +6,18 @@ spring:
 
 #分页pageHelper
 pagehelper:
-  helper-dialect: mysql
+  # 设置数据库类型
+  helperDialect: mysql
+  #开启合理化：页码<=0 查询第一页，页码>=总页数查询最后一页
   reasonable: true
-  support-methods-arguments: true
+  #支持通过 Mapper 接口参数来传递分页参数
+  supportMethodsArguments: true
+  # 参数  成员变量 = ${ xx}
+  params: count=countSql;offsetAsPageNum=true;rowBoundsWithCount=true;reasonable=true
 
 mybatis:
   #mysql 环境
-  mapperLocations: classpath:mysql/com/mycmv/books/*.xml, classpath:mysql/com/mycmv/images/*.xml, classpath:mysql/com/mycmv/students/*.xml, classpath:mysql/com/mycmv/userlogs/*.xml, classpath:mysql/com/mycmv/term/*.xml, classpath:mysql/com/mycmv/exam/*.xml, classpath:mysql/com/mycmv/admin/*.xml
+  mapperLocations: classpath:mysql/com/mycmv/books/*.xml, classpath:mysql/com/mycmv/images/*.xml, classpath:mysql/com/mycmv/students/*.xml, classpath:mysql/com/mycmv/userlogs/*.xml, classpath:mysql/com/mycmv/term/*.xml, classpath:mysql/com/mycmv/exam/*.xml, classpath:mysql/com/mycmv/admin/*.xml, classpath:mysql/com/mycmv/article/*.xml
 logging:
   config: classpath:log4j2.xml
   level:
