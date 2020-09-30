@@ -19,6 +19,7 @@ CREATE TABLE `sys_banner_info` (
   `title` varchar(60) DEFAULT NULL COMMENT '名称',
   `cntType` varchar(10) DEFAULT NULL COMMENT '内容类型',
   `target` varchar(10) DEFAULT NULL COMMENT '目标',
+  `href` varchar(300) DEFAULT NULL COMMENT '连接地址',
   `srcUrl` varchar(300) DEFAULT NULL COMMENT '地址源',
   `state` int(2) DEFAULT NULL COMMENT '状态',
   `orderNo` int(2) DEFAULT 1 COMMENT '排序',

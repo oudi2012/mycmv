@@ -7,11 +7,9 @@ import com.mycmv.server.configuration.UserLoginToken;
 import com.mycmv.server.constants.LogConstants;
 import com.mycmv.server.model.AbstractUser;
 import com.mycmv.server.model.ResponseObject;
-import com.mycmv.server.model.banner.entry.Banner;
-import com.mycmv.server.model.banner.vo.BannerListVo;
-import com.mycmv.server.model.banner.vo.BannerVo;
+import com.mycmv.server.model.banner.entry.BannerCate;
 import com.mycmv.server.model.base.vo.LongIdListVo;
-import com.mycmv.server.service.banner.BannerInfoService;
+import com.mycmv.server.service.banner.BannerCateService;
 import com.mycmv.server.utils.CommonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,22 +26,22 @@ import java.util.List;
  * @author a
  */
 @RestController
-@RequestMapping("banner")
-public class BannerInfoController {
+@RequestMapping("bannerCate")
+public class BannerCateController {
 
     private static final Logger logger = LoggerFactory.getLogger(LogConstants.ADM_LOG);
 
     @Resource
-    private BannerInfoService bannerInfoService;
+    private BannerCateService bannerCateService;
 
     @UserLoginToken
     @ResponseBody
     @GetMapping("pageList")
-    public ResponseObject pageList(@CurrentUser AbstractUser user, Banner item, int pageIndex, int pageSize) {
-        String url = "banner/pageList";
+    public ResponseObject pageList(@CurrentUser AbstractUser user, BannerCate item, int pageIndex, int pageSize) {
+        String url = "bannerCate/pageList";
         logger.info("用户 {} ，访问 {} , 参数：{}，{}，{}", user.getUserName(), url, JSON.toJSON(item), pageIndex, pageSize);
         ResponseObject responseObject = new ResponseObject();
-        PageInfo<BannerVo> pageInfo = bannerInfoService.pageListVo(item, pageIndex, pageSize);
+        PageInfo<BannerCate> pageInfo = bannerCateService.pageList(item, pageIndex, pageSize);
         logger.info("返回结果 list 条数：{}", pageInfo.getSize());
         CommonUtils.executeSuccess(responseObject, pageInfo);
         return responseObject;
@@ -53,11 +51,11 @@ public class BannerInfoController {
     @UserLoginToken
     @ResponseBody
     @GetMapping("list")
-    public ResponseObject list(@CurrentUser AbstractUser user, Banner bookItem) {
-        String url = "banner/list";
+    public ResponseObject list(@CurrentUser AbstractUser user, BannerCate bookItem) {
+        String url = "bannerCate/list";
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), url, JSON.toJSON(bookItem));
         ResponseObject responseObject = new ResponseObject();
-        List<Banner> list = bannerInfoService.list(bookItem);
+        List<BannerCate> list = bannerCateService.list(bookItem);
         if (CollectionUtils.isEmpty(list)) {
             logger.info("返回结果 list 条数：0");
         } else {
@@ -72,10 +70,10 @@ public class BannerInfoController {
     @ResponseBody
     @GetMapping("findById")
     public ResponseObject findById(@CurrentUser AbstractUser user, int id) {
-        String url = "banner/findById";
+        String url = "bannerCate/findById";
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), url, id);
         ResponseObject responseObject = new ResponseObject();
-        Banner tmp = bannerInfoService.findById(id);
+        BannerCate tmp = bannerCateService.findById(id);
         if (ObjectUtils.isEmpty(tmp)) {
             logger.info("返回结果 null");
         } else {
@@ -89,11 +87,11 @@ public class BannerInfoController {
     @UserLoginToken
     @ResponseBody
     @PostMapping("create")
-    public ResponseObject create(@CurrentUser AbstractUser user, @RequestBody Banner item) {
-        String url = "banner/create";
+    public ResponseObject create(@CurrentUser AbstractUser user, @RequestBody BannerCate item) {
+        String url = "bannerCate/create";
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), url, JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
-        bannerInfoService.insert(item);
+        bannerCateService.insert(item);
         CommonUtils.executeSuccess(responseObject);
         return responseObject;
     }
@@ -102,24 +100,11 @@ public class BannerInfoController {
     @UserLoginToken
     @ResponseBody
     @PostMapping("edit")
-    public ResponseObject edit(@CurrentUser AbstractUser user, @RequestBody  Banner item) {
-        String url = "banner/create";
+    public ResponseObject edit(@CurrentUser AbstractUser user, @RequestBody  BannerCate item) {
+        String url = "bannerCate/create";
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), url, JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
-        bannerInfoService.insert(item);
-        CommonUtils.executeSuccess(responseObject);
-        return responseObject;
-    }
-
-
-    @UserLoginToken
-    @ResponseBody
-    @PostMapping("batchCreate")
-    public ResponseObject batchCreate(@CurrentUser AbstractUser user, @RequestBody BannerListVo bannerListVo) {
-        String url = "banner/batchCreate";
-        logger.info("用户 {} ，访问 {} , 数量：{}", user.getUserName(), url, bannerListVo.getBannerList().size());
-        ResponseObject responseObject = new ResponseObject();
-        bannerInfoService.batchInsert(bannerListVo.getBannerList());
+        bannerCateService.insert(item);
         CommonUtils.executeSuccess(responseObject);
         return responseObject;
     }
@@ -129,12 +114,12 @@ public class BannerInfoController {
     @ResponseBody
     @PostMapping("remove")
     public ResponseObject delete(@CurrentUser AbstractUser user, @RequestBody LongIdListVo longIdListVo) {
-        logger.info("用户 {} ，访问 {} , 数量：{}", user.getUserName(), "banner/remove", JSON.toJSON(longIdListVo));
+        logger.info("用户 {} ，访问 {} , 数量：{}", user.getUserName(), "bannerCate/remove", JSON.toJSON(longIdListVo));
         ResponseObject resObj = new ResponseObject();
         if (CollectionUtils.isEmpty(longIdListVo.getIds())) {
             longIdListVo.setIds(Collections.singletonList(longIdListVo.getId()));
         }
-        CommonUtils.executeSuccess(resObj, bannerInfoService.delete(longIdListVo.getIds()));
+        CommonUtils.executeSuccess(resObj, bannerCateService.delete(longIdListVo.getIds()));
         return resObj;
     }
 }
