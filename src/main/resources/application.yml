@@ -17,8 +17,11 @@ pagehelper:
 
 upload:
   obs:
+    endPoint: https://cn-south-1.huaweicloud.com
     accessKey: D4TU0VCP4MBVGUH1FCPW
     secretKey: a5XH40Hg3embq2sy2zL6qSmoWMl06rdWmMhznSww
+    bucketName: banner
+    showImageHost: https://mycmv.cn-south-1.huaweicloud.com/
 
 mybatis:
   #mysql 环境
