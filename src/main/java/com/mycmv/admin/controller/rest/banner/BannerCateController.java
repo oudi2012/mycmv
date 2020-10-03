@@ -8,6 +8,7 @@ import com.mycmv.server.constants.LogConstants;
 import com.mycmv.server.model.AbstractUser;
 import com.mycmv.server.model.ResponseObject;
 import com.mycmv.server.model.banner.entry.BannerCate;
+import com.mycmv.server.model.banner.vo.BannerCateVo;
 import com.mycmv.server.model.base.vo.LongIdListVo;
 import com.mycmv.server.service.banner.BannerCateService;
 import com.mycmv.server.utils.CommonUtils;
@@ -41,7 +42,7 @@ public class BannerCateController {
         String url = "bannerCate/pageList";
         logger.info("用户 {} ，访问 {} , 参数：{}，{}，{}", user.getUserName(), url, JSON.toJSON(item), pageIndex, pageSize);
         ResponseObject responseObject = new ResponseObject();
-        PageInfo<BannerCate> pageInfo = bannerCateService.pageList(item, pageIndex, pageSize);
+        PageInfo<BannerCateVo> pageInfo = bannerCateService.pageListVo(item, pageIndex, pageSize);
         logger.info("返回结果 list 条数：{}", pageInfo.getSize());
         CommonUtils.executeSuccess(responseObject, pageInfo);
         return responseObject;
