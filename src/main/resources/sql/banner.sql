@@ -6,7 +6,7 @@ CREATE TABLE `sys_banner_cate` (
   `codeTitle` varchar(60) DEFAULT NULL COMMENT '标题',
   `userId` bigint(20) DEFAULT NULL COMMENT '用户编号',
   `orderNo` int(2) DEFAULT 1 COMMENT '排序',
-  `createDate` date DEFAULT NULL COMMENT '创建时间',
+  `createDate` int DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='banner_cate';
 
@@ -23,6 +23,6 @@ CREATE TABLE `sys_banner_info` (
   `srcUrl` varchar(300) DEFAULT NULL COMMENT '地址源',
   `state` int(2) DEFAULT NULL COMMENT '状态',
   `orderNo` int(2) DEFAULT 1 COMMENT '排序',
-  `createDate` date DEFAULT NULL COMMENT '创建时间',
+  `createDate` int DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='banner_info';

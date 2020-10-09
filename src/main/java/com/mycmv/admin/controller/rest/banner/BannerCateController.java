@@ -92,6 +92,8 @@ public class BannerCateController {
         String url = "bannerCate/create";
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), url, JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
+        item.setUserId(user.getId());
+        item.setOrderNo(0);
         bannerCateService.insert(item);
         CommonUtils.executeSuccess(responseObject);
         return responseObject;
@@ -105,7 +107,7 @@ public class BannerCateController {
         String url = "bannerCate/create";
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), url, JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
-        bannerCateService.insert(item);
+        bannerCateService.update(item);
         CommonUtils.executeSuccess(responseObject);
         return responseObject;
     }

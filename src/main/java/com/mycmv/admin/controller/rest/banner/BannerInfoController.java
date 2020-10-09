@@ -93,6 +93,8 @@ public class BannerInfoController {
         String url = "banner/create";
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), url, JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
+        item.setUserId(user.getId());
+        item.setState(1);
         bannerInfoService.insert(item);
         CommonUtils.executeSuccess(responseObject);
         return responseObject;
@@ -106,7 +108,8 @@ public class BannerInfoController {
         String url = "banner/create";
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), url, JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
-        bannerInfoService.insert(item);
+        item.setUserId(user.getId());
+        bannerInfoService.update(item);
         CommonUtils.executeSuccess(responseObject);
         return responseObject;
     }
