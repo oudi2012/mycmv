@@ -32,6 +32,7 @@ public class AdminInfoController {
     @UserLoginToken
     @GetMapping("userInfo")
     public ResponseObject userInfo(@CurrentUser AbstractUser user) {
+        logger.info("admin/userInfo");
         ResponseObject resObj = new ResponseObject();
         AdminInfo tmpItem = adminInfoService.findById(user.getId());
         if (ObjectUtils.isEmpty(tmpItem)) {
@@ -44,6 +45,7 @@ public class AdminInfoController {
     @ResponseBody
     @PostMapping("create")
     public ResponseObject create(@RequestBody AdminInfo adminInfo) {
+        logger.info("admin/create");
         ResponseObject resObj = new ResponseObject();
         Preconditions.checkNotNull(adminInfo, "管理员信息不能为空");
         Preconditions.checkNotNull(adminInfo.getUserName(), "用户名不能为空");
