@@ -15,11 +15,46 @@
 	<description>mycmv-admin</description>
 	<packaging>jar</packaging>
 
+	<repositories>
+		<repository>
+			<id>aliyunmaven</id>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>nexus</id>
+			<name>local private nexus</name>
+			<url>https://maven.aliyun.com/repository/central</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.mycmv</groupId>
 			<artifactId>mycmv-server</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<!--eureka客户端支持 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Hoxton.SR8</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

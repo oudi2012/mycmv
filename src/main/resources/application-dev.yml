@@ -1,6 +1,14 @@
 server:
   port: 80
 
+eureka:
+  instance:
+    # 注册服务的时候使用服务的ip地址
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+
 spring:
   datasource:
     name: mysql

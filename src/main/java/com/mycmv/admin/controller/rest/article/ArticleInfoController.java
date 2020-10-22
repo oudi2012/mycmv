@@ -2,10 +2,8 @@ package com.mycmv.admin.controller.rest.article;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
-import com.mycmv.server.configuration.CurrentUser;
-import com.mycmv.server.configuration.UserLoginToken;
-import com.mycmv.server.constants.LogConstants;
 import com.mycmv.server.model.AbstractUser;
+import com.mycmv.server.constants.LogConstants;
 import com.mycmv.server.model.ResponseObject;
 import com.mycmv.server.model.article.entry.ArticleInfo;
 import com.mycmv.server.model.article.vo.ArticleListVo;
@@ -35,10 +33,9 @@ public class ArticleInfoController {
     @Resource
     private ArticleInfoService articleInfoService;
 
-    @UserLoginToken
     @ResponseBody
     @GetMapping("pageList")
-    public ResponseObject pageList(@CurrentUser AbstractUser user, ArticleInfo item, int pageIndex, int pageSize) {
+    public ResponseObject pageList(AbstractUser user, ArticleInfo item, int pageIndex, int pageSize) {
         String url = "book/pageList";
         logger.info("用户 {} ，访问 {} , 参数：{}，{}，{}", user.getUserName(), url, JSON.toJSON(item), pageIndex, pageSize);
         ResponseObject responseObject = new ResponseObject();
@@ -49,10 +46,9 @@ public class ArticleInfoController {
     }
 
 
-    @UserLoginToken
     @ResponseBody
     @GetMapping("list")
-    public ResponseObject list(@CurrentUser AbstractUser user, ArticleInfo item) {
+    public ResponseObject list(AbstractUser user, ArticleInfo item) {
         String url = "book/list";
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), url, JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
@@ -67,10 +63,9 @@ public class ArticleInfoController {
     }
 
 
-    @UserLoginToken
     @ResponseBody
     @GetMapping("findById")
-    public ResponseObject findById(@CurrentUser AbstractUser user, int bookId) {
+    public ResponseObject findById(AbstractUser user, int bookId) {
         String url = "book/findById";
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), url, bookId);
         ResponseObject responseObject = new ResponseObject();
@@ -85,10 +80,9 @@ public class ArticleInfoController {
     }
 
 
-    @UserLoginToken
     @ResponseBody
     @PostMapping("create")
-    public ResponseObject create(@CurrentUser AbstractUser user, @RequestBody ArticleInfo item) {
+    public ResponseObject create(AbstractUser user, @RequestBody ArticleInfo item) {
         String url = "book/create";
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), url, JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
@@ -98,10 +92,9 @@ public class ArticleInfoController {
     }
 
 
-    @UserLoginToken
     @ResponseBody
     @PostMapping("edit")
-    public ResponseObject edit(@CurrentUser AbstractUser user, @RequestBody  ArticleInfo item) {
+    public ResponseObject edit(AbstractUser user, @RequestBody  ArticleInfo item) {
         String url = "book/create";
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), url, JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
@@ -111,10 +104,9 @@ public class ArticleInfoController {
     }
 
 
-    @UserLoginToken
     @ResponseBody
     @PostMapping("batchCreate")
-    public ResponseObject batchCreate(@CurrentUser AbstractUser user, @RequestBody ArticleListVo esArticleListVo) {
+    public ResponseObject batchCreate(AbstractUser user, @RequestBody ArticleListVo esArticleListVo) {
         String url = "book/batchCreate";
         logger.info("用户 {} ，访问 {} , 数量：{}", user.getUserName(), url, esArticleListVo.getArticleInfoList().size());
         ResponseObject responseObject = new ResponseObject();
@@ -124,10 +116,9 @@ public class ArticleInfoController {
     }
 
 
-    @UserLoginToken
     @ResponseBody
     @PostMapping("remove")
-    public ResponseObject delete(@CurrentUser AbstractUser user, @RequestBody LongIdListVo longIdListVo) {
+    public ResponseObject delete(AbstractUser user, @RequestBody LongIdListVo longIdListVo) {
         logger.info("用户 {} ，访问 {} , 数量：{}", user.getUserName(), "book/remove", JSON.toJSON(longIdListVo));
         ResponseObject resObj = new ResponseObject();
         if (CollectionUtils.isEmpty(longIdListVo.getIds())) {

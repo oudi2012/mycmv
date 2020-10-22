@@ -2,8 +2,6 @@ package com.mycmv.admin.controller.rest.exam;
 
 
 import com.alibaba.fastjson.JSON;
-import com.mycmv.server.configuration.CurrentUser;
-import com.mycmv.server.configuration.UserLoginToken;
 import com.mycmv.server.constants.LogConstants;
 import com.mycmv.server.model.AbstractUser;
 import com.mycmv.server.model.ResponseObject;
@@ -42,10 +40,9 @@ public class MultiSelectController {
     @Resource
     private MultiSelectService multiSelectService;
 
-    @UserLoginToken
     @ResponseBody
     @GetMapping("pageList")
-    public ResponseObject list(@CurrentUser AbstractUser user, MultiSelectQuestion item, int pageIndex, int pageSize) {
+    public ResponseObject list(AbstractUser user, MultiSelectQuestion item, int pageIndex, int pageSize) {
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/multiSelect/create", JSON.toJSON(item));
         ResponseObject resObj = new ResponseObject();
         PageInfo<MultiSelectQuestion> multiSelectQuestionPageInfo = multiSelectService.pageList(item, pageIndex, pageSize);
@@ -60,10 +57,9 @@ public class MultiSelectController {
         return resObj;
     }
 
-    @UserLoginToken
     @ResponseBody
     @PostMapping("create")
-    public ResponseObject create(@CurrentUser AbstractUser user, @RequestBody MultiSelectVo item) {
+    public ResponseObject create(AbstractUser user, @RequestBody MultiSelectVo item) {
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/multiSelect/create", JSON.toJSON(item));
         ResponseObject resObj = new ResponseObject();
         item.setCreatorId(user.getId());
@@ -85,10 +81,9 @@ public class MultiSelectController {
         return resObj;
     }
 
-    @UserLoginToken
     @ResponseBody
     @GetMapping("findById")
-    public ResponseObject findById(@CurrentUser AbstractUser user, Integer examId) {
+    public ResponseObject findById(AbstractUser user, Integer examId) {
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/multiSelect/findById", examId);
         ResponseObject resObj = new ResponseObject();
         MultiSelectQuestion item = multiSelectService.findById(examId);
@@ -101,10 +96,9 @@ public class MultiSelectController {
         return resObj;
     }
 
-    @UserLoginToken
     @ResponseBody
     @PostMapping("edit")
-    public ResponseObject edit(@CurrentUser AbstractUser user, @RequestBody MultiSelectQuestion item) {
+    public ResponseObject edit(AbstractUser user, @RequestBody MultiSelectQuestion item) {
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/multiSelect/edit", JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
         multiSelectService.update(item);
@@ -112,10 +106,9 @@ public class MultiSelectController {
         return responseObject;
     }
 
-    @UserLoginToken
     @ResponseBody
     @PostMapping("remove")
-    public ResponseObject delete(@CurrentUser AbstractUser user, @RequestBody LongIdListVo longIdListVo) {
+    public ResponseObject delete(AbstractUser user, @RequestBody LongIdListVo longIdListVo) {
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/multiSelect/remove", JSON.toJSON(longIdListVo));
         ResponseObject resObj = new ResponseObject();
         if (CollectionUtils.isEmpty(longIdListVo.getIds())) {

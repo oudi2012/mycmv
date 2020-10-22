@@ -1,8 +1,6 @@
 package com.mycmv.admin.controller.rest.exam;
 
 import com.alibaba.fastjson.JSON;
-import com.mycmv.server.configuration.CurrentUser;
-import com.mycmv.server.configuration.UserLoginToken;
 import com.mycmv.server.constants.LogConstants;
 import com.mycmv.server.model.AbstractUser;
 import com.mycmv.server.model.ResponseObject;
@@ -38,10 +36,9 @@ public class SelectQuestionController {
     @Resource
     private SelectQuestionOptionService questionOptionService;
 
-    @UserLoginToken
     @ResponseBody
     @GetMapping("pageList")
-    public ResponseObject list(@CurrentUser AbstractUser user, SelectQuestion item, int pageIndex, int pageSize) {
+    public ResponseObject list(AbstractUser user, SelectQuestion item, int pageIndex, int pageSize) {
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/selectQuestion/create", JSON.toJSON(item));
         ResponseObject resObj = new ResponseObject();
         PageInfo<SelectQuestion> selectQuestionPageInfo = examService.pageList(item, pageIndex, pageSize);
@@ -56,10 +53,9 @@ public class SelectQuestionController {
         return resObj;
     }
 
-    @UserLoginToken
     @ResponseBody
     @PostMapping("create")
-    public ResponseObject create(@CurrentUser AbstractUser user, @RequestBody SelectQuestionVo item) {
+    public ResponseObject create(AbstractUser user, @RequestBody SelectQuestionVo item) {
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/selectQuestion/create", JSON.toJSON(item));
         ResponseObject resObj = new ResponseObject();
         item.setCreatorId(user.getId());
@@ -78,10 +74,9 @@ public class SelectQuestionController {
         return resObj;
     }
 
-    @UserLoginToken
     @ResponseBody
     @GetMapping("findById")
-    public ResponseObject findById(@CurrentUser AbstractUser user, Integer examId) {
+    public ResponseObject findById(AbstractUser user, Integer examId) {
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/selectQuestion/findById", examId);
         ResponseObject resObj = new ResponseObject();
         SelectQuestion item = examService.findById(examId);
@@ -94,10 +89,9 @@ public class SelectQuestionController {
         return resObj;
     }
 
-    @UserLoginToken
     @ResponseBody
     @PostMapping("edit")
-    public ResponseObject edit(@CurrentUser AbstractUser user, @RequestBody SelectQuestionVo item) {
+    public ResponseObject edit(AbstractUser user, @RequestBody SelectQuestionVo item) {
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/selectQuestion/edit", JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
         examService.update(item);
@@ -113,10 +107,9 @@ public class SelectQuestionController {
         return responseObject;
     }
 
-    @UserLoginToken
     @ResponseBody
     @PostMapping("remove")
-    public ResponseObject delete(@CurrentUser AbstractUser user, @RequestBody LongIdListVo longIdListVo) {
+    public ResponseObject delete(AbstractUser user, @RequestBody LongIdListVo longIdListVo) {
         logger.info("用户 {} ，访问 {} , 参数：{}", user.getUserName(), "exam/selectQuestion/remove", JSON.toJSON(longIdListVo));
         ResponseObject resObj = new ResponseObject();
         if (CollectionUtils.isEmpty(longIdListVo.getIds())) {

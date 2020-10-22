@@ -1,11 +1,9 @@
 package com.mycmv.admin.controller.rest.image;
 
 
-import com.mycmv.server.configuration.CurrentUser;
-import com.mycmv.server.configuration.UserLoginToken;
 import com.mycmv.server.constants.LogConstants;
-import com.mycmv.server.model.AbstractUser;
 import com.mycmv.server.model.ResponseObject;
+import com.mycmv.server.model.AbstractUser;
 import com.mycmv.server.service.image.ImageService;
 import com.mycmv.server.utils.CommonUtils;
 import org.slf4j.Logger;
@@ -31,10 +29,9 @@ public class ImageController {
     @Resource
     private ImageService imageService;
 
-    @UserLoginToken
     @ResponseBody
     @PostMapping("upload")
-    public ResponseObject pageList(@CurrentUser AbstractUser user, @RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) throws IOException {
+    public ResponseObject pageList(AbstractUser user, @RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) throws IOException {
         logger.info("文件上传操作人: " + user.getUserName());
         ResponseObject responseObject = new ResponseObject();
         String fileName = multipartFile.getOriginalFilename();
